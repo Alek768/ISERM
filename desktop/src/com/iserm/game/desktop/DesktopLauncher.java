@@ -1,6 +1,4 @@
 package com.iserm.game.desktop;
-"""Commentaire
-"""
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
