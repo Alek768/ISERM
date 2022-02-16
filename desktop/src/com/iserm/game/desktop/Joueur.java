@@ -4,32 +4,80 @@ import java.util.ArrayList;
 
 public class Joueur {
 
-    String Pseudo, Mail, Password;
-    int Niveau, EXP, Argent;
+    /**
+     * Informations 'Personnelles' du Joueur.
+     * Trouver une sécurité pour le mot de passe.
+     */
+    private String Pseudo, Mail, Password;
+    /**
+     * Informations In-Game du Joueur.
+     * 1st Connexion Niveau = 1, EXP = 0, Argent = 500 (à revoir).
+     * Credit : Monnaie Achetable en Boutique.
+     */
+    private int Niveau, EXP, Argent, Credit;
+    static int nbAmis = 0;
+
+    /**
+     * Informations sur 'L'inventaire' du Joueur.
+     * Liste [Nom de l'objet, Quantité]
+     */
     ArrayList<Objet> Stockage = new ArrayList();
 
-    public void Joueur(){
+    /**
+     * Le Joueur pourra avoir des Ami.e.s
+     * Stockage sous forme de Tableau.
+     * Maximum 50 Ami.e.s
+     */
+    Joueur [] Amis = new Joueur[50];
 
+    public Joueur(String Pseudo, String Mail, String Password, int Niveau, int EXP, int Argent, int Credit) {
+        this.Pseudo = Pseudo;
+        this.Mail = Mail;
+        this.Password = Password;
+        this.Niveau = Niveau;
+        this.EXP = EXP;
+        this.Argent = Argent;
+        this.Credit = Credit;
     }
 
-    String getPseudo(){
+    @Override
+    public String toString() {
+        return "Joueur : " + Pseudo + " | " + Niveau + " | " + EXP + " | " + Argent;
+    }
+
+    /**
+     * Getter des informations.
+     * @return
+     */
+    String getPseudo() {
         return this.Pseudo;
     }
-    String getPassword(){
+
+    String getPassword() {
         return this.Password;
     }
-    String getMail(){
+
+    String getMail() {
         return this.Mail;
     }
-    int getNiveau(){
+
+    int getNiveau() {
         return this.Niveau;
+    }
+
+    int getEXP() {
+        return this.EXP;
+    }
+
+    int getArgent() {
+        return this.Argent;
     }
 
     /**
      * Modifie le Pseudo
      * @param newPseudo
      */
-    void setPseudo(String newPseudo){
+    void setPseudo(String newPseudo) {
         this.Pseudo = newPseudo;
     }
 
@@ -37,7 +85,7 @@ public class Joueur {
      * Modifie l'Adresse Mail
      * @param newMail
      */
-    void setMail(String newMail){
+    void setMail(String newMail) {
         this.Mail = newMail;
     }
 
@@ -45,14 +93,32 @@ public class Joueur {
      * Modifie de Mot de Passe
      * @param newPassword
      */
-    void setPassword(String newPassword){
+    void setPassword(String newPassword) {
         this.Password = newPassword;
     }
 
     /**
      * Ajoute un Niveau
+     * Définir un modèle de passage de Niveau.
      */
-    void setLevel(){
-        this.Niveau ++;
+    void setLevel() {
+        this.Niveau++;
+    }
+
+    /**
+     * Ajoute un Ami.
+     * @param JoueurAmi
+     */
+    void ajoutAmi(Joueur JoueurAmi){
+        this.Amis[nbAmis] = JoueurAmi;
+        nbAmis ++;
+    }
+
+    /**
+     * Supprime un Ami.
+     * @param JoueurAmi
+     */
+    void retireAmi(Joueur JoueurAmi){
+        nbAmis --;
     }
 }
