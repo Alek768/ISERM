@@ -4,14 +4,14 @@ public class Boutique {
 
 
     private int apparenceBoutique ;
-
+    private int apparenceDeLaBoutique;
 
 
     /**
      * Méthode utilisé par époque pour modifié l'apparence de la boutique
      * @param apparenceDeLaBoutique
      */
-    public void setApparenceDeLaBoutique(void apparenceDeLaBoutique) {
+    public void setApparenceDeLaBoutique(int apparenceDeLaBoutique) {
         this.apparenceDeLaBoutique = apparenceDeLaBoutique;
     }
 

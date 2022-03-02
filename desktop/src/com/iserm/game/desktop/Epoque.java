@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Epoque {
 
+    private final int themeMusicale;
     private int dateDebut;
     private int dateFin;
     private String nom;
