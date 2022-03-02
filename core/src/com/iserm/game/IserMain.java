@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 
 public class IserMain extends ApplicationAdapter {
 	SpriteBatch batch;
@@ -44,5 +45,6 @@ public class IserMain extends ApplicationAdapter {
 	public void dispose () {
 		batch.dispose();
 		img.dispose();
-	}
-}
+	}}
+
+
