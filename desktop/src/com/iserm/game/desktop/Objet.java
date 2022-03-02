@@ -2,15 +2,12 @@ package com.iserm.game.desktop;
 
 public class Objet {
 
-    /**
-     * [Nom de l'Objet,Quantité]
-     * Exemple : ["Or","3"].
-     */
-    Object [] Inv = new Object[2];
+    String Name;
+    int Quantite;
 
     public Objet(String Name, int Quantite){
-        this.Inv[0] = Name;
-        this.Inv[1] = Quantite;
+        this.Name = Name;
+        this.Quantite = Quantite;
     }
 
     /**
@@ -18,7 +15,7 @@ public class Objet {
      * @param Quantite
      */
     void ajoutObjet(int Quantite){
-        this.Inv[1] = (int) this.Inv[1] + Quantite;
+        this.Quantite += Quantite;
     }
 
     /**
@@ -27,12 +24,10 @@ public class Objet {
      * @param Quantite
      */
     void retireObjet(int Quantite){
-        //if (Quantite > (int) this.Inv[1]){
-        //    System.out.println("PROBLEME");
-        //} elif (Quantite < (int) this.Inv[1]){
-            this.Inv[1] = (int) this.Inv[1] - Quantite;
-        //} else {
-        //    this.Inv[1] = (int) this.Inv[1] - Quantite;
-        //}
+        if (Quantite > this.Quantite){
+            System.out.println("PROBLEME");
+        } else {
+            this.Quantite -= Quantite;
+        }
     }
 }

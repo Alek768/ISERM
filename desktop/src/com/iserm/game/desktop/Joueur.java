@@ -102,7 +102,9 @@ public class Joueur {
      * Définir un modèle de passage de Niveau.
      */
     void setLevel() {
+        //Augmenter le niveau
         this.Niveau++;
+        //Retirer l'EXP nécessaire au passage de niveau
     }
 
     /**
@@ -110,8 +112,10 @@ public class Joueur {
      * @param JoueurAmi
      */
     void ajoutAmi(Joueur JoueurAmi){
-        this.Amis[nbAmis] = JoueurAmi;
-        nbAmis ++;
+        if (this.nbAmis < 50) {
+            this.Amis[nbAmis] = JoueurAmi;
+            nbAmis++;
+        }
     }
 
     /**
@@ -120,5 +124,27 @@ public class Joueur {
      */
     void retireAmi(Joueur JoueurAmi){
         nbAmis --;
+    }
+
+    /**
+     * Ajoute l'Objet o dans le Stockage
+     * @param o
+     */
+    void ajoutObjet(Objet o){
+        if (Stockage.indexOf(o) == 0) {
+            Stockage.add(o);
+        }
+    }
+
+    /**
+     * Retire l'Objet o du Stockage
+     * @param o
+     */
+    void retireObjet(Objet o){
+        Stockage.remove(o);
+    }
+
+    void ajoutQuantite(Objet o, int q){
+        Stockage.get(Stockage.indexOf(o)).ajoutObjet(q);
     }
 }
