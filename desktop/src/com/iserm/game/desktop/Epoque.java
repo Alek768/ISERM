@@ -28,6 +28,16 @@ public class Epoque {
     }
 
     /**
+     * Méthdode permettant de modifier le coeficient de rareté du minerais dominant. Idéalement, cette méthode
+     * permettrait de définir aléatoirement le coef de rareté des autres minerais dans un intervalle donnée.
+     * @param mineraisDominant
+     */
+    public void ModifierCoefdeRarete (Minerais mineraisDominant){
+
+
+    }
+
+    /**
      * Cette méthode est appellée quand un joueur clique sur une époque
      *
      * @return Elle lui renvoi ainsi les infos necessaire sur l'époque concernée (peut être sous la forme d'une petite fenêtre pop-up?
@@ -42,6 +52,10 @@ public class Epoque {
 
     public int getDateFin() {
         return dateFin;
+    }
+
+    public void setMineraisDominant(Minerais mineraisDominant) {
+        this.mineraisDominant = mineraisDominant;
     }
 
     /**
