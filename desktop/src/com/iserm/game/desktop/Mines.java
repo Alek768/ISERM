@@ -31,9 +31,11 @@ public class Mines {
 
 
     /**
-     * Cette méthode pourra être appellé par le joueur quand il choisira d'exploiter cette mine. Le processus de minage se lancera alors
+     * Cette méthode pourra être appellé par le joueur quand il choisira d'exploiter cette mine.
+     * Le processus de minage se lancera alors. Le joueur aura un nombre donnée de ressources investi et
+     * y consacrera un temps donnée. En fonction de cellle ci on aura un résultat plus ou moins bon.
      */
-    public void Miner() {
+    public void Miner( double tempsInvesti , ArrayList <Ressource> ressourceInvesti ) {
     }
 
 

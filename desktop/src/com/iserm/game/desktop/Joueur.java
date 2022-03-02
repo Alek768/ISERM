@@ -6,7 +6,7 @@ public class Joueur {
 
     String Pseudo, Mail, Password;
     int Niveau, EXP, Argent;
-    ArrayList<Objet> Stockage = new ArrayList();
+    ArrayList<Ressource> Stockage = new ArrayList();
 
     public void Joueur(){
 
