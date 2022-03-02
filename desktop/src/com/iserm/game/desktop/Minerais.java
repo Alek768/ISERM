@@ -28,7 +28,7 @@ public class Minerais {
     }
 
     /**
-     * Constructeut d'un objet minerais
+     * Constructeut d'un objet minerais. L'apparence serait rattaché à une interface graphique
      * @param nom
      * @param valeurEnOr
      * @param coefDeRarete
@@ -40,6 +40,8 @@ public class Minerais {
         CoefDeRarete = coefDeRarete;
         this.apparence = apparence;
     }
+
+
 
 
     //Série de getter
