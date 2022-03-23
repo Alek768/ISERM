@@ -1,50 +1,50 @@
 package com.iserm.game;
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-
-public class IserMain extends ApplicationAdapter {
-	SpriteBatch batch;
-	OrthographicCamera camera;
-	Texture img;
-	Texture img2;
+import com.iserm.game.screen.GameScreen;
 
 
-
+public class IserMain extends Game {
+	public static final int V_WIDTH = 400;
+	public static final int V_HEIGHT = 208;
+	public SpriteBatch batch;
+	//OrthographicCamera camera;
+	//Texture img;
+	//Texture img2;
+	//TextButton textButton;
+	//Skin skin = new Skin();
 	
 	@Override
 	public void create () {
-		camera = new OrthographicCamera();
+		//camera = new OrthographicCamera();
 		batch = new SpriteBatch();
-		img = new Texture("ISERM Logo.png");
-		img2 = new Texture("Logo-IMT-Mines-Ales.jpeg");
+		//img = new Texture("ISERM Logo.png");
+		//img2 = new Texture("Logo-IMT-Mines-Ales.jpeg");
+		setScreen(new GameScreen(this));
 	}
-
+/*
 	@Override
 	public void resize(int width, int height) {
 		camera.setToOrtho(false,width,height);
 	}
-
+*/
 
 	@Override
 	public void render () {
-		ScreenUtils.clear(1, 1, 1, 1);
+		super.render();
+		/*ScreenUtils.clear(1, 1, 1, 1);
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		batch.draw(img, 180, 170);
 		batch.draw(img2, 530, 420);
-		batch.end();
+		batch.end();*/
 	}
 	
 	@Override
 	public void dispose () {
-		batch.dispose();
-		img.dispose();
+		//batch.dispose();
+		//img.dispose();
 	}}
 
 
