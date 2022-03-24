@@ -8,10 +8,11 @@ public class Ressource {
     private double prix ;
     private double valeur ;
     private int apparence ;
+    private String type;
     public boolean typeDeRessource ;
     static int idObjet;
 
-    public Ressource(String nom, double prix, double valeur, int apparence, int idObjet) {
+    public Ressource(String nom, double prix, double valeur, int apparence) {
         this.nom = nom;
         this.prix = prix;
         this.valeur = valeur;
@@ -29,7 +30,12 @@ public class Ressource {
     public ArrayList<Minerais> extraireDesMinerais (Mines mines, double tempsInvesti) {
         return null;
     }
-
+    public void setType(String Type){
+        this.type = Type;
+    }
+    public String getType(){
+        return type;
+    }
 }
 
 
