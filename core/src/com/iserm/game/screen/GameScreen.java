@@ -4,15 +4,27 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.iserm.game.IserMain;
 import com.iserm.game.Scenes.Hud;
 
+import java.awt.*;
+
 public class GameScreen implements Screen {
+    private final MapLayer pierre3;
     private IserMain game;
     //Texture texture;
     private OrthographicCamera gamecam;
@@ -34,13 +46,42 @@ public class GameScreen implements Screen {
         this.game = game;
         //texture = new Texture("badlogic.jpg");
         gamecam = new OrthographicCamera();
-        gamePort = new FitViewport(2100,1200,gamecam);
+        gamePort = new FitViewport(1280,720,gamecam);
         hud = new Hud(game.batch);
 
         maploader = new TmxMapLoader();
-        map = maploader.load("carte2.tmx");
+        map = maploader.load("ui/maps/Maps_1.tmx");
+
         renderer = new OrthogonalTiledMapRenderer(map);
         gamecam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2, 0);
+
+        pierre3 = map.getLayers().get("objet_pierres3");
+
+        Stage s = new Stage(gamePort) ;
+
+        for (MapObject o : pierre3.getObjects()){
+            Actor A = new Actor() ;
+            Rectangle r = ((RectangleMapObject) o).getRectangle() ;
+            A.setBounds(r.x , r.y , r.width , r.height);
+
+
+
+            A.addListener(new ClickListener() {
+
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    System.out.println("clique sur pierre 3");
+                }
+            }) ;
+
+            s.addActor(A);
+
+
+        }
+
+        Gdx.input.setInputProcessor(s);
+
+
     }
 
     @Override
