@@ -21,6 +21,4 @@ public class Boutique {
      */
     public void cliquer (){
     }
-
-
 }

@@ -9,12 +9,14 @@ public class Ressource {
     private double valeur ;
     private int apparence ;
     public boolean typeDeRessource ;
+    static int idObjet;
 
-    public Ressource(String nom, double prix, double valeur, int apparence) {
+    public Ressource(String nom, double prix, double valeur, int apparence, int idObjet) {
         this.nom = nom;
         this.prix = prix;
         this.valeur = valeur;
         this.apparence = apparence;
+        this.idObjet = idObjet;
     }
 
     /**
