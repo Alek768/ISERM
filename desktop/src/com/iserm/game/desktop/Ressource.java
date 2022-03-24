@@ -5,25 +5,19 @@ import java.util.ArrayList;
 public class Ressource {
 
     private String nom ;
+    private double prix ;
     private double valeur ;
     private int apparence ;
-    private String type ;
+    private String type;
+    public boolean typeDeRessource ;
+    static int idObjet;
 
-
-    /**
-     * Méthode permettant de définir le type de ressource : Monnaie, outils, mineurs ?
-     * @param type Elle permettra in fine de changer le type d'objet de ressource.
-     */
-    public void setType(String type) {
-        this.type = type;
-    }
-
-
-
-    public Ressource(String nom, double valeur, int apparence) {
+    public Ressource(String nom, double prix, double valeur, int apparence) {
         this.nom = nom;
+        this.prix = prix;
         this.valeur = valeur;
         this.apparence = apparence;
+        this.idObjet = idObjet;
     }
 
     /**
@@ -36,8 +30,10 @@ public class Ressource {
     public ArrayList<Minerais> extraireDesMinerais (Mines mines, double tempsInvesti) {
         return null;
     }
-
-    public String getType() {
+    public void setType(String Type){
+        this.type = Type;
+    }
+    public String getType(){
         return type;
     }
 }

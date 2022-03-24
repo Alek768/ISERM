@@ -30,7 +30,7 @@ public class Hud {
         epoque = "Antiquité";
         Or = 0;
         score = 0;
-
+        //Commentaire
         viewport = new FitViewport(IserMain.V_WIDTH, IserMain.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, sb);
 
