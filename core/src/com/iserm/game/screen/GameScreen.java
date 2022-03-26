@@ -24,7 +24,7 @@ import com.iserm.game.Scenes.Hud;
 import java.awt.*;
 
 public class GameScreen implements Screen {
-    private final MapLayer pierre3;
+    //private final MapLayer pierre3;
     private IserMain game;
     //Texture texture;
     private OrthographicCamera gamecam;
@@ -42,57 +42,55 @@ public class GameScreen implements Screen {
     private Hud hud;
     */
 
-    public GameScreen(IserMain game){
+    public GameScreen(IserMain game) {
         this.game = game;
         //texture = new Texture("badlogic.jpg");
         gamecam = new OrthographicCamera();
-        gamePort = new FitViewport(1280,720,gamecam);
+        gamePort = new FitViewport(1280, 720, gamecam);
         hud = new Hud(game.batch);
 
         maploader = new TmxMapLoader();
         map = maploader.load("ui/maps/Maps_1.tmx");
 
         renderer = new OrthogonalTiledMapRenderer(map);
-        gamecam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2, 0);
+        gamecam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
 
-        pierre3 = map.getLayers().get("objet_pierres3");
+        //pierre3 = map.getLayers().get("objet_pierres3");
 
-        Stage s = new Stage(gamePort) ;
+        //Stage s = new Stage(gamePort) ;
 
-        for (MapObject o : pierre3.getObjects()){
-            Actor A = new Actor() ;
-            Rectangle r = ((RectangleMapObject) o).getRectangle() ;
-            A.setBounds(r.x , r.y , r.width , r.height);
+//        for (MapObject o : pierre3.getObjects()){
+//            Actor A = new Actor() ;
+//            Rectangle r = ((RectangleMapObject) o).getRectangle() ;
+//            A.setBounds(r.x , r.y , r.width , r.height);
+//
+//
+//
+//            A.addListener(new ClickListener() {
+//
+//                @Override
+//                public void clicked(InputEvent event, float x, float y) {
+//                    System.out.println("clique sur pierre 3");
+//                }
+//            }) ;
+//
+//            s.addActor(A);
 
 
+        // }
 
-            A.addListener(new ClickListener() {
+        //Gdx.input.setInputProcessor(s);
 
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    System.out.println("clique sur pierre 3");
-                }
-            }) ;
-
-            s.addActor(A);
-
-
-        }
-
-        Gdx.input.setInputProcessor(s);
-
+    }
+    @Override
+    public void show () {
 
     }
 
     @Override
-    public void show() {
-
-    }
-
-    @Override
-    public void render(float delta) {
+    public void render ( float delta){
         //clear the game screen with black
-        Gdx.gl.glClearColor(0,0,0,1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         renderer.setView(gamecam);
@@ -113,32 +111,32 @@ public class GameScreen implements Screen {
     }
 
     @Override
-    public void resize(int width, int height) {
+    public void resize ( int width, int height){
         gamePort.update(width, height);
 
     }
 
     @Override
-    public void pause() {
+    public void pause () {
 
     }
 
     @Override
-    public void resume() {
+    public void resume () {
 
     }
 
     @Override
-    public void hide() {
+    public void hide () {
 
     }
 
     @Override
-    public void dispose() {
+    public void dispose () {
 
     }
 
-    public void handleInput(){
+    public void handleInput () {
 
     }
 }
