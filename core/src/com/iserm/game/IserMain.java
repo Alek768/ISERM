@@ -26,7 +26,7 @@ public class IserMain extends Game {
 		//img = new Texture("ISERM Logo.png");
 		//img2 = new Texture("Logo-IMT-Mines-Ales.jpeg");
 		setScreen(new GameScreen(this));
-		Music music = Gdx.audio.newMusic(Gdx.files.internal("banjo.mp3"));
+		Music music = Gdx.audio.newMusic(Gdx.files.internal("iserm_music.mp3"));
 		music.setLooping(true);
 		music.play();
 
