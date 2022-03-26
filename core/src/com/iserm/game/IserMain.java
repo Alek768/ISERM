@@ -23,8 +23,6 @@ public class IserMain extends Game {
 	public void create () {
 		//camera = new OrthographicCamera();
 		batch = new SpriteBatch();
-		//img = new Texture("ISERM Logo.png");
-		//img2 = new Texture("Logo-IMT-Mines-Ales.jpeg");
 		setScreen(new GameScreen(this));
 		Music music = Gdx.audio.newMusic(Gdx.files.internal("iserm_music.mp3"));
 		music.setLooping(true);

@@ -82,23 +82,23 @@ public class GameScreen implements Screen {
         //Gdx.input.setInputProcessor(s);
 
     }
-        @Override
-        public void show () {
+    @Override
+    public void show () {
 
-        }
+    }
 
-        @Override
-        public void render ( float delta){
-            //clear the game screen with black
-            Gdx.gl.glClearColor(0, 0, 0, 1);
-            Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+    @Override
+    public void render ( float delta){
+        //clear the game screen with black
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-            renderer.setView(gamecam);
+        renderer.setView(gamecam);
 
-            renderer.render();
+        renderer.render();
 
-            game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
-            hud.stage.draw();
+        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        hud.stage.draw();
         /*
 
         game.batch.setProjectionMatrix(gamecam.combined);
@@ -108,36 +108,35 @@ public class GameScreen implements Screen {
 
          */
 
-        }
-
-        @Override
-        public void resize ( int width, int height){
-            gamePort.update(width, height);
-
-        }
-
-        @Override
-        public void pause () {
-
-        }
-
-        @Override
-        public void resume () {
-
-        }
-
-        @Override
-        public void hide () {
-
-        }
-
-        @Override
-        public void dispose () {
-
-        }
-
-        public void handleInput () {
-
-        }
     }
 
+    @Override
+    public void resize ( int width, int height){
+        gamePort.update(width, height);
+
+    }
+
+    @Override
+    public void pause () {
+
+    }
+
+    @Override
+    public void resume () {
+
+    }
+
+    @Override
+    public void hide () {
+
+    }
+
+    @Override
+    public void dispose () {
+
+    }
+
+    public void handleInput () {
+
+    }
+}
