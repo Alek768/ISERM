@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.sql.*;
 
 public class DesktopLauncher {
-	public static void main (String[] arg) throws IOException, SQLException {
+   public static void main (String[] arg) throws IOException, SQLException {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		new LwjglApplication(new IserMain(), config);
 		//Créations d'une instance SQL
@@ -18,5 +18,5 @@ public class DesktopLauncher {
 		//Joueur J = new Joueur(1);
 		//J.config(s);
 		//System.out.println(J.toString());
-	}
-}
+//
+}}
