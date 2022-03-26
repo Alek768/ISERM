@@ -10,8 +10,8 @@ import java.sql.*;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) throws IOException, SQLException {
-		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		new LwjglApplication(new IserMain(), config);
+		//LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		//new LwjglApplication(new IserMain(), config);
 		//Créations d'une instance SQL
 		SQL s = SQL.getInstance();
 		//Chargement du Player.
