@@ -24,7 +24,7 @@ import com.iserm.game.Scenes.Hud;
 import java.awt.*;
 
 public class GameScreen implements Screen {
-    //private final MapLayer pierre3;
+    private final MapLayer mine0;
     private IserMain game;
     //Texture texture;
     private OrthographicCamera gamecam;
@@ -55,33 +55,33 @@ public class GameScreen implements Screen {
         renderer = new OrthogonalTiledMapRenderer(map);
         gamecam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
 
-        //pierre3 = map.getLayers().get("objet_pierres3");
+        mine0 = map.getLayers().get("Mine_0");
 
-        //Stage s = new Stage(gamePort) ;
+        Stage s = new Stage(gamePort) ;
 
-//        for (MapObject o : pierre3.getObjects()){
-//            Actor A = new Actor() ;
-//            Rectangle r = ((RectangleMapObject) o).getRectangle() ;
-//            A.setBounds(r.x , r.y , r.width , r.height);
-//
-//
-//
-//            A.addListener(new ClickListener() {
-//
-//                @Override
-//                public void clicked(InputEvent event, float x, float y) {
-//                    System.out.println("clique sur pierre 3");
-//                }
-//            }) ;
-//
-//            s.addActor(A);
+        for (MapObject o : mine0.getObjects()){
+            Actor A = new Actor() ;
+            Rectangle r = ((RectangleMapObject) o).getRectangle() ;
+            A.setBounds(r.x , r.y , r.width , r.height);
 
 
-        // }
 
-        //Gdx.input.setInputProcessor(s);
+            A.addListener(new ClickListener() {
 
-    }
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    System.out.println("clique sur mine0");
+                }
+            }) ;
+
+            s.addActor(A);
+
+
+        }
+
+        Gdx.input.setInputProcessor(s);
+
+   }
     @Override
     public void show () {
 
@@ -99,12 +99,12 @@ public class GameScreen implements Screen {
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
-        /*
+        /**
 
-        game.batch.setProjectionMatrix(gamecam.combined);
-        game.batch.begin();
-        game.batch.draw(texture, 0, 0);
-        game.batch.end();
+         game.batch.setProjectionMatrix(gamecam.combined);
+         game.batch.begin();
+         game.batch.draw(texture, 0, 0);
+         game.batch.end();
 
          */
 
