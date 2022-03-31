@@ -28,6 +28,34 @@ public class GameScreen implements Screen {
     //Variables fenêtres d'affichage
     private final MapLayer fenetredecouverte;
 
+    //Variable des mines
+    private final MapLayer mine0;
+    private final MapLayer mine1;
+    private final MapLayer mine2;
+    private final MapLayer mine3;
+    private final MapLayer mine4;
+    private final MapLayer mine5;
+    private final MapLayer mine6;
+    private final MapLayer mine7;
+    private final MapLayer mine8;
+    private final MapLayer mine9;
+    private final MapLayer mine10;
+    private final MapLayer mine11;
+    private final MapLayer mine12;
+    private final MapLayer mine13;
+    private final MapLayer mine14;
+    private final MapLayer mine15;
+    private final MapLayer mine16;
+    private final MapLayer mine17;
+    private final MapLayer mine18;
+    private final MapLayer mine19;
+    private final MapLayer mine20;
+    private final MapLayer mine21;
+    private final MapLayer mine22;
+
+
+
+
     //Variables de zone
     private final MapLayer zone1;
     private final MapLayer zone2;
@@ -36,12 +64,21 @@ public class GameScreen implements Screen {
     private final MapLayer zone5;
     private final MapLayer zone6;
 
+    //Variables de nuage
+    private final MapLayer nuage1;
+    private final MapLayer nuage2;
+    private final MapLayer nuage3;
+    private final MapLayer nuage4;
+    private final MapLayer nuage5;
+    private final MapLayer nuage6;
+
     //Variables bouton
     private final MapLayer boutondecouverteoui;
     private final MapLayer boutondecouvertenon;
 
 
-    private final MapLayer mine0;
+
+    int conditionzone;
 
     private final MapLayer test;
     private final MapLayer entree;
@@ -87,6 +124,42 @@ public class GameScreen implements Screen {
         zone5 = map.getLayers().get("Zone5");
         zone6 = map.getLayers().get("Zone6");
 
+        //Mines
+        mine0 = map.getLayers().get("Mine_0");
+        mine1 = map.getLayers().get("Mine_1");
+        mine2 = map.getLayers().get("Mine_2");
+        mine3 = map.getLayers().get("Mine_3");
+        mine4 = map.getLayers().get("Mine_4");
+        mine5 = map.getLayers().get("Mine_5");
+        mine6 = map.getLayers().get("Mine_6");
+        mine7 = map.getLayers().get("Mine_7");
+        mine8 = map.getLayers().get("Mine_8");
+        mine9 = map.getLayers().get("Mine_9");
+        mine10 = map.getLayers().get("Mine_10");
+        mine11 = map.getLayers().get("Mine_11");
+        mine12 = map.getLayers().get("Mine_12");
+        mine13 = map.getLayers().get("Mine_13");
+        mine14 = map.getLayers().get("Mine_14");
+        mine15 = map.getLayers().get("Mine_15");
+        mine16 = map.getLayers().get("Mine_16");
+        mine17 = map.getLayers().get("Mine_17");
+        mine18 = map.getLayers().get("Mine_18");
+        mine19 = map.getLayers().get("Mine_19");
+        mine20 = map.getLayers().get("Mine_20");
+        mine21 = map.getLayers().get("Mine_21");
+        mine22 = map.getLayers().get("Mine_22");
+
+
+
+
+        //Nuages
+        nuage1 = map.getLayers().get("Nuage_Zone1");
+        nuage2 = map.getLayers().get("Nuage_Zone2");
+        nuage3 = map.getLayers().get("Nuage_Zone3");
+        nuage4 = map.getLayers().get("Nuage_Zone4");
+        nuage5 = map.getLayers().get("Nuage_Zone5");
+        nuage6 = map.getLayers().get("Nuage_Zone6");
+
         //Boutons
         boutondecouverteoui = map.getLayers().get("Bouton oui_decouverte");
         boutondecouvertenon = map.getLayers().get("Bouton non_decouverte");
@@ -106,6 +179,7 @@ public class GameScreen implements Screen {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     fenetredecouverte.setVisible(true);
+                    conditionzone = 1;
                 }
             }) ;
 
@@ -126,6 +200,7 @@ public class GameScreen implements Screen {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     fenetredecouverte.setVisible(true);
+                    conditionzone = 2;
                 }
             }) ;
 
@@ -146,6 +221,7 @@ public class GameScreen implements Screen {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     fenetredecouverte.setVisible(true);
+                    conditionzone = 3;
                 }
             }) ;
 
@@ -166,6 +242,7 @@ public class GameScreen implements Screen {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     fenetredecouverte.setVisible(true);
+                    conditionzone = 4;
                 }
             }) ;
 
@@ -186,6 +263,7 @@ public class GameScreen implements Screen {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     fenetredecouverte.setVisible(true);
+                    conditionzone = 5;
                 }
             }) ;
 
@@ -198,7 +276,7 @@ public class GameScreen implements Screen {
             Actor A = new Actor() ;
             Rectangle r = ((RectangleMapObject) o).getRectangle() ;
             A.setBounds(r.x , r.y , r.width , r.height);
-            int condition = 0 ;
+
 
 
             A.addListener(new ClickListener() {
@@ -206,7 +284,86 @@ public class GameScreen implements Screen {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     fenetredecouverte.setVisible(true);
+                    conditionzone = 6;
 
+                }
+            }) ;
+
+            s.addActor(A);
+
+
+        }
+
+        for (MapObject o : boutondecouverteoui.getObjects()){
+            Actor A = new Actor() ;
+            Rectangle r = ((RectangleMapObject) o).getRectangle() ;
+            A.setBounds(r.x , r.y , r.width , r.height);
+
+
+
+            A.addListener(new ClickListener() {
+
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    fenetredecouverte.setVisible(false);
+                    if (conditionzone == 1){
+                        nuage1.setVisible(false);
+                        mine1.setVisible(true);
+                    }
+                    if (conditionzone == 2){
+                        nuage2.setVisible(false);
+                    }
+                    if (conditionzone == 3){
+                        nuage3.setVisible(false);
+                    }
+                    if (conditionzone == 4){
+                        nuage4.setVisible(false);
+                    }
+                    if (conditionzone == 5){
+                        nuage5.setVisible(false);
+                    }
+                    if (conditionzone == 6){
+                        nuage6.setVisible(false);
+                    }
+                }
+            }) ;
+
+            s.addActor(A);
+
+        }
+
+        for (MapObject o : boutondecouvertenon.getObjects()){
+            Actor A = new Actor() ;
+            Rectangle r = ((RectangleMapObject) o).getRectangle() ;
+            A.setBounds(r.x , r.y , r.width , r.height);
+
+
+
+            A.addListener(new ClickListener() {
+
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    fenetredecouverte.setVisible(false);
+                }
+            }) ;
+
+            s.addActor(A);
+
+        }
+
+        for (MapObject o : mine0.getObjects()){
+            Actor A = new Actor() ;
+            Rectangle r = ((RectangleMapObject) o).getRectangle() ;
+            A.setBounds(r.x , r.y , r.width , r.height);
+
+
+
+            A.addListener(new ClickListener() {
+
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    test.setVisible(true);
+                    entree.setVisible(false);
                 }
             }) ;
 
@@ -218,7 +375,7 @@ public class GameScreen implements Screen {
 
 
 
-        mine0 = map.getLayers().get("Mine_0");
+
         test = map.getLayers().get("Informations joueurs");
         entree = map.getLayers().get("Entree mines");
 
