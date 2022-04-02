@@ -1236,7 +1236,7 @@
  <objectgroup id="51" name="Mine_0">
   <object id="31" x="1152" y="384" width="48" height="64"/>
  </objectgroup>
- <layer id="106" name="Decouverte" width="80" height="45">
+ <layer id="106" name="Decouverte" width="80" height="45" visible="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1285,13 +1285,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="108" name="Bouton non_decouverte">
-  <object id="82" x="695" y="362" width="41" height="27"/>
- </objectgroup>
- <objectgroup id="107" name="Bouton oui_decouverte">
-  <object id="81" x="547" y="364" width="37" height="25"/>
- </objectgroup>
- <layer id="129" name="explorer mines" width="80" height="45" visible="0">
+ <layer id="129" name="explorer mines" width="80" height="45" visible="0" offsetx="-15.7143" offsety="-90">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1341,9 +1335,15 @@
 </data>
  </layer>
  <objectgroup id="130" name="Bouton oui_exploration" visible="0">
-  <object id="91" x="575.714" y="377.143" width="38.5714" height="28.5714"/>
+  <object id="91" x="560" y="287.143" width="38.5714" height="28.5714"/>
  </objectgroup>
  <objectgroup id="131" name="Bouton non_exploration" visible="0">
-  <object id="92" x="701.429" y="374.286" width="47.1429" height="31.4286"/>
+  <object id="92" x="684.286" y="285.715" width="47.1429" height="31.4286"/>
+ </objectgroup>
+ <objectgroup id="108" name="Bouton non_decouverte" visible="0">
+  <object id="82" x="695" y="362" width="41" height="27"/>
+ </objectgroup>
+ <objectgroup id="107" name="Bouton oui_decouverte" visible="0">
+  <object id="81" x="547" y="364" width="37" height="25"/>
  </objectgroup>
 </map>

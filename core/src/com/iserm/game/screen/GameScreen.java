@@ -28,11 +28,12 @@ public class GameScreen implements Screen {
 
     //Variables fenêtres d'affichage
     private final MapLayer fenetredecouverte;
+    private final MapLayer fenetreexploration;
 
 
     //Variable des mines
     private final MapLayer mine0;
-    private final MapLayer mine1;
+//    private final MapLayer mine1;
 //    private final MapLayer mine2;
 //    private final MapLayer mine3;
 //    private final MapLayer mine4;
@@ -56,8 +57,6 @@ public class GameScreen implements Screen {
 //    private final MapLayer mine22;
 
 
-
-
     //Variables de zone
     private final MapLayer zone1;
     private final MapLayer zone2;
@@ -77,14 +76,14 @@ public class GameScreen implements Screen {
     //Variables bouton
     private final MapLayer boutondecouverteoui;
     private final MapLayer boutondecouvertenon;
-    //private final MapLayer boutonexplorationoui;
+    private final MapLayer boutonexplorationoui;
+    private final MapLayer boutonexplorationnon;
 
 
 
 
     int conditionzone;
 
-    
 
     int conditionouizone1 = 0;
     int conditionouizone2 = 0;
@@ -94,8 +93,6 @@ public class GameScreen implements Screen {
     int conditionouizone6 = 0;
 
 
-    private final MapLayer test;
-    private final MapLayer entree;
     private IserMain game;
     //Texture texture;
     private OrthographicCamera gamecam;
@@ -125,10 +122,11 @@ public class GameScreen implements Screen {
         renderer = new OrthogonalTiledMapRenderer(map);
         gamecam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
 
-        Stage s = new Stage(gamePort) ;
+        Stage s = new Stage(gamePort);
 
         //Fenêtres d'affichage
         fenetredecouverte = map.getLayers().get("Decouverte");
+        fenetreexploration = map.getLayers().get("explorer mines");
 
 
         //Zones
@@ -141,7 +139,7 @@ public class GameScreen implements Screen {
 
         //Mines
         mine0 = map.getLayers().get("Mine_0");
-        mine1 = map.getLayers().get("Mine_1");
+//        mine1 = map.getLayers().get("Mine_1");
 //        mine2 = map.getLayers().get("Mine_2");
 //        mine3 = map.getLayers().get("Mine_3");
 //        mine4 = map.getLayers().get("Mine_4");
@@ -165,8 +163,6 @@ public class GameScreen implements Screen {
 //        mine22 = map.getLayers().get("Mine_22");
 
 
-
-
         //Nuages
         nuage1 = map.getLayers().get("Nuage_Zone1");
         nuage2 = map.getLayers().get("Nuage_Zone2");
@@ -178,10 +174,8 @@ public class GameScreen implements Screen {
         //Boutons
         boutondecouverteoui = map.getLayers().get("Bouton oui_decouverte");
         boutondecouvertenon = map.getLayers().get("Bouton non_decouverte");
-
-
-
-
+        boutonexplorationoui = map.getLayers().get("Bouton oui_exploration");
+        boutonexplorationnon = map.getLayers().get("Bouton non_exploration");
 
 
         for (MapObject o : zone1.getObjects()) {
@@ -201,9 +195,7 @@ public class GameScreen implements Screen {
                         conditionzone = 1;
 
 
-                    }
-
-                    else {
+                    } else {
 
                     }
                 }
@@ -213,7 +205,6 @@ public class GameScreen implements Screen {
 
 
         }
-
 
 
         for (MapObject o : zone2.getObjects()) {
@@ -231,9 +222,7 @@ public class GameScreen implements Screen {
 
                         fenetredecouverte.setVisible(true);
                         conditionzone = 2;
-                    }
-
-                    else{
+                    } else {
 
                     }
                 }
@@ -244,8 +233,6 @@ public class GameScreen implements Screen {
 
 
         }
-
-
 
 
         for (MapObject o : zone3.getObjects()) {
@@ -261,10 +248,9 @@ public class GameScreen implements Screen {
                     if (conditionouizone3 == 0) {
 
 
-                    fenetredecouverte.setVisible(true);
-                    conditionzone = 3;
-                }
-                    else {
+                        fenetredecouverte.setVisible(true);
+                        conditionzone = 3;
+                    } else {
 
                     }
                 }
@@ -275,8 +261,6 @@ public class GameScreen implements Screen {
 
 
         }
-
-
 
 
         for (MapObject o : zone4.getObjects()) {
@@ -294,9 +278,7 @@ public class GameScreen implements Screen {
                         fenetredecouverte.setVisible(true);
                         conditionzone = 4;
 
-                    }
-
-                    else {
+                    } else {
 
                     }
 
@@ -308,8 +290,6 @@ public class GameScreen implements Screen {
 
 
         }
-
-
 
 
         for (MapObject o : zone5.getObjects()) {
@@ -325,9 +305,7 @@ public class GameScreen implements Screen {
                     if (conditionouizone5 == 0) {
                         fenetredecouverte.setVisible(true);
                         conditionzone = 5;
-                    }
-
-                    else {
+                    } else {
 
                     }
                 }
@@ -337,9 +315,6 @@ public class GameScreen implements Screen {
 
 
         }
-
-
-
 
 
         for (MapObject o : zone6.getObjects()) {
@@ -355,9 +330,7 @@ public class GameScreen implements Screen {
                     if (conditionouizone6 == 0) {
                         fenetredecouverte.setVisible(true);
                         conditionzone = 6;
-                    }
-
-                    else {
+                    } else {
 
                     }
 
@@ -371,12 +344,10 @@ public class GameScreen implements Screen {
         }
 
 
-
-        for (MapObject o : boutondecouverteoui.getObjects()){
-            Actor A = new Actor() ;
-            Rectangle r = ((RectangleMapObject) o).getRectangle() ;
-            A.setBounds(r.x , r.y , r.width , r.height);
-
+        for (MapObject o : boutondecouverteoui.getObjects()) {
+            Actor A = new Actor();
+            Rectangle r = ((RectangleMapObject) o).getRectangle();
+            A.setBounds(r.x, r.y, r.width, r.height);
 
 
             A.addListener(new ClickListener() {
@@ -384,53 +355,52 @@ public class GameScreen implements Screen {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     fenetredecouverte.setVisible(false);
-                    if (conditionzone == 1){
+                    if (conditionzone == 1) {
                         nuage1.setVisible(false);
                         conditionouizone1 = 1;
 
 
                     }
-                    if (conditionzone == 2){
+                    if (conditionzone == 2) {
                         nuage2.setVisible(false);
                         conditionouizone2 = 1;
 
                     }
-                    if (conditionzone == 3){
+                    if (conditionzone == 3) {
                         nuage3.setVisible(false);
                         zone3.setVisible(false);
                         conditionouizone3 = 1;
 
                     }
-                    if (conditionzone == 4){
+                    if (conditionzone == 4) {
                         nuage4.setVisible(false);
                         zone4.setVisible(false);
                         conditionouizone4 = 1;
 
                     }
-                    if (conditionzone == 5){
+                    if (conditionzone == 5) {
                         nuage5.setVisible(false);
                         zone5.setVisible(false);
                         conditionouizone5 = 1;
 
                     }
-                    if (conditionzone == 6){
+                    if (conditionzone == 6) {
                         nuage6.setVisible(false);
                         zone6.setVisible(false);
                         conditionouizone6 = 1;
 
                     }
                 }
-            }) ;
+            });
 
             s.addActor(A);
 
         }
 
-        for (MapObject o : boutondecouvertenon.getObjects()){
-            Actor A = new Actor() ;
-            Rectangle r = ((RectangleMapObject) o).getRectangle() ;
-            A.setBounds(r.x , r.y , r.width , r.height);
-
+        for (MapObject o : boutondecouvertenon.getObjects()) {
+            Actor A = new Actor();
+            Rectangle r = ((RectangleMapObject) o).getRectangle();
+            A.setBounds(r.x, r.y, r.width, r.height);
 
 
             A.addListener(new ClickListener() {
@@ -439,27 +409,27 @@ public class GameScreen implements Screen {
                 public void clicked(InputEvent event, float x, float y) {
                     fenetredecouverte.setVisible(false);
                 }
-            }) ;
+            });
 
             s.addActor(A);
 
         }
 
-        for (MapObject o : mine0.getObjects()){
-            Actor A = new Actor() ;
-            Rectangle r = ((RectangleMapObject) o).getRectangle() ;
-            A.setBounds(r.x , r.y , r.width , r.height);
-
+        for (MapObject o : mine0.getObjects()) {
+            Actor A = new Actor();
+            Rectangle r = ((RectangleMapObject) o).getRectangle();
+            A.setBounds(r.x, r.y, r.width, r.height);
 
 
             A.addListener(new ClickListener() {
 
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
+                    fenetreexploration.setVisible(true);
 
 
                 }
-            }) ;
+            });
 
             s.addActor(A);
 
@@ -467,28 +437,38 @@ public class GameScreen implements Screen {
         }
 
 
-
-
-
-        test = map.getLayers().get("Informations joueurs");
-        entree = map.getLayers().get("Entree mines");
-
-
-        for (MapObject o : mine0.getObjects()){
-            Actor A = new Actor() ;
-            Rectangle r = ((RectangleMapObject) o).getRectangle() ;
-            A.setBounds(r.x , r.y , r.width , r.height);
-
+        for (MapObject o : boutondecouvertenon.getObjects()) {
+            Actor A = new Actor();
+            Rectangle r = ((RectangleMapObject) o).getRectangle();
+            A.setBounds(r.x, r.y, r.width, r.height);
 
 
             A.addListener(new ClickListener() {
 
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    test.setVisible(true);
-                    entree.setVisible(false);
+                    fenetredecouverte.setVisible(false);
                 }
-            }) ;
+            });
+
+            s.addActor(A);
+
+
+        }
+
+        for (MapObject o : boutonexplorationnon.getObjects()) {
+            Actor A = new Actor();
+            Rectangle r = ((RectangleMapObject) o).getRectangle();
+            A.setBounds(r.x, r.y, r.width, r.height);
+
+
+            A.addListener(new ClickListener() {
+
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    fenetreexploration.setVisible(false);
+                }
+            });
 
             s.addActor(A);
 
@@ -496,8 +476,10 @@ public class GameScreen implements Screen {
         }
 
         Gdx.input.setInputProcessor(s);
-
     }
+
+
+
     @Override
     public void show () {
 
