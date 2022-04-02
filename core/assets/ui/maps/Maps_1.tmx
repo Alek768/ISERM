@@ -388,7 +388,7 @@
  </group>
  <group id="27" name="Mines">
   <group id="31" name="Objet">
-   <group id="90" name="Entrée de mines" visible="0">
+   <group id="90" name="Entrée de mines">
     <objectgroup id="97" name="Entrée 7" visible="0">
      <object id="73" x="176" y="32" width="32" height="32"/>
     </objectgroup>
@@ -401,10 +401,10 @@
     <objectgroup id="94" name="Entrée 4" visible="0">
      <object id="70" x="576" y="560" width="32" height="32"/>
     </objectgroup>
-    <objectgroup id="93" name="Entrée 3" visible="0">
+    <objectgroup id="93" name="Entrée 3">
      <object id="68" x="720" y="272" width="32" height="32"/>
     </objectgroup>
-    <objectgroup id="92" name="Entrée 2" visible="0">
+    <objectgroup id="92" name="Entrée 2">
      <object id="67" x="1040" y="32" width="32" height="32"/>
     </objectgroup>
     <objectgroup id="91" name="Entrée 1" visible="0">
@@ -474,7 +474,7 @@
       <object id="44" x="0" y="480" width="64" height="32"/>
      </objectgroup>
     </group>
-    <group id="59" name="Zone2" visible="0">
+    <group id="59" name="Zone2">
      <objectgroup id="65" name="Mine_2">
       <object id="38" x="880" y="400" width="48" height="64"/>
      </objectgroup>
@@ -484,7 +484,7 @@
      <objectgroup id="68" name="Mine_4"/>
     </group>
     <group id="58" name="Zone1">
-     <objectgroup id="64" name="Mine_1" visible="0" locked="1">
+     <objectgroup id="64" name="Mine_1" locked="1">
       <object id="37" x="1024" y="32" width="48" height="48"/>
      </objectgroup>
     </group>
@@ -698,9 +698,6 @@
    </layer>
   </group>
   <group id="37" name="Objets">
-   <objectgroup id="114" name="Bouton ok_Fail" visible="0">
-    <object id="86" x="624" y="345" width="55" height="29"/>
-   </objectgroup>
    <objectgroup id="112" name="Bouton ok_trouvée" visible="0">
     <object id="85" x="627" y="335" width="38" height="30"/>
    </objectgroup>
@@ -723,7 +720,7 @@
  <group id="40" name="Peinture"/>
  <group id="35" name="Zones"/>
  <group id="34" name="Fenêtres de dialogues" visible="0"/>
- <layer id="113" name="Fail" width="80" height="45" visible="0">
+ <layer id="113" name="Fail" width="80" height="45">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -772,6 +769,9 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="114" name="Bouton ok_Fail">
+  <object id="86" x="624" y="345" width="55" height="29"/>
+ </objectgroup>
  <layer id="111" name="Mines trouvee" width="80" height="45" visible="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -1164,7 +1164,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,435,436,437,0,0,435,436,437,0,0,435,436,437,0,0,435,436,437,0,0,435,436,437,0,435,436,437,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="21" name="Nuage_Zone1" width="80" height="45">
+ <layer id="21" name="Nuage_Zone1" width="80" height="45" visible="0">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,420,421,422,423,424,0,420,421,422,423,424,0,420,421,422,423,424,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,425,426,427,428,429,0,425,426,427,428,429,0,425,426,427,428,429,0,0,
@@ -1213,24 +1213,24 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="49" name="Zone6">
+ <objectgroup id="49" name="Zone6" visible="0">
   <object id="28" x="0" y="64" width="480" height="256"/>
   <object id="29" x="128" y="0" width="352" height="64"/>
  </objectgroup>
- <objectgroup id="79" name="Zone5">
+ <objectgroup id="79" name="Zone5" visible="0">
   <object id="51" x="480" y="0" width="480" height="320"/>
  </objectgroup>
- <objectgroup id="44" name="Zone4">
+ <objectgroup id="44" name="Zone4" visible="0">
   <object id="24" x="320" y="320" width="320" height="400"/>
   <object id="25" x="552.095" y="771.956"/>
  </objectgroup>
- <objectgroup id="43" name="Zone3">
+ <objectgroup id="43" name="Zone3" visible="0">
   <object id="23" x="0" y="320" width="321.241" height="401.876"/>
  </objectgroup>
- <objectgroup id="42" name="Zone2">
+ <objectgroup id="42" name="Zone2" visible="0">
   <object id="22" x="640" y="320" width="480" height="400"/>
  </objectgroup>
- <objectgroup id="41" name="Zone1">
+ <objectgroup id="41" name="Zone1" visible="0">
   <object id="20" x="960" y="0" width="320" height="320"/>
  </objectgroup>
  <objectgroup id="51" name="Mine_0">

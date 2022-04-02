@@ -1,5 +1,6 @@
 package com.iserm.game.screen;
 
+import apple.laf.JRSUIConstants;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -29,6 +30,7 @@ public class GameScreen implements Screen {
     //Variables fenêtres d'affichage
     private final MapLayer fenetredecouverte;
     private final MapLayer fenetreexploration;
+    private final MapLayer fenetrefail;
 
 
     //Variable des mines
@@ -78,11 +80,18 @@ public class GameScreen implements Screen {
     private final MapLayer boutondecouvertenon;
     private final MapLayer boutonexplorationoui;
     private final MapLayer boutonexplorationnon;
+    private final MapLayer boutonfailok;
 
+    //Mines valables
+    ArrayList minesexploration = new ArrayList<Integer>();
 
 
 
     int conditionzone;
+    int mineexploration;
+
+
+
 
 
     int conditionouizone1 = 0;
@@ -91,6 +100,8 @@ public class GameScreen implements Screen {
     int conditionouizone4 = 0;
     int conditionouizone5 = 0;
     int conditionouizone6 = 0;
+
+    int mineexploree0 = 0;
 
 
     private IserMain game;
@@ -127,6 +138,7 @@ public class GameScreen implements Screen {
         //Fenêtres d'affichage
         fenetredecouverte = map.getLayers().get("Decouverte");
         fenetreexploration = map.getLayers().get("explorer mines");
+        fenetrefail = map.getLayers().get("Fail");
 
 
         //Zones
@@ -162,6 +174,10 @@ public class GameScreen implements Screen {
 //        mine21 = map.getLayers().get("Mine_21");
 //        mine22 = map.getLayers().get("Mine_22");
 
+        //Entrées
+        Entree0 = map.getLayers().get("Entree_0");
+
+
 
         //Nuages
         nuage1 = map.getLayers().get("Nuage_Zone1");
@@ -176,6 +192,17 @@ public class GameScreen implements Screen {
         boutondecouvertenon = map.getLayers().get("Bouton non_decouverte");
         boutonexplorationoui = map.getLayers().get("Bouton oui_exploration");
         boutonexplorationnon = map.getLayers().get("Bouton non_exploration");
+        boutonfailok = map.getLayers().get("Bouton ok_Fail");
+
+        //Mines ok
+        minesexploration.add(0);
+        minesexploration.add(1);
+        minesexploration.add(6);
+        minesexploration.add(8);
+        minesexploration.add(16);
+        minesexploration.add(19);
+
+
 
 
         for (MapObject o : zone1.getObjects()) {
@@ -425,9 +452,16 @@ public class GameScreen implements Screen {
 
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    fenetreexploration.setVisible(true);
+                    if (mineexploree0 == 0)
+                    {
+                        fenetreexploration.setVisible(true);
+                        mineexploration = 0;
+                    }
 
+                    else
+                    {
 
+                    }
                 }
             });
 
@@ -456,6 +490,34 @@ public class GameScreen implements Screen {
 
         }
 
+        for (MapObject o : boutonexplorationoui.getObjects()) {
+            Actor A = new Actor();
+            Rectangle r = ((RectangleMapObject) o).getRectangle();
+            A.setBounds(r.x, r.y, r.width, r.height);
+
+
+            A.addListener(new ClickListener() {
+
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    fenetreexploration.setVisible(false);
+                    if (minesexploration.contains(mineexploration))
+                    {
+
+                    }
+
+                    else
+                    {
+                        fenetrefail.setVisible(true);
+                    }
+                }
+            });
+
+            s.addActor(A);
+
+
+        }
+
         for (MapObject o : boutonexplorationnon.getObjects()) {
             Actor A = new Actor();
             Rectangle r = ((RectangleMapObject) o).getRectangle();
@@ -467,6 +529,25 @@ public class GameScreen implements Screen {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     fenetreexploration.setVisible(false);
+                }
+            });
+
+            s.addActor(A);
+
+
+        }
+
+        for (MapObject o : boutonfailok.getObjects()) {
+            Actor A = new Actor();
+            Rectangle r = ((RectangleMapObject) o).getRectangle();
+            A.setBounds(r.x, r.y, r.width, r.height);
+
+
+            A.addListener(new ClickListener() {
+
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    fenetrefail.setVisible(false);
                 }
             });
 
