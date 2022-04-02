@@ -1,6 +1,6 @@
 package com.iserm.game.screen;
 
-import apple.laf.JRSUIConstants;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -32,6 +32,8 @@ public class GameScreen implements Screen {
     private final MapLayer fenetreexploration;
     private final MapLayer fenetrefail;
 
+    //Variables entrees
+    private final MapLayer Entree0;
 
     //Variable des mines
     private final MapLayer mine0;
@@ -87,13 +89,14 @@ public class GameScreen implements Screen {
 
 
 
+    //Variables pour mines
+    int indicemineexploration;
+    int mineexploree0 = 0 ;
+
+
+
+    //Variables pour nuage
     int conditionzone;
-    int mineexploration;
-
-
-
-
-
     int conditionouizone1 = 0;
     int conditionouizone2 = 0;
     int conditionouizone3 = 0;
@@ -101,7 +104,7 @@ public class GameScreen implements Screen {
     int conditionouizone5 = 0;
     int conditionouizone6 = 0;
 
-    int mineexploree0 = 0;
+
 
 
     private IserMain game;
@@ -175,7 +178,7 @@ public class GameScreen implements Screen {
 //        mine22 = map.getLayers().get("Mine_22");
 
         //Entrées
-        Entree0 = map.getLayers().get("Entree_0");
+        Entree0 = map.getLayers().get("Entree0");
 
 
 
@@ -222,7 +225,9 @@ public class GameScreen implements Screen {
                         conditionzone = 1;
 
 
-                    } else {
+                    }
+
+                    else {
 
                     }
                 }
@@ -249,7 +254,9 @@ public class GameScreen implements Screen {
 
                         fenetredecouverte.setVisible(true);
                         conditionzone = 2;
-                    } else {
+                    }
+
+                    else {
 
                     }
                 }
@@ -277,7 +284,9 @@ public class GameScreen implements Screen {
 
                         fenetredecouverte.setVisible(true);
                         conditionzone = 3;
-                    } else {
+                    }
+
+                    else {
 
                     }
                 }
@@ -305,7 +314,9 @@ public class GameScreen implements Screen {
                         fenetredecouverte.setVisible(true);
                         conditionzone = 4;
 
-                    } else {
+                    }
+
+                    else {
 
                     }
 
@@ -332,7 +343,9 @@ public class GameScreen implements Screen {
                     if (conditionouizone5 == 0) {
                         fenetredecouverte.setVisible(true);
                         conditionzone = 5;
-                    } else {
+                    }
+
+                    else {
 
                     }
                 }
@@ -357,7 +370,9 @@ public class GameScreen implements Screen {
                     if (conditionouizone6 == 0) {
                         fenetredecouverte.setVisible(true);
                         conditionzone = 6;
-                    } else {
+                    }
+
+                    else {
 
                     }
 
@@ -455,7 +470,7 @@ public class GameScreen implements Screen {
                     if (mineexploree0 == 0)
                     {
                         fenetreexploration.setVisible(true);
-                        mineexploration = 0;
+                        indicemineexploration = 0;
                     }
 
                     else
@@ -501,14 +516,16 @@ public class GameScreen implements Screen {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     fenetreexploration.setVisible(false);
-                    if (minesexploration.contains(mineexploration))
+                    mineexploree0 = 1;
+                    if (minesexploration.contains(indicemineexploration))
                     {
-
+                        Entree0.setVisible(true);
                     }
 
                     else
                     {
                         fenetrefail.setVisible(true);
+                        System.out.println("merde");
                     }
                 }
             });
