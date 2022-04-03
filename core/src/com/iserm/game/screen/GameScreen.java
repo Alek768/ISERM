@@ -49,6 +49,11 @@ public class GameScreen implements Screen {
     private final MapLayer BoutonEntree16;
     private final MapLayer BoutonEntree19;
 
+    //Variables Rubis
+    private final MapLayer Rubis0;
+    private final MapLayer Rubis1;
+    private final MapLayer Rubis6;
+
 
 
     //Variable des mines
@@ -110,6 +115,7 @@ public class GameScreen implements Screen {
 
     //Variables pour mines
     int indicemineexploration;
+    int indicemineexploitation;
     boolean mine_0dejaexploree;
     boolean mine_1dejaexploree;
     boolean mine_2dejaexploree;
@@ -133,6 +139,14 @@ public class GameScreen implements Screen {
     boolean mine_20dejaexploree;
     boolean mine_21dejaexploree;
     boolean mine_22dejaexploree;
+
+    boolean mine_0enexploitation;
+    boolean mine_1enexploitation;
+    boolean mine_6enexploitation;
+    boolean mine_8enexploitation;
+    boolean mine_16enexploitation;
+    boolean mine_19enexploitation;
+
 
 
 
@@ -238,6 +252,10 @@ public class GameScreen implements Screen {
         BoutonEntree8 = map.getLayers().get("Entree_8");
         BoutonEntree16 = map.getLayers().get("Entree_16");
         BoutonEntree19 = map.getLayers().get("Entree_19");
+
+        Rubis0 = map.getLayers().get("Ruby_0");
+        Rubis1 = map.getLayers().get("Ruby_1");
+        Rubis6 = map.getLayers().get("Ruby_6");
 
 
 
@@ -791,6 +809,7 @@ public class GameScreen implements Screen {
                 public void clicked(InputEvent event, float x, float y) {
                     if (mine_0dejaexploree == true) {
                         fenetreexploitation.setVisible(true);
+                        indicemineexploitation = 0;
                     }
 
                 }
@@ -801,7 +820,6 @@ public class GameScreen implements Screen {
 
         }
 
-        if (fenetreexploitation.isVisible() == true) {
             for (MapObject o : boutonexploitationnon.getObjects()) {
                 Actor A = new Actor();
                 Rectangle r = ((RectangleMapObject) o).getRectangle();
@@ -831,7 +849,26 @@ public class GameScreen implements Screen {
 
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
-                        fenetreexploitation.setVisible(false);
+
+                            fenetreexploitation.setVisible(false);
+
+
+                                if (indicemineexploitation == 0) {
+                                    Rubis0.setVisible(true);
+                                }
+
+                                if (indicemineexploitation == 1) {
+                                    Rubis1.setVisible(true);
+                                }
+
+                                if (indicemineexploitation == 6) {
+                                    Rubis6.setVisible(true);
+                                }
+
+
+
+
+
 
                     }
                 });
@@ -840,7 +877,7 @@ public class GameScreen implements Screen {
 
 
             }
-        }
+
 
 
 
