@@ -411,13 +411,13 @@
      <objectgroup id="82" name="Mine_16" visible="0">
       <object id="57" x="720" y="240" width="48" height="80"/>
      </objectgroup>
-     <objectgroup id="83" name="Mine_17" visible="0">
+     <objectgroup id="83" name="Mine_17">
       <object id="58" x="672" y="144" width="32" height="48"/>
      </objectgroup>
-     <objectgroup id="84" name="Mine_18" visible="0">
+     <objectgroup id="84" name="Mine_18">
       <object id="59" x="560" y="128" width="32" height="16"/>
      </objectgroup>
-     <objectgroup id="85" name="Mine_19" visible="0">
+     <objectgroup id="85" name="Mine_19">
       <object id="62" x="496" y="208" width="80" height="48"/>
      </objectgroup>
     </group>
@@ -431,10 +431,10 @@
      <objectgroup id="75" name="Mine_10" visible="0">
       <object id="47" x="448" y="608" width="32" height="48"/>
      </objectgroup>
-     <objectgroup id="76" name="Mine_11" visible="0">
+     <objectgroup id="76" name="Mine_11">
       <object id="48" x="480" y="464" width="32" height="32"/>
      </objectgroup>
-     <objectgroup id="77" name="Mine_12" visible="0">
+     <objectgroup id="77" name="Mine_12">
       <object id="49" x="336" y="480" width="45.8287" height="48.1843"/>
      </objectgroup>
      <objectgroup id="78" name="Mine_13">
@@ -442,13 +442,13 @@
      </objectgroup>
     </group>
     <group id="60" name="Zone3" visible="0">
-     <objectgroup id="70" name="Mine_5">
+     <objectgroup id="70" name="Mine_5" visible="0">
       <object id="42" x="256" y="384" width="64" height="48"/>
      </objectgroup>
-     <objectgroup id="71" name="Mine_6">
+     <objectgroup id="71" name="Mine_6" visible="0">
       <object id="43" x="208" y="544" width="48" height="32"/>
      </objectgroup>
-     <objectgroup id="72" name="Mine_7">
+     <objectgroup id="72" name="Mine_7" visible="0">
       <object id="44" x="0" y="480" width="64" height="32"/>
      </objectgroup>
     </group>
@@ -1518,7 +1518,7 @@
  <objectgroup id="103" name="Bouton non_exploitation" visible="0" offsetx="1.25016" offsety="40.005">
   <object id="77" x="723" y="359" width="36" height="23"/>
  </objectgroup>
- <objectgroup id="104" name="Bouton oui_exploitation" visible="0" offsetx="0" offsety="40.005">
+ <objectgroup id="104" name="Bouton oui_exploitation" offsetx="0" offsety="40.005">
   <object id="80" x="552" y="359" width="37" height="28"/>
  </objectgroup>
  <objectgroup id="112" name="Bouton reussite_exploration" visible="0">
@@ -1533,7 +1533,7 @@
  <objectgroup id="108" name="Bouton non_decouverte" visible="0">
   <object id="82" x="695" y="362" width="41" height="27"/>
  </objectgroup>
- <objectgroup id="107" name="Bouton oui_decouverte" visible="0">
+ <objectgroup id="107" name="Bouton oui_decouverte">
   <object id="81" x="547" y="364" width="37" height="25"/>
  </objectgroup>
  <layer id="139" name="Ruby_0" width="80" height="45" visible="0">

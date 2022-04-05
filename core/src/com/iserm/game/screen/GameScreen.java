@@ -317,7 +317,10 @@ public class GameScreen implements Screen {
             });
 
             s.addActor(A);
-
+            if (conditionzone_1dejadecouverte == true)
+            {
+                A.setVisible(false);
+            }
 
         }
 
@@ -347,6 +350,10 @@ public class GameScreen implements Screen {
             });
 
             s.addActor(A);
+            if (conditionzone_2dejadecouverte == true)
+            {
+                A.setVisible(false);
+            }
 
 
         }
@@ -377,6 +384,10 @@ public class GameScreen implements Screen {
             });
 
             s.addActor(A);
+            if (conditionzone_3dejadecouverte == true)
+            {
+                A.setVisible(false);
+            }
 
 
         }
@@ -408,6 +419,10 @@ public class GameScreen implements Screen {
             });
 
             s.addActor(A);
+            if (conditionzone_4dejadecouverte == true)
+            {
+                A.setVisible(false);
+            }
 
 
         }
@@ -435,6 +450,10 @@ public class GameScreen implements Screen {
             });
 
             s.addActor(A);
+            if (conditionzone_5dejadecouverte == true)
+            {
+                A.setVisible(false);
+            }
 
 
         }
@@ -464,6 +483,10 @@ public class GameScreen implements Screen {
             });
 
             s.addActor(A);
+            if (conditionzone_6dejadecouverte == true)
+            {
+                A.setVisible(false);
+            }
 
 
         }
@@ -480,10 +503,13 @@ public class GameScreen implements Screen {
 
                         @Override
                         public void clicked(InputEvent event, float x, float y) {
+
                             fenetredecouverte.setVisible(false);
+
                             if (indicezoneendecouverte == 1) {
                                 nuage1.setVisible(false);
                                 conditionzone_1dejadecouverte = true;
+
 
 
                             }
@@ -519,8 +545,9 @@ public class GameScreen implements Screen {
                         }
 
                     });
-
                 s.addActor(A);
+
+                
 
             }
 
@@ -537,7 +564,7 @@ public class GameScreen implements Screen {
                         }
                     });
 
-                    s.addActor(A);
+                s.addActor(A);
                 }
 
 
@@ -568,6 +595,11 @@ public class GameScreen implements Screen {
             });
 
             s.addActor(A);
+            if (mine_0dejaexploree == true)
+            {
+                A.setVisible(false);
+            }
+
 
 
         }
@@ -596,7 +628,10 @@ public class GameScreen implements Screen {
             });
 
             s.addActor(A);
-
+            if (mine_1dejaexploree == true)
+            {
+                A.setVisible(false);
+            }
 
         }
 
@@ -624,6 +659,10 @@ public class GameScreen implements Screen {
             });
 
             s.addActor(A);
+            if (mine_2dejaexploree == true)
+            {
+                A.setVisible(false);
+            }
 
 
         }
@@ -732,8 +771,8 @@ public class GameScreen implements Screen {
                         }
                     }
                 });
-
                 s.addActor(A);
+
 
 
             }
@@ -753,6 +792,10 @@ public class GameScreen implements Screen {
                 });
 
                 s.addActor(A);
+                if (fenetreexploration.isVisible() == false)
+                {
+                    A.setVisible(false);
+                }
 
 
             }
@@ -837,6 +880,7 @@ public class GameScreen implements Screen {
                 s.addActor(A);
 
 
+
             }
 
             for (MapObject o : boutonexploitationoui.getObjects()) {
@@ -872,10 +916,7 @@ public class GameScreen implements Screen {
 
                     }
                 });
-
                 s.addActor(A);
-
-
             }
 
 
