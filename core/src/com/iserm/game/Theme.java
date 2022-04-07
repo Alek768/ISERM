@@ -1,4 +1,4 @@
-package com.iserm.game.desktop;
+package com.iserm.game;
 
 /**
  * Classe permettant de construire le thème qui est différent selon les époques

@@ -1,7 +1,5 @@
-package com.iserm.game.desktop;
+package com.iserm.game;
 
-import javax.swing.text.Element;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Mines {

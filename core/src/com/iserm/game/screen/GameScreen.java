@@ -19,9 +19,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.iserm.game.IserMain;
+import com.iserm.game.Joueur;
+import com.iserm.game.SQL;
 import com.iserm.game.Scenes.Hud;
 
 import java.awt.*;
+import java.io.IOException;
+import java.sql.SQLException;
 
 public class GameScreen implements Screen {
     private final MapLayer pierre3;
@@ -31,23 +35,25 @@ public class GameScreen implements Screen {
     private Viewport gamePort;
     private Hud hud;
 
-
     private TmxMapLoader maploader;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
-    /*
-    private Viewport gameport;
-    */
-    /*
-    private Hud hud;
-    */
 
-    public GameScreen(IserMain game){
+    public GameScreen(IserMain game) throws IOException, SQLException {
         this.game = game;
         //texture = new Texture("badlogic.jpg");
         gamecam = new OrthographicCamera();
         gamePort = new FitViewport(1280,720,gamecam);
-        hud = new Hud(game.batch);
+        /**
+         * Connexion à la BDD
+         * Création du Joueur
+         */
+        SQL sql = SQL.getInstance();
+        Joueur J = new Joueur(1);
+        J.config(sql);
+        System.out.println(J.toString());
+
+        hud = new Hud(J,game.batch);
 
         maploader = new TmxMapLoader();
         map = maploader.load("ui/maps/Maps_1.tmx");
@@ -70,17 +76,16 @@ public class GameScreen implements Screen {
 
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
+                    hud.refresh();
                     System.out.println("clique sur pierre 3");
                 }
-            }) ;
+            });
 
             s.addActor(A);
-
 
         }
 
         Gdx.input.setInputProcessor(s);
-
 
     }
 
@@ -101,15 +106,12 @@ public class GameScreen implements Screen {
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
-        /*
-
+        /**
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         game.batch.draw(texture, 0, 0);
         game.batch.end();
-
          */
-
     }
 
     @Override

@@ -79,6 +79,18 @@ public class SQL {
      * Méthode qui va modifier le contenu d'une BDD
      * @param requete
      */
+    //1 Value Int
+    public void Update(String requete, Object value1) {
+        try{
+            PreparedStatement pstmt = c.prepareStatement(requete);
+            pstmt.setInt(1,(int) value1);
+            pstmt.executeUpdate();
+            System.out.println("Updated");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Update Failed");
+        }
+    }
     //2 Value Int
     public void Update(String requete, Object value1, Object value2) {
         try{
@@ -141,6 +153,32 @@ public class SQL {
         try{
             PreparedStatement pstmt = c.prepareStatement(requete);
             pstmt.setInt(1,(int) value1);
+            Result = pstmt.executeQuery();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Request Failed");
+        }
+        return Result;
+    }
+    public ResultSet Request2(String requete,Object value1, Object value2){
+        ResultSet Result = null;
+        try{
+            PreparedStatement pstmt = c.prepareStatement(requete);
+            pstmt.setInt(1,(int) value1);
+            pstmt.setInt(2,(int) value2);
+            Result = pstmt.executeQuery();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Request Failed");
+        }
+        return Result;
+    }
+    public ResultSet RequestString(String requete,Object value1, Object value2){
+        ResultSet Result = null;
+        try{
+            PreparedStatement pstmt = c.prepareStatement(requete);
+            pstmt.setString(1,value1.toString());
+            pstmt.setString(2,value2.toString());
             Result = pstmt.executeQuery();
         } catch (Exception e) {
             e.printStackTrace();

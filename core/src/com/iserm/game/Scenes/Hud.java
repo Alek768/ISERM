@@ -10,10 +10,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.iserm.game.IserMain;
+import com.iserm.game.*;
+
+import java.sql.SQLException;
 
 public class Hud {
     public Stage stage;
     private Viewport viewport;
+
+    private Joueur J;
 
     private String nom;
     private int score;
@@ -25,12 +30,12 @@ public class Hud {
     Label TimeLabel;
     Label OrLabel;
 
-    public Hud(SpriteBatch sb){
-        nom = "Unknown_User";
+    public Hud(Joueur J, SpriteBatch sb) throws SQLException {
+        this.J = J;
+        this.nom = J.getPseudo();
+        this.score = J.getNiveau();
+        this.Or = J.getArgent();
         epoque = "Antiquité";
-        Or = 0;
-        score = 0;
-        //Commentaire
         viewport = new FitViewport(IserMain.V_WIDTH, IserMain.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, sb);
 
@@ -52,4 +57,8 @@ public class Hud {
 
     }
 
+    public void refresh(){
+        OrLabel.setText(J.getArgent());
+        ScoreLabel.setText(J.getNiveau());
+    }
 }

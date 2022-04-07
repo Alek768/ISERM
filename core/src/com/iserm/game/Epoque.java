@@ -1,4 +1,4 @@
-package com.iserm.game.desktop;
+package com.iserm.game;
 
 import java.util.ArrayList;
 

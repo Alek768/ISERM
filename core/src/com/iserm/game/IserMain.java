@@ -4,6 +4,9 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.iserm.game.screen.GameScreen;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 
 public class IserMain extends Game {
 	public static final int V_WIDTH = 400;
@@ -16,12 +19,18 @@ public class IserMain extends Game {
 	//Skin skin = new Skin();
 	
 	@Override
-	public void create () {
+	public void create() {
 		//camera = new OrthographicCamera();
 		batch = new SpriteBatch();
 		//img = new Texture("ISERM Logo.png");
 		//img2 = new Texture("Logo-IMT-Mines-Ales.jpeg");
-		setScreen(new GameScreen(this));
+		try {
+			setScreen(new GameScreen(this));
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 /*
 	@Override
@@ -45,6 +54,5 @@ public class IserMain extends Game {
 	public void dispose () {
 		//batch.dispose();
 		//img.dispose();
-	}}
-
-
+	}
+}
