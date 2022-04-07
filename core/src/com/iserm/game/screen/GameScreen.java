@@ -5,7 +5,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.maps.MapGroupLayer;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -17,24 +16,27 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.iserm.game.IserMain;
 import com.iserm.game.Scenes.Hud;
 import com.iserm.game.Scenes.MapMonde;
+import com.iserm.game.Scenes.Zone;
 
 import java.util.ArrayList;
 
 public class GameScreen implements Screen {
 
     //Variables fenêtres d'affichage
-    private final MapLayer fenetredecouverte;
+//    private final MapLayer fenetredecouverte;
     private final MapLayer fenetreexploration;
     private final MapLayer fenetrefail;
     private final MapLayer fenetrereussiteexploration;
     private final MapLayer fenetreexploitation;
+
+
+    private ArrayList<Zone> zone = new ArrayList<Zone>();
+
 
     //Variables entrees
     private final MapLayer Entree0;
@@ -84,12 +86,11 @@ public class GameScreen implements Screen {
 
 
     //Variables de zone
-    private final MapLayer zone1;
-    private final MapLayer zone2;
-    private final MapLayer zone3;
-    private final MapLayer zone4;
-    private final MapLayer zone5;
-    private final MapLayer zone6;
+//    private final MapLayer zone2;
+//    private final MapLayer zone3;
+//    private final MapLayer zone4;
+//    private final MapLayer zone5;
+//    private final MapLayer zone6;
 
     //Variables de nuage
     private final MapLayer nuage1;
@@ -156,13 +157,12 @@ public class GameScreen implements Screen {
 
 
     //Variables pour nuage
-    int indicezoneendecouverte;
-    boolean conditionzone_1dejadecouverte ;
-    boolean conditionzone_2dejadecouverte ;
-    boolean conditionzone_3dejadecouverte ;
-    boolean conditionzone_4dejadecouverte ;
-    boolean conditionzone_5dejadecouverte ;
-    boolean conditionzone_6dejadecouverte ;
+    // boolean zone.get(1).estDecouverte() ;
+//    boolean conditionzone_2dejadecouverte ;
+//    boolean conditionzone_3dejadecouverte ;
+//    boolean conditionzone_4dejadecouverte ;
+//    boolean conditionzone_5dejadecouverte ;
+//    boolean conditionzone_6dejadecouverte ;
 
 
 
@@ -177,12 +177,7 @@ public class GameScreen implements Screen {
     private TmxMapLoader maploader;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
-    /*
-    private Viewport gameport;
-    */
-    /*
-    private Hud hud;
-    */
+    public static MapLayer fenetreDecouverte;
 
     public GameScreen(IserMain game) {
         this.game = game;
@@ -199,7 +194,7 @@ public class GameScreen implements Screen {
         final Stage s = new Stage(gamePort, game.batch);
 
         //Fenêtres d'affichage
-        fenetredecouverte = map.getLayers().get("Decouverte");
+        fenetreDecouverte = map.getLayers().get("Decouverte");
         fenetreexploration = map.getLayers().get("explorer mines");
         fenetrefail = map.getLayers().get("Fail");
         fenetrereussiteexploration = map.getLayers().get("Mines trouvee");
@@ -208,12 +203,12 @@ public class GameScreen implements Screen {
 
 
         //Zones
-        zone1 = map.getLayers().get("Zone1");
-        zone2 = map.getLayers().get("Zone2");
-        zone3 = map.getLayers().get("Zone3");
-        zone4 = map.getLayers().get("Zone4");
-        zone5 = map.getLayers().get("Zone5");
-        zone6 = map.getLayers().get("Zone6");
+
+//        zone2 = map.getLayers().get("Zone2");
+//        zone3 = map.getLayers().get("Zone3");
+//        zone4 = map.getLayers().get("Zone4");
+//        zone5 = map.getLayers().get("Zone5");
+//        zone6 = map.getLayers().get("Zone6");
 
         //Mines
         mine0 = map.getLayers().get("Mine_0");
@@ -294,281 +289,253 @@ public class GameScreen implements Screen {
 
 
         //Implémentation des zones nuageuses
-        for (MapObject o : zone1.getObjects()) {
-            Actor A = new Actor();
-            Rectangle r = ((RectangleMapObject) o).getRectangle();
-            A.setBounds(r.x, r.y, r.width, r.height);
 
-
-            A.addListener(new ClickListener() {
-
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    if (conditionzone_1dejadecouverte == false && fenetredecouverte.isVisible() == false ){
-
-
-                        fenetredecouverte.setVisible(true);
-                        indicezoneendecouverte = 1;
-
-
-                    }
-
-                    else {
-
-                    }
-                }
-            });
-
-            s.addActor(A);
-            if (conditionzone_1dejadecouverte == true)
-            {
-                A.setVisible(false);
-            }
-
+        for( int i = 1; i < 7; i++){
+            zone.add( new Zone(map,s,gamecam,gamePort,renderer,"Zone"+i,i));
+            zone.get(i - 1).afficher();
         }
-
-
-        for (MapObject o : zone2.getObjects()) {
-            Actor A = new Actor();
-            Rectangle r = ((RectangleMapObject) o).getRectangle();
-            A.setBounds(r.x, r.y, r.width, r.height);
-
-
-            A.addListener(new ClickListener() {
-
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    if (conditionzone_2dejadecouverte == false && fenetredecouverte.isVisible() == false) {
-
-
-                        fenetredecouverte.setVisible(true);
-                        indicezoneendecouverte = 2;
-                    }
-
-                    else {
-
-                    }
-                }
-
-            });
-
-            s.addActor(A);
-            if (conditionzone_2dejadecouverte == true)
-            {
-                A.setVisible(false);
-            }
-
-
-        }
-
-
-        for (MapObject o : zone3.getObjects()) {
-            Actor A = new Actor();
-            Rectangle r = ((RectangleMapObject) o).getRectangle();
-            A.setBounds(r.x, r.y, r.width, r.height);
-
-
-            A.addListener(new ClickListener() {
-
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    if (conditionzone_3dejadecouverte == false && fenetredecouverte.isVisible() == false) {
-
-
-                        fenetredecouverte.setVisible(true);
-                        indicezoneendecouverte = 3;
-                    }
-
-                    else {
-
-                    }
-                }
-
-            });
-
-            s.addActor(A);
-            if (conditionzone_3dejadecouverte == true)
-            {
-                A.setVisible(false);
-            }
-
-
-        }
-
-
-        for (MapObject o : zone4.getObjects()) {
-            Actor A = new Actor();
-            Rectangle r = ((RectangleMapObject) o).getRectangle();
-            A.setBounds(r.x, r.y, r.width, r.height);
-
-
-            A.addListener(new ClickListener() {
-
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    if (conditionzone_4dejadecouverte == false && fenetredecouverte.isVisible() == false) {
-
-                        fenetredecouverte.setVisible(true);
-                        indicezoneendecouverte = 4;
-
-                    }
-
-                    else {
-
-                    }
-
-
-                }
-            });
-
-            s.addActor(A);
-            if (conditionzone_4dejadecouverte == true)
-            {
-                A.setVisible(false);
-            }
-
-
-        }
-
-
-        for (MapObject o : zone5.getObjects()) {
-            Actor A = new Actor();
-            Rectangle r = ((RectangleMapObject) o).getRectangle();
-            A.setBounds(r.x, r.y, r.width, r.height);
-
-
-            A.addListener(new ClickListener() {
-
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    if (conditionzone_5dejadecouverte == false && fenetredecouverte.isVisible() == false) {
-                        fenetredecouverte.setVisible(true);
-                        indicezoneendecouverte = 5;
-                    }
-
-                    else {
-
-                    }
-                }
-            });
-
-            s.addActor(A);
-            if (conditionzone_5dejadecouverte == true)
-            {
-                A.setVisible(false);
-            }
-
-
-        }
-
-
-        for (MapObject o : zone6.getObjects()) {
-            Actor A = new Actor();
-            Rectangle r = ((RectangleMapObject) o).getRectangle();
-            A.setBounds(r.x, r.y, r.width, r.height);
-
-
-            A.addListener(new ClickListener() {
-
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    if (conditionzone_6dejadecouverte == false && fenetredecouverte.isVisible() == false) {
-                        fenetredecouverte.setVisible(true);
-                        indicezoneendecouverte = 6;
-                    }
-
-                    else {
-
-                    }
-
-
-                }
-            });
-
-            s.addActor(A);
-            if (conditionzone_6dejadecouverte == true)
-            {
-                A.setVisible(false);
-            }
-
-
-        }
-
-
-
-
-            for (MapObject o : boutondecouverteoui.getObjects()) {
-                Actor A = new Actor();
-                Rectangle r = ((RectangleMapObject) o).getRectangle();
-                A.setBounds(r.x, r.y, r.width, r.height);
-
-                    A.addListener(new ClickListener() {
-
-                        @Override
-                        public void clicked(InputEvent event, float x, float y) {
-
-                            fenetredecouverte.setVisible(false);
-
-                            if (indicezoneendecouverte == 1) {
-                                nuage1.setVisible(false);
-                                conditionzone_1dejadecouverte = true;
-
-
-
-                            }
-                            if (indicezoneendecouverte == 2) {
-                                nuage2.setVisible(false);
-                                conditionzone_2dejadecouverte = true;
-
-                            }
-                            if (indicezoneendecouverte == 3) {
-                                nuage3.setVisible(false);
-                                zone3.setVisible(false);
-                                conditionzone_3dejadecouverte = true;
-
-                            }
-                            if (indicezoneendecouverte == 4) {
-                                nuage4.setVisible(false);
-                                zone4.setVisible(false);
-                                conditionzone_4dejadecouverte = true;
-
-                            }
-                            if (indicezoneendecouverte == 5) {
-                                nuage5.setVisible(false);
-                                zone5.setVisible(false);
-                                conditionzone_5dejadecouverte = true;
-
-                            }
-                            if (indicezoneendecouverte == 6) {
-                                nuage6.setVisible(false);
-                                zone6.setVisible(false);
-                                conditionzone_6dejadecouverte = true;
-
-                            }
-                        }
-
-                    });
-                s.addActor(A);
-
-                
-
-            }
-
-            for (MapObject o : boutondecouvertenon.getObjects()) {
-                Actor A = new Actor();
-                Rectangle r = ((RectangleMapObject) o).getRectangle();
-                A.setBounds(r.x, r.y, r.width, r.height);
-
-                    A.addListener(new ClickListener() {
-
-                        @Override
-                        public void clicked(InputEvent event, float x, float y) {
-                            fenetredecouverte.setVisible(false);
-                        }
-                    });
-
-                s.addActor(A);
-                }
+//
+//
+//
+//        for (MapObject o : zone2.getObjects()) {
+//            Actor A = new Actor();
+//            Rectangle r = ((RectangleMapObject) o).getRectangle();
+//            A.setBounds(r.x, r.y, r.width, r.height);
+//
+//
+//            A.addListener(new ClickListener() {
+//
+//                @Override
+//                public void clicked(InputEvent event, float x, float y) {
+//                    if (conditionzone_2dejadecouverte == false && fenetredecouverte.isVisible() == false) {
+//
+//
+//                        fenetredecouverte.setVisible(true);
+//                        Zone.indiceZoneEnDecouverte = 2;
+//                    }
+//
+//                    else {
+//
+//                    }
+//                }
+//
+//            });
+//
+//            s.addActor(A);
+//            if (conditionzone_2dejadecouverte == true)
+//            {
+//                A.setVisible(false);
+//            }
+//
+//
+//        }
+//
+//
+//        for (MapObject o : zone3.getObjects()) {
+//            Actor A = new Actor();
+//            Rectangle r = ((RectangleMapObject) o).getRectangle();
+//            A.setBounds(r.x, r.y, r.width, r.height);
+//
+//
+//            A.addListener(new ClickListener() {
+//
+//                @Override
+//                public void clicked(InputEvent event, float x, float y) {
+//                    if (conditionzone_3dejadecouverte == false && fenetredecouverte.isVisible() == false) {
+//
+//
+//                        fenetredecouverte.setVisible(true);
+//                        Zone.indiceZoneEnDecouverte = 3;
+//                    }
+//
+//                    else {
+//
+//                    }
+//                }
+//
+//            });
+//
+//            s.addActor(A);
+//            if (conditionzone_3dejadecouverte == true)
+//            {
+//                A.setVisible(false);
+//            }
+//
+//
+//        }
+//
+//
+//        for (MapObject o : zone4.getObjects()) {
+//            Actor A = new Actor();
+//            Rectangle r = ((RectangleMapObject) o).getRectangle();
+//            A.setBounds(r.x, r.y, r.width, r.height);
+//
+//
+//            A.addListener(new ClickListener() {
+//
+//                @Override
+//                public void clicked(InputEvent event, float x, float y) {
+//                    if (conditionzone_4dejadecouverte == false && fenetredecouverte.isVisible() == false) {
+//
+//                        fenetredecouverte.setVisible(true);
+//                        Zone.indiceZoneEnDecouverte = 4;
+//
+//                    }
+//
+//                    else {
+//
+//                    }
+//
+//
+//                }
+//            });
+//
+//            s.addActor(A);
+//            if (conditionzone_4dejadecouverte == true)
+//            {
+//                A.setVisible(false);
+//            }
+//
+//
+//        }
+//
+//
+//        for (MapObject o : zone5.getObjects()) {
+//            Actor A = new Actor();
+//            Rectangle r = ((RectangleMapObject) o).getRectangle();
+//            A.setBounds(r.x, r.y, r.width, r.height);
+//
+//
+//            A.addListener(new ClickListener() {
+//
+//                @Override
+//                public void clicked(InputEvent event, float x, float y) {
+//                    if (conditionzone_5dejadecouverte == false && fenetredecouverte.isVisible() == false) {
+//                        fenetredecouverte.setVisible(true);
+//                        Zone.indiceZoneEnDecouverte = 5;
+//                    }
+//
+//                    else {
+//
+//                    }
+//                }
+//            });
+//
+//            s.addActor(A);
+//            if (conditionzone_5dejadecouverte == true)
+//            {
+//                A.setVisible(false);
+//            }
+//
+//
+//        }
+//
+//
+//        for (MapObject o : zone6.getObjects()) {
+//            Actor A = new Actor();
+//            Rectangle r = ((RectangleMapObject) o).getRectangle();
+//            A.setBounds(r.x, r.y, r.width, r.height);
+//
+//
+//            A.addListener(new ClickListener() {
+//
+//                @Override
+//                public void clicked(InputEvent event, float x, float y) {
+//                    if (conditionzone_6dejadecouverte == false && fenetredecouverte.isVisible() == false) {
+//                        fenetredecouverte.setVisible(true);
+//                        Zone.indiceZoneEnDecouverte = 6;
+//                    }
+//
+//                    else {
+//
+//                    }
+//
+//
+//                }
+//            });
+//
+//            s.addActor(A);
+//            if (conditionzone_6dejadecouverte == true)
+//            {
+//                A.setVisible(false);
+//            }
+//
+//
+//        }
+        decouverte(s);
+
+//        for (MapObject o : boutondecouverteoui.getObjects()) {
+//            Actor A = new Actor();
+//            Rectangle r = ((RectangleMapObject) o).getRectangle();
+//            A.setBounds(r.x, r.y, r.width, r.height);
+//
+//            A.addListener(new ClickListener() {
+//
+//                @Override
+//                public void clicked(InputEvent event, float x, float y) {
+//
+//                    fenetreDecouverte.setVisible(false);
+//
+//                    if (Zone.indiceZoneEnDecouverte == 1) {
+//                        nuage1.setVisible(false);
+//                        zone.get(0).estDecouverte = true;
+//
+//
+//
+//                    }
+//                    if (Zone.indiceZoneEnDecouverte == 2) {
+//                        nuage2.setVisible(false);
+//                        zone.get(1).estDecouverte = true;
+//
+//                    }
+//                    if (Zone.indiceZoneEnDecouverte == 3) {
+//                        nuage3.setVisible(false);
+//                        //zone3.setVisible(false);
+//                        zone.get(2).estDecouverte = true;
+//
+//                    }
+//                    if (Zone.indiceZoneEnDecouverte == 4) {
+//                        nuage4.setVisible(false);
+//                        //zone4.setVisible(false);
+//                        zone.get(3).estDecouverte = true;
+//
+//                    }
+//                    if (Zone.indiceZoneEnDecouverte == 5) {
+//                        nuage5.setVisible(false);
+//                        //zone5.setVisible(false);
+//                        zone.get(4).estDecouverte = true;
+//
+//                    }
+//                    if (Zone.indiceZoneEnDecouverte == 6) {
+//                        nuage6.setVisible(false);
+//                        //zone6.setVisible(false);
+//                        zone.get(5).estDecouverte = true;
+//
+//                    }
+//                }
+//
+//            });
+//            s.addActor(A);
+//
+//
+//
+//        }
+
+//        for (MapObject o : boutondecouvertenon.getObjects()) {
+//            Actor A = new Actor();
+//            Rectangle r = ((RectangleMapObject) o).getRectangle();
+//            A.setBounds(r.x, r.y, r.width, r.height);
+//
+//            A.addListener(new ClickListener() {
+//
+//                @Override
+//                public void clicked(InputEvent event, float x, float y) {
+//                    fenetreDecouverte.setVisible(false);
+//                }
+//            });
+//
+//            s.addActor(A);
+//        }
 
 
 
@@ -617,7 +584,7 @@ public class GameScreen implements Screen {
 
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    if (mine_1dejaexploree == false && conditionzone_1dejadecouverte == true)
+                    if (mine_1dejaexploree == false && zone.get(1).estDecouverte == true)
                     {
                         fenetreexploration.setVisible(true);
                         indicemineexploration = 1;
@@ -648,7 +615,7 @@ public class GameScreen implements Screen {
 
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    if (mine_2dejaexploree == false && conditionzone_2dejadecouverte == true)
+                    if (mine_2dejaexploree == false && zone.get(1).estDecouverte == true)
                     {
                         fenetreexploration.setVisible(true);
                         indicemineexploration = 2;
@@ -926,6 +893,7 @@ public class GameScreen implements Screen {
 
 
         Gdx.input.setInputProcessor(s);
+
     }
 
 
@@ -956,6 +924,79 @@ public class GameScreen implements Screen {
 
          */
 
+    }
+
+    public void decouverte(Stage s){
+        for (MapObject o : boutondecouverteoui.getObjects()) {
+            Actor A = new Actor();
+            Rectangle r = ((RectangleMapObject) o).getRectangle();
+            A.setBounds(r.x, r.y, r.width, r.height);
+
+            A.addListener(new ClickListener() {
+
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+
+                    fenetreDecouverte.setVisible(false);
+
+                    if (Zone.indiceZoneEnDecouverte == 1) {
+                        nuage1.setVisible(false);
+                        zone.get(0).estDecouverte = true;
+
+
+
+                    }
+                    if (Zone.indiceZoneEnDecouverte == 2) {
+                        nuage2.setVisible(false);
+                        zone.get(1).estDecouverte = true;
+
+                    }
+                    if (Zone.indiceZoneEnDecouverte == 3) {
+                        nuage3.setVisible(false);
+                        //zone3.setVisible(false);
+                        zone.get(2).estDecouverte = true;
+
+                    }
+                    if (Zone.indiceZoneEnDecouverte == 4) {
+                        nuage4.setVisible(false);
+                        //zone4.setVisible(false);
+                        zone.get(3).estDecouverte = true;
+
+                    }
+                    if (Zone.indiceZoneEnDecouverte == 5) {
+                        nuage5.setVisible(false);
+                        //zone5.setVisible(false);
+                        zone.get(4).estDecouverte = true;
+
+                    }
+                    if (Zone.indiceZoneEnDecouverte == 6) {
+                        nuage6.setVisible(false);
+                        //zone6.setVisible(false);
+                        zone.get(5).estDecouverte = true;
+
+                    }
+                }
+
+            });
+            s.addActor(A);
+
+        }
+
+        for (MapObject o : boutondecouvertenon.getObjects()) {
+            Actor A = new Actor();
+            Rectangle r = ((RectangleMapObject) o).getRectangle();
+            A.setBounds(r.x, r.y, r.width, r.height);
+
+            A.addListener(new ClickListener() {
+
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    fenetreDecouverte.setVisible(false);
+                }
+            });
+
+            s.addActor(A);
+        }
     }
 
     @Override
