@@ -29,10 +29,10 @@ public class Hud {
 
     public Hud(SpriteBatch sb, Joueur joueur){
         this.j = joueur;
-        nom = j.getPseudo();
+        nom = "unknown";
         epoque = "Antiquité";
-        Or = j.getArgent();
-        score = j.getNiveau();
+        Or = 0;
+        score = 0;
         //Commentaire
         viewport = new FitViewport(IserMain.V_WIDTH, IserMain.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, sb);
@@ -52,6 +52,12 @@ public class Hud {
         table.add(orLabel).expandX().padTop(10);
 
         stage.addActor(table);
+        if(j!=null){
+            nom = j.pseudo;
+            epoque = "Antiquité";
+            Or = j.getArgent();
+            score = j.getNiveau();
+        }
 
     }
 

@@ -5,25 +5,25 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.maps.MapGroupLayer;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.iserm.game.IserMain;
-import com.iserm.game.Joueur;
 import com.iserm.game.Scenes.Hud;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class GameScreen implements Screen {
@@ -54,6 +54,12 @@ public class GameScreen implements Screen {
     private final MapLayer Rubis0;
     private final MapLayer Rubis1;
     private final MapLayer Rubis6;
+
+    //Acceuil
+
+    private boolean mapmondevisible = true;
+    private MapLayer ales;
+    private MapGroupLayer mapmonde;
 
 
 
@@ -188,16 +194,15 @@ public class GameScreen implements Screen {
         this.game = game;
         //texture = new Texture("badlogic.jpg");
         gamecam = new OrthographicCamera();
-        gamePort = new FitViewport(1280, 720, gamecam);
-        Joueur J = new Joueur(1);
-        hud = new Hud(game.batch,J);
+        gamePort = new FitViewport(2080, 1120, gamecam);
+        hud = new Hud(game.batch, game.j);
         maploader = new TmxMapLoader();
         map = maploader.load("ui/maps/Maps_1.tmx");
 
         renderer = new OrthogonalTiledMapRenderer(map);
         gamecam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
 
-        Stage s = new Stage(gamePort);
+        final Stage s = new Stage(gamePort, game.batch);
 
         //Fenêtres d'affichage
         fenetredecouverte = map.getLayers().get("Decouverte");
@@ -206,6 +211,10 @@ public class GameScreen implements Screen {
         fenetrereussiteexploration = map.getLayers().get("Mines trouvee");
         fenetreexploitation = map.getLayers().get("Decision exploitation");
 
+        //Lancement
+
+        mapmonde = (MapGroupLayer) map.getLayers().get("MapMonde");
+        ales = mapmonde.getLayers().get("Ales");
 
         //Zones
         zone1 = map.getLayers().get("Zone1");
@@ -288,6 +297,36 @@ public class GameScreen implements Screen {
         minesexploration.add(8);
         minesexploration.add(16);
         minesexploration.add(19);
+
+        for (MapObject o : ales.getObjects()) {
+            Actor A = new Actor();
+            Rectangle r = ((RectangleMapObject) o).getRectangle();
+            A.setBounds(r.x , r.y , r.width*2, r.height*2);
+
+
+            A.addListener(new ClickListener() {
+
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    if (mapmondevisible){
+
+
+                        mapmonde.setVisible(false);
+                        mapmondevisible = false;
+                        gamePort.setWorldSize(1280, 720);
+                        gamePort.apply();
+                        gamecam.position.x -= 400;
+                        gamecam.position.y -= 215;
+                        gamecam.update();
+                        renderer.setView(gamecam);
+
+
+                    }}});
+            s.addActor(A);
+            if (!mapmondevisible){
+                A.setVisible(false);
+            }
+            };
 
 
 
@@ -946,7 +985,7 @@ public class GameScreen implements Screen {
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
-        /**
+        /*
 
          game.batch.setProjectionMatrix(gamecam.combined);
          game.batch.begin();
