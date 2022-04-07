@@ -223,9 +223,19 @@ public class Joueur {
      * @param s
      */
     public void ajoutArgent(int value, SQL s){
-        if (this.getArgent() + value >= 0 ){
+        if (enoughMoney(value)){
             this.Argent += value;
             s.Update("UPDATE PLAYERS SET Argent = ? WHERE playerID = ?", this.Argent, this.idPlayer);
+            s.Update("INSERT INTO TRANSACTIONS (playerID1, playerID2, type, amount) VALUES (?, 0, 'Argent', ?)", this.idPlayer, value);
         }
+    }
+
+    /**
+     * Vérifie si le Joueur peut payer.
+     * @param value
+     * @return
+     */
+    public boolean enoughMoney(int value){
+        return (this.getArgent() + value >= 0);
     }
 }
