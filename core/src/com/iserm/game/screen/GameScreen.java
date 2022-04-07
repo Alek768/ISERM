@@ -20,6 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.iserm.game.IserMain;
+import com.iserm.game.Joueur;
 import com.iserm.game.Scenes.Hud;
 
 import java.awt.*;
@@ -188,7 +189,8 @@ public class GameScreen implements Screen {
         //texture = new Texture("badlogic.jpg");
         gamecam = new OrthographicCamera();
         gamePort = new FitViewport(1280, 720, gamecam);
-        hud = new Hud(game.batch);
+        Joueur J = new Joueur(1);
+        hud = new Hud(game.batch,J);
         maploader = new TmxMapLoader();
         map = maploader.load("ui/maps/Maps_1.tmx");
 

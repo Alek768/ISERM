@@ -29,7 +29,7 @@ public class Hud {
 
     public Hud(SpriteBatch sb, Joueur joueur){
         this.j = joueur;
-        nom = j.pseudo;
+        nom = j.getPseudo();
         epoque = "Antiquité";
         Or = j.getArgent();
         score = j.getNiveau();
