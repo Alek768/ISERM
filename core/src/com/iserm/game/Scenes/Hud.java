@@ -53,7 +53,7 @@ public class Hud {
 
         stage.addActor(table);
         if(j!=null){
-            nom = j.pseudo;
+            nom = j.Pseudo;
             epoque = "Antiquité";
             Or = j.getArgent();
             score = j.getNiveau();
