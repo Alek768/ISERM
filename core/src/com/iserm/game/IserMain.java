@@ -10,6 +10,7 @@ import com.iserm.game.screen.GameScreen;
 public class IserMain extends Game {
 	public static final int V_WIDTH = 400;
 	public static final int V_HEIGHT = 208;
+	public static Joueur j;
 	public SpriteBatch batch;
 	Music music;
 
@@ -18,10 +19,14 @@ public class IserMain extends Game {
 	//Texture img2;
 	//TextButton textButton;
 	//Skin skin = new Skin();
+	public void creerJoueur(){
+
+	}
 	
 	@Override
 	public void create () {
 		//camera = new OrthographicCamera();
+		creerJoueur();
 		batch = new SpriteBatch();
 		setScreen(new GameScreen(this));
 		Music music = Gdx.audio.newMusic(Gdx.files.internal("iserm_music.mp3"));
