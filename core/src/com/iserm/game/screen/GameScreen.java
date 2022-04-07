@@ -23,6 +23,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.iserm.game.IserMain;
 import com.iserm.game.Scenes.Hud;
+import com.iserm.game.Scenes.MapMonde;
 
 import java.util.ArrayList;
 
@@ -54,13 +55,6 @@ public class GameScreen implements Screen {
     private final MapLayer Rubis0;
     private final MapLayer Rubis1;
     private final MapLayer Rubis6;
-
-    //Acceuil
-
-    private boolean mapmondevisible = true;
-    private MapLayer ales;
-    private MapGroupLayer mapmonde;
-
 
 
     //Variable des mines
@@ -211,10 +205,7 @@ public class GameScreen implements Screen {
         fenetrereussiteexploration = map.getLayers().get("Mines trouvee");
         fenetreexploitation = map.getLayers().get("Decision exploitation");
 
-        //Lancement
 
-        mapmonde = (MapGroupLayer) map.getLayers().get("MapMonde");
-        ales = mapmonde.getLayers().get("Ales");
 
         //Zones
         zone1 = map.getLayers().get("Zone1");
@@ -298,37 +289,8 @@ public class GameScreen implements Screen {
         minesexploration.add(16);
         minesexploration.add(19);
 
-        for (MapObject o : ales.getObjects()) {
-            Actor A = new Actor();
-            Rectangle r = ((RectangleMapObject) o).getRectangle();
-            A.setBounds(r.x , r.y , r.width*2, r.height*2);
-
-
-            A.addListener(new ClickListener() {
-
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    if (mapmondevisible){
-
-
-                        mapmonde.setVisible(false);
-                        mapmondevisible = false;
-                        gamePort.setWorldSize(1280, 720);
-                        gamePort.apply();
-                        gamecam.position.x -= 400;
-                        gamecam.position.y -= 215;
-                        gamecam.update();
-                        renderer.setView(gamecam);
-
-
-                    }}});
-            s.addActor(A);
-            if (!mapmondevisible){
-                A.setVisible(false);
-            }
-            };
-
-
+        MapMonde oui = new MapMonde(map,s,gamecam,gamePort,renderer);
+        oui.afficher();
 
 
         //Implémentation des zones nuageuses
