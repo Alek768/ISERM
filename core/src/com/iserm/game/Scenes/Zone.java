@@ -22,7 +22,6 @@ public class Zone {
     public Stage s;
     private TiledMap map ;
     private boolean mapmondevisible = true;
-    private MapLayer ales;
     private MapGroupLayer mapmonde;
     public OrthogonalTiledMapRenderer renderer;
     private int idZone;

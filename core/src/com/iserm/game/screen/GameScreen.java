@@ -21,21 +21,27 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.iserm.game.IserMain;
 import com.iserm.game.Scenes.Hud;
 import com.iserm.game.Scenes.MapMonde;
+import com.iserm.game.Scenes.Mine;
 import com.iserm.game.Scenes.Zone;
 
 import java.util.ArrayList;
+
+import static com.badlogic.gdx.Input.Keys.O;
 
 public class GameScreen implements Screen {
 
     //Variables fenêtres d'affichage
 //    private final MapLayer fenetredecouverte;
-    private final MapLayer fenetreexploration;
-    private final MapLayer fenetrefail;
-    private final MapLayer fenetrereussiteexploration;
-    private final MapLayer fenetreexploitation;
+
+    public static MapLayer fenetreDecouverte;
+    public static MapLayer fenetreexploration;
+    public static MapLayer fenetrefail;
+    public static MapLayer fenetrereussiteexploration;
+    public static MapLayer fenetreexploitation;
 
 
-    private ArrayList<Zone> zone = new ArrayList<Zone>();
+    public static ArrayList<Zone> zone = new ArrayList<Zone>();
+    public static ArrayList<Mine> mine = new ArrayList<Mine>();
 
 
     //Variables entrees
@@ -60,9 +66,9 @@ public class GameScreen implements Screen {
 
 
     //Variable des mines
-    private final MapLayer mine0;
-    private final MapLayer mine1;
-    private final MapLayer mine2;
+//    private final MapLayer mine0;
+//    private final MapLayer mine1;
+//    private final MapLayer mine2;
 //    private final MapLayer mine3;
 //    private final MapLayer mine4;
 //    private final MapLayer mine5;
@@ -177,7 +183,6 @@ public class GameScreen implements Screen {
     private TmxMapLoader maploader;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
-    public static MapLayer fenetreDecouverte;
 
     public GameScreen(IserMain game) {
         this.game = game;
@@ -211,9 +216,9 @@ public class GameScreen implements Screen {
 //        zone6 = map.getLayers().get("Zone6");
 
         //Mines
-        mine0 = map.getLayers().get("Mine_0");
-        mine1 = map.getLayers().get("Mine_1");
-        mine2 = map.getLayers().get("Mine_2");
+//        mine0 = map.getLayers().get("Mine_0");
+//        mine1 = map.getLayers().get("Mine_1");
+//        mine2 = map.getLayers().get("Mine_2");
 //        mine3 = map.getLayers().get("Mine_3");
 //        mine4 = map.getLayers().get("Mine_4");
 //        mine5 = map.getLayers().get("Mine_5");
@@ -541,234 +546,241 @@ public class GameScreen implements Screen {
 
         //Implémentation des mines
         //Mine n° 0
-        for (MapObject o : mine0.getObjects()) {
-            Actor A = new Actor();
-            Rectangle r = ((RectangleMapObject) o).getRectangle();
-            A.setBounds(r.x, r.y, r.width, r.height);
 
-
-            A.addListener(new ClickListener() {
-
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    if (mine_0dejaexploree == false)
-                    {
-                        fenetreexploration.setVisible(true);
-                        indicemineexploration = 0;
-                    }
-
-                    else
-                    {
-
-                    }
-                }
-            });
-
-            s.addActor(A);
-            if (mine_0dejaexploree == true)
-            {
-                A.setVisible(false);
-            }
-
-
-
+        for( int i = 0; i < 4; i++){
+            mine.add( new Mine(map,s,gamecam,gamePort,renderer,"Mine_"+i,i));
+            mine.get(i).afficher();
         }
+//
+//        for (MapObject o : mine0.getObjects()) {
+//            Actor A = new Actor();
+//            Rectangle r = ((RectangleMapObject) o).getRectangle();
+//            A.setBounds(r.x, r.y, r.width, r.height);
+//
+//
+//            A.addListener(new ClickListener() {
+//
+//                @Override
+//                public void clicked(InputEvent event, float x, float y) {
+//                    if (mine_0dejaexploree == false)
+//                    {
+//                        fenetreexploration.setVisible(true);
+//                        indicemineexploration = 0;
+//                    }
+//
+//                    else
+//                    {
+//
+//                    }
+//                }
+//            });
+//
+//            s.addActor(A);
+//            if (mine_0dejaexploree == true)
+//            {
+//                A.setVisible(false);
+//            }
+//
+//
+//
+//        }
+//
+//        for (MapObject o : mine1.getObjects()) {
+//            Actor A = new Actor();
+//            Rectangle r = ((RectangleMapObject) o).getRectangle();
+//            A.setBounds(r.x, r.y, r.width, r.height);
+//
+//
+//            A.addListener(new ClickListener() {
+//
+//                @Override
+//                public void clicked(InputEvent event, float x, float y) {
+//                    if (mine_1dejaexploree == false && zone.get(1).estDecouverte == true)
+//                    {
+//                        fenetreexploration.setVisible(true);
+//                        indicemineexploration = 1;
+//                    }
+//
+//                    else
+//                    {
+//
+//                    }
+//                }
+//            });
+//
+//            s.addActor(A);
+//            if (mine_1dejaexploree == true)
+//            {
+//                A.setVisible(false);
+//            }
+//
+//        }
+//
+//        for (MapObject o : mine2.getObjects()) {
+//            Actor A = new Actor();
+//            Rectangle r = ((RectangleMapObject) o).getRectangle();
+//            A.setBounds(r.x, r.y, r.width, r.height);
+//
+//
+//            A.addListener(new ClickListener() {
+//
+//                @Override
+//                public void clicked(InputEvent event, float x, float y) {
+//                    if (mine_2dejaexploree == false && zone.get(1).estDecouverte == true)
+//                    {
+//                        fenetreexploration.setVisible(true);
+//                        indicemineexploration = 2;
+//                    }
+//
+//                    else
+//                    {
+//
+//                    }
+//                }
+//            });
+//
+//            s.addActor(A);
+//            if (mine_2dejaexploree == true)
+//            {
+//                A.setVisible(false);
+//            }
+//
+//
+//        }
+        fouiller(s);
 
-        for (MapObject o : mine1.getObjects()) {
-            Actor A = new Actor();
-            Rectangle r = ((RectangleMapObject) o).getRectangle();
-            A.setBounds(r.x, r.y, r.width, r.height);
-
-
-            A.addListener(new ClickListener() {
-
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    if (mine_1dejaexploree == false && zone.get(1).estDecouverte == true)
-                    {
-                        fenetreexploration.setVisible(true);
-                        indicemineexploration = 1;
-                    }
-
-                    else
-                    {
-
-                    }
-                }
-            });
-
-            s.addActor(A);
-            if (mine_1dejaexploree == true)
-            {
-                A.setVisible(false);
-            }
-
-        }
-
-        for (MapObject o : mine2.getObjects()) {
-            Actor A = new Actor();
-            Rectangle r = ((RectangleMapObject) o).getRectangle();
-            A.setBounds(r.x, r.y, r.width, r.height);
-
-
-            A.addListener(new ClickListener() {
-
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    if (mine_2dejaexploree == false && zone.get(1).estDecouverte == true)
-                    {
-                        fenetreexploration.setVisible(true);
-                        indicemineexploration = 2;
-                    }
-
-                    else
-                    {
-
-                    }
-                }
-            });
-
-            s.addActor(A);
-            if (mine_2dejaexploree == true)
-            {
-                A.setVisible(false);
-            }
-
-
-        }
-
-
-            for (MapObject o : boutonexplorationoui.getObjects()) {
-                Actor A = new Actor();
-                Rectangle r = ((RectangleMapObject) o).getRectangle();
-                A.setBounds(r.x, r.y, r.width, r.height);
-
-
-                A.addListener(new ClickListener() {
-
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        fenetreexploration.setVisible(false);
-
-                        if (minesexploration.contains(indicemineexploration)) {
-                            fenetrereussiteexploration.setVisible(true);
-                            if (indicemineexploration == 0) {
-                                Entree0.setVisible(true);
-                                mine_0dejaexploree = true;
-                            }
-
-                            if (indicemineexploration == 1) {
-                                Entree1.setVisible(true);
-                                mine_1dejaexploree = true;
-                            }
-
-                            if (indicemineexploration == 6) {
-                                Entree6.setVisible(true);
-                                mine_6dejaexploree = true;
-
-                            }
-
-                            if (indicemineexploration == 8) {
-                                Entree8.setVisible(true);
-                                mine_8dejaexploree = true;
-                            }
-
-                            if (indicemineexploration == 16) {
-                                Entree16.setVisible(true);
-                                mine_16dejaexploree = true;
-                            }
-
-                            if (indicemineexploration == 19) {
-                                Entree19.setVisible(true);
-                                mine_19dejaexploree = true;
-                            }
-
-
-                        } else {
-                            fenetrefail.setVisible(true);
-                            if (indicemineexploration == 2) {
-                                mine_2dejaexploree = true;
-                            }
-                            if (indicemineexploration == 3) {
-                                mine_3dejaexploree = true;
-                            }
-                            if (indicemineexploration == 4) {
-                                mine_4dejaexploree = true;
-                            }
-                            if (indicemineexploration == 5) {
-                                mine_5dejaexploree = true;
-                            }
-                            if (indicemineexploration == 7) {
-                                mine_7dejaexploree = true;
-                            }
-                            if (indicemineexploration == 9) {
-                                mine_9dejaexploree = true;
-                            }
-                            if (indicemineexploration == 10) {
-                                mine_10dejaexploree = true;
-                            }
-                            if (indicemineexploration == 11) {
-                                mine_11dejaexploree = true;
-                            }
-                            if (indicemineexploration == 12) {
-                                mine_12dejaexploree = true;
-                            }
-                            if (indicemineexploration == 13) {
-                                mine_13dejaexploree = true;
-                            }
-                            if (indicemineexploration == 14) {
-                                mine_14dejaexploree = true;
-                            }
-                            if (indicemineexploration == 15) {
-                                mine_15dejaexploree = true;
-                            }
-                            if (indicemineexploration == 17) {
-                                mine_17dejaexploree = true;
-                            }
-                            if (indicemineexploration == 18) {
-                                mine_18dejaexploree = true;
-                            }
-                            if (indicemineexploration == 20) {
-                                mine_20dejaexploree = true;
-                            }
-                            if (indicemineexploration == 21) {
-                                mine_21dejaexploree = true;
-                            }
-                            if (indicemineexploration == 22) {
-                                mine_22dejaexploree = true;
-                            }
-
-                        }
-                    }
-                });
-                s.addActor(A);
-
-
-
-            }
-
-            for (MapObject o : boutonexplorationnon.getObjects()) {
-                Actor A = new Actor();
-                Rectangle r = ((RectangleMapObject) o).getRectangle();
-                A.setBounds(r.x, r.y, r.width, r.height);
-
-
-                A.addListener(new ClickListener() {
-
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        fenetreexploration.setVisible(false);
-                    }
-                });
-
-                s.addActor(A);
-                if (fenetreexploration.isVisible() == false)
-                {
-                    A.setVisible(false);
-                }
-
-
-            }
+//
+//        for (MapObject o : boutonexplorationoui.getObjects()) {
+//            Actor A = new Actor();
+//            Rectangle r = ((RectangleMapObject) o).getRectangle();
+//            A.setBounds(r.x, r.y, r.width, r.height);
+//
+//
+//            A.addListener(new ClickListener() {
+//
+//                @Override
+//                public void clicked(InputEvent event, float x, float y) {
+//                    fenetreexploration.setVisible(false);
+//
+//                    if (minesexploration.contains(indicemineexploration)) {
+//                        fenetrereussiteexploration.setVisible(true);
+//                        if (indicemineexploration == 0) {
+//                            Entree0.setVisible(true);
+//                            mine_0dejaexploree = true;
+//                        }
+//
+//                        if (indicemineexploration == 1) {
+//                            Entree1.setVisible(true);
+//                            mine_1dejaexploree = true;
+//                        }
+//
+//                        if (indicemineexploration == 6) {
+//                            Entree6.setVisible(true);
+//                            mine_6dejaexploree = true;
+//
+//                        }
+//
+//                        if (indicemineexploration == 8) {
+//                            Entree8.setVisible(true);
+//                            mine_8dejaexploree = true;
+//                        }
+//
+//                        if (indicemineexploration == 16) {
+//                            Entree16.setVisible(true);
+//                            mine_16dejaexploree = true;
+//                        }
+//
+//                        if (indicemineexploration == 19) {
+//                            Entree19.setVisible(true);
+//                            mine_19dejaexploree = true;
+//                        }
+//
+//
+//                    } else {
+//                        fenetrefail.setVisible(true);
+//                        if (indicemineexploration == 2) {
+//                            mine_2dejaexploree = true;
+//                        }
+//                        if (indicemineexploration == 3) {
+//                            mine_3dejaexploree = true;
+//                        }
+//                        if (indicemineexploration == 4) {
+//                            mine_4dejaexploree = true;
+//                        }
+//                        if (indicemineexploration == 5) {
+//                            mine_5dejaexploree = true;
+//                        }
+//                        if (indicemineexploration == 7) {
+//                            mine_7dejaexploree = true;
+//                        }
+//                        if (indicemineexploration == 9) {
+//                            mine_9dejaexploree = true;
+//                        }
+//                        if (indicemineexploration == 10) {
+//                            mine_10dejaexploree = true;
+//                        }
+//                        if (indicemineexploration == 11) {
+//                            mine_11dejaexploree = true;
+//                        }
+//                        if (indicemineexploration == 12) {
+//                            mine_12dejaexploree = true;
+//                        }
+//                        if (indicemineexploration == 13) {
+//                            mine_13dejaexploree = true;
+//                        }
+//                        if (indicemineexploration == 14) {
+//                            mine_14dejaexploree = true;
+//                        }
+//                        if (indicemineexploration == 15) {
+//                            mine_15dejaexploree = true;
+//                        }
+//                        if (indicemineexploration == 17) {
+//                            mine_17dejaexploree = true;
+//                        }
+//                        if (indicemineexploration == 18) {
+//                            mine_18dejaexploree = true;
+//                        }
+//                        if (indicemineexploration == 20) {
+//                            mine_20dejaexploree = true;
+//                        }
+//                        if (indicemineexploration == 21) {
+//                            mine_21dejaexploree = true;
+//                        }
+//                        if (indicemineexploration == 22) {
+//                            mine_22dejaexploree = true;
+//                        }
+//
+//                    }
+//                }
+//            });
+//            s.addActor(A);
+//
+//
+//
+//        }
+//
+//        for (MapObject o : boutonexplorationnon.getObjects()) {
+//            Actor A = new Actor();
+//            Rectangle r = ((RectangleMapObject) o).getRectangle();
+//            A.setBounds(r.x, r.y, r.width, r.height);
+//
+//
+//            A.addListener(new ClickListener() {
+//
+//                @Override
+//                public void clicked(InputEvent event, float x, float y) {
+//                    fenetreexploration.setVisible(false);
+//                }
+//            });
+//
+//            s.addActor(A);
+//            if (fenetreexploration.isVisible() == false)
+//            {
+//                A.setVisible(false);
+//            }
+//
+//
+//        }
 
 
         for (MapObject o : boutonfailok.getObjects()) {
@@ -915,15 +927,143 @@ public class GameScreen implements Screen {
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
-        /*
 
-         game.batch.setProjectionMatrix(gamecam.combined);
-         game.batch.begin();
-         game.batch.draw(texture, 0, 0);
-         game.batch.end();
 
-         */
+    }
 
+    public void fouiller(Stage s){
+
+        for (MapObject o : boutonexplorationoui.getObjects()) {
+            Actor A = new Actor();
+            Rectangle r = ((RectangleMapObject) o).getRectangle();
+            A.setBounds(r.x, r.y, r.width, r.height);
+
+
+            A.addListener(new ClickListener() {
+
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    fenetreexploration.setVisible(false);
+
+                    if (minesexploration.contains(indicemineexploration)) {
+                        fenetrereussiteexploration.setVisible(true);
+                        if (indicemineexploration == 0) {
+                            Entree0.setVisible(true);
+                            mine.get(0).estExploree = true;
+                        }
+
+                        if (indicemineexploration == 1) {
+                            Entree1.setVisible(true);
+                            mine.get(1).estExploree = true;
+                        }
+
+                        if (indicemineexploration == 2) {
+                            Entree6.setVisible(true);
+                            mine.get(2).estExploree = true;
+
+                        }
+
+                        if (indicemineexploration == 8) {
+                            Entree8.setVisible(true);
+                            mine_8dejaexploree = true;
+                        }
+
+                        if (indicemineexploration == 16) {
+                            Entree16.setVisible(true);
+                            mine_16dejaexploree = true;
+                        }
+
+                        if (indicemineexploration == 19) {
+                            Entree19.setVisible(true);
+                            mine_19dejaexploree = true;
+                        }
+
+
+                    } else {
+                        fenetrefail.setVisible(true);
+                        if (indicemineexploration == 2) {
+                            mine_2dejaexploree = true;
+                        }
+                        if (indicemineexploration == 3) {
+                            mine_3dejaexploree = true;
+                        }
+                        if (indicemineexploration == 4) {
+                            mine_4dejaexploree = true;
+                        }
+                        if (indicemineexploration == 5) {
+                            mine_5dejaexploree = true;
+                        }
+                        if (indicemineexploration == 7) {
+                            mine_7dejaexploree = true;
+                        }
+                        if (indicemineexploration == 9) {
+                            mine_9dejaexploree = true;
+                        }
+                        if (indicemineexploration == 10) {
+                            mine_10dejaexploree = true;
+                        }
+                        if (indicemineexploration == 11) {
+                            mine_11dejaexploree = true;
+                        }
+                        if (indicemineexploration == 12) {
+                            mine_12dejaexploree = true;
+                        }
+                        if (indicemineexploration == 13) {
+                            mine_13dejaexploree = true;
+                        }
+                        if (indicemineexploration == 14) {
+                            mine_14dejaexploree = true;
+                        }
+                        if (indicemineexploration == 15) {
+                            mine_15dejaexploree = true;
+                        }
+                        if (indicemineexploration == 17) {
+                            mine_17dejaexploree = true;
+                        }
+                        if (indicemineexploration == 18) {
+                            mine_18dejaexploree = true;
+                        }
+                        if (indicemineexploration == 20) {
+                            mine_20dejaexploree = true;
+                        }
+                        if (indicemineexploration == 21) {
+                            mine_21dejaexploree = true;
+                        }
+                        if (indicemineexploration == 22) {
+                            mine_22dejaexploree = true;
+                        }
+
+                    }
+                }
+            });
+            s.addActor(A);
+
+
+
+        }
+
+        for (MapObject o : boutonexplorationnon.getObjects()) {
+            Actor A = new Actor();
+            Rectangle r = ((RectangleMapObject) o).getRectangle();
+            A.setBounds(r.x, r.y, r.width, r.height);
+
+
+            A.addListener(new ClickListener() {
+
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    fenetreexploration.setVisible(false);
+                }
+            });
+
+            s.addActor(A);
+            if (fenetreexploration.isVisible() == false)
+            {
+                A.setVisible(false);
+            }
+
+
+        }
     }
 
     public void decouverte(Stage s){
