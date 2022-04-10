@@ -5,11 +5,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -23,152 +20,20 @@ import com.iserm.game.Scenes.Hud;
 import com.iserm.game.Scenes.MapMonde;
 import com.iserm.game.Scenes.Mine;
 import com.iserm.game.Scenes.Zone;
+import com.iserm.game.utils.Constants;
 
 import java.util.ArrayList;
 
 import static com.badlogic.gdx.Input.Keys.O;
 
-public class GameScreen implements Screen {
-
-    //Variables fenêtres d'affichage
-//    private final MapLayer fenetredecouverte;
-
-    public static MapLayer fenetreDecouverte;
-    public static MapLayer fenetreexploration;
-    public static MapLayer fenetrefail;
-    public static MapLayer fenetrereussiteexploration;
-    public static MapLayer fenetreexploitation;
-
-
-    public static ArrayList<Zone> zone = new ArrayList<Zone>();
-    public static ArrayList<Mine> mine = new ArrayList<Mine>();
-
-
-    //Variables entrees
-    private final MapLayer Entree0;
-    private final MapLayer Entree1;
-    private final MapLayer Entree6;
-    private final MapLayer Entree8;
-    private final MapLayer Entree16;
-    private final MapLayer Entree19;
-
-    private final MapLayer BoutonEntree0;
-    private final MapLayer BoutonEntree1;
-    private final MapLayer BoutonEntree6;
-    private final MapLayer BoutonEntree8;
-    private final MapLayer BoutonEntree16;
-    private final MapLayer BoutonEntree19;
-
-    //Variables Rubis
-    private final MapLayer Rubis0;
-    private final MapLayer Rubis1;
-    private final MapLayer Rubis6;
-
-
-    //Variable des mines
-//    private final MapLayer mine0;
-//    private final MapLayer mine1;
-//    private final MapLayer mine2;
-//    private final MapLayer mine3;
-//    private final MapLayer mine4;
-//    private final MapLayer mine5;
-//    private final MapLayer mine6;
-//    private final MapLayer mine7;
-//    private final MapLayer mine8;
-//    private final MapLayer mine9;
-//    private final MapLayer mine10;
-//    private final MapLayer mine11;
-//    private final MapLayer mine12;
-//    private final MapLayer mine13;
-//    private final MapLayer mine14;
-//    private final MapLayer mine15;
-//    private final MapLayer mine16;
-//    private final MapLayer mine17;
-//    private final MapLayer mine18;
-//    private final MapLayer mine19;
-//    private final MapLayer mine20;
-//    private final MapLayer mine21;
-//    private final MapLayer mine22;
-
-
-    //Variables de zone
-//    private final MapLayer zone2;
-//    private final MapLayer zone3;
-//    private final MapLayer zone4;
-//    private final MapLayer zone5;
-//    private final MapLayer zone6;
-
-    //Variables de nuage
-    private final MapLayer nuage1;
-    private final MapLayer nuage2;
-    private final MapLayer nuage3;
-    private final MapLayer nuage4;
-    private final MapLayer nuage5;
-    private final MapLayer nuage6;
-
-    //Variables bouton
-    private final MapLayer boutondecouverteoui;
-    private final MapLayer boutondecouvertenon;
-    private final MapLayer boutonexplorationoui;
-    private final MapLayer boutonexplorationnon;
-    private final MapLayer boutonexploitationoui;
-    private final MapLayer boutonexploitationnon;
-    private final MapLayer boutonfailok;
-    private final MapLayer boutonreussiteexploration;
+public class GameScreen extends Constants implements Screen {
 
     //Mines valables
     ArrayList minesexploration = new ArrayList<Integer>();
 
-
-
-    //Variables pour mines
-    int indicemineexploration;
-    int indicemineexploitation;
-    boolean mine_0dejaexploree;
-    boolean mine_1dejaexploree;
-    boolean mine_2dejaexploree;
-    boolean mine_3dejaexploree;
-    boolean mine_4dejaexploree;
-    boolean mine_5dejaexploree;
-    boolean mine_6dejaexploree;
-    boolean mine_7dejaexploree;
-    boolean mine_8dejaexploree;
-    boolean mine_9dejaexploree;
-    boolean mine_10dejaexploree;
-    boolean mine_11dejaexploree;
-    boolean mine_12dejaexploree;
-    boolean mine_13dejaexploree;
-    boolean mine_14dejaexploree;
-    boolean mine_15dejaexploree;
-    boolean mine_16dejaexploree;
-    boolean mine_17dejaexploree;
-    boolean mine_18dejaexploree;
-    boolean mine_19dejaexploree;
-    boolean mine_20dejaexploree;
-    boolean mine_21dejaexploree;
-    boolean mine_22dejaexploree;
-
-    boolean mine_0enexploitation;
-    boolean mine_1enexploitation;
-    boolean mine_6enexploitation;
-    boolean mine_8enexploitation;
-    boolean mine_16enexploitation;
-    boolean mine_19enexploitation;
-
-
-
-
-
-
-
-
-    //Variables pour nuage
-    // boolean zone.get(1).estDecouverte() ;
-//    boolean conditionzone_2dejadecouverte ;
-//    boolean conditionzone_3dejadecouverte ;
-//    boolean conditionzone_4dejadecouverte ;
-//    boolean conditionzone_5dejadecouverte ;
-//    boolean conditionzone_6dejadecouverte ;
+//    //Variables pour mines
+    public int indicemineexploration;
+    public int indicemineexploitation;
 
 
 
@@ -179,9 +44,6 @@ public class GameScreen implements Screen {
     private Viewport gamePort;
     private Hud hud;
 
-
-    private TmxMapLoader maploader;
-    private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
 
     public GameScreen(IserMain game) {
@@ -190,8 +52,6 @@ public class GameScreen implements Screen {
         gamecam = new OrthographicCamera();
         gamePort = new FitViewport(2080, 1120, gamecam);
         hud = new Hud(game.batch, game.j);
-        maploader = new TmxMapLoader();
-        map = maploader.load("ui/maps/Maps_1.tmx");
 
         renderer = new OrthogonalTiledMapRenderer(map);
         gamecam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
@@ -204,80 +64,6 @@ public class GameScreen implements Screen {
         fenetrefail = map.getLayers().get("Fail");
         fenetrereussiteexploration = map.getLayers().get("Mines trouvee");
         fenetreexploitation = map.getLayers().get("Decision exploitation");
-
-
-
-        //Zones
-
-//        zone2 = map.getLayers().get("Zone2");
-//        zone3 = map.getLayers().get("Zone3");
-//        zone4 = map.getLayers().get("Zone4");
-//        zone5 = map.getLayers().get("Zone5");
-//        zone6 = map.getLayers().get("Zone6");
-
-        //Mines
-//        mine0 = map.getLayers().get("Mine_0");
-//        mine1 = map.getLayers().get("Mine_1");
-//        mine2 = map.getLayers().get("Mine_2");
-//        mine3 = map.getLayers().get("Mine_3");
-//        mine4 = map.getLayers().get("Mine_4");
-//        mine5 = map.getLayers().get("Mine_5");
-//        mine6 = map.getLayers().get("Mine_6");
-//        mine7 = map.getLayers().get("Mine_7");
-//        mine8 = map.getLayers().get("Mine_8");
-//        mine9 = map.getLayers().get("Mine_9");
-//        mine10 = map.getLayers().get("Mine_10");
-//        mine11 = map.getLayers().get("Mine_11");
-//        mine12 = map.getLayers().get("Mine_12");
-//        mine13 = map.getLayers().get("Mine_13");
-//        mine14 = map.getLayers().get("Mine_14");
-//        mine15 = map.getLayers().get("Mine_15");
-//        mine16 = map.getLayers().get("Mine_16");
-//        mine17 = map.getLayers().get("Mine_17");
-//        mine18 = map.getLayers().get("Mine_18");
-//        mine19 = map.getLayers().get("Mine_19");
-//        mine20 = map.getLayers().get("Mine_20");
-//        mine21 = map.getLayers().get("Mine_21");
-//        mine22 = map.getLayers().get("Mine_22");
-
-        //Entrées
-        Entree0 = map.getLayers().get("Entree0");
-        Entree1 = map.getLayers().get("Entree1");
-        Entree6 = map.getLayers().get("Entree6");
-        Entree8 = map.getLayers().get("Entree8");
-        Entree16 = map.getLayers().get("Entree16");
-        Entree19 = map.getLayers().get("Entree019");
-
-        BoutonEntree0 = map.getLayers().get("Entree_0");
-        BoutonEntree1 = map.getLayers().get("Entree_1");
-        BoutonEntree6 = map.getLayers().get("Entree_6");
-        BoutonEntree8 = map.getLayers().get("Entree_8");
-        BoutonEntree16 = map.getLayers().get("Entree_16");
-        BoutonEntree19 = map.getLayers().get("Entree_19");
-
-        Rubis0 = map.getLayers().get("Ruby_0");
-        Rubis1 = map.getLayers().get("Ruby_1");
-        Rubis6 = map.getLayers().get("Ruby_6");
-
-
-
-        //Nuages
-        nuage1 = map.getLayers().get("Nuage_Zone1");
-        nuage2 = map.getLayers().get("Nuage_Zone2");
-        nuage3 = map.getLayers().get("Nuage_Zone3");
-        nuage4 = map.getLayers().get("Nuage_Zone4");
-        nuage5 = map.getLayers().get("Nuage_Zone5");
-        nuage6 = map.getLayers().get("Nuage_Zone6");
-
-        //Boutons
-        boutondecouverteoui = map.getLayers().get("Bouton oui_decouverte");
-        boutondecouvertenon = map.getLayers().get("Bouton non_decouverte");
-        boutonexplorationoui = map.getLayers().get("Bouton oui_exploration");
-        boutonexplorationnon = map.getLayers().get("Bouton non_exploration");
-        boutonexploitationoui = map.getLayers().get("Bouton oui_exploitation");
-        boutonexploitationnon = map.getLayers().get("Bouton non_exploitation");
-        boutonfailok = map.getLayers().get("Bouton ok_Fail");
-        boutonreussiteexploration = map.getLayers().get("Bouton reussite_exploration");
 
 
 
@@ -299,530 +85,23 @@ public class GameScreen implements Screen {
             zone.add( new Zone(map,s,gamecam,gamePort,renderer,"Zone"+i,i));
             zone.get(i - 1).afficher();
         }
-//
-//
-//
-//        for (MapObject o : zone2.getObjects()) {
-//            Actor A = new Actor();
-//            Rectangle r = ((RectangleMapObject) o).getRectangle();
-//            A.setBounds(r.x, r.y, r.width, r.height);
-//
-//
-//            A.addListener(new ClickListener() {
-//
-//                @Override
-//                public void clicked(InputEvent event, float x, float y) {
-//                    if (conditionzone_2dejadecouverte == false && fenetredecouverte.isVisible() == false) {
-//
-//
-//                        fenetredecouverte.setVisible(true);
-//                        Zone.indiceZoneEnDecouverte = 2;
-//                    }
-//
-//                    else {
-//
-//                    }
-//                }
-//
-//            });
-//
-//            s.addActor(A);
-//            if (conditionzone_2dejadecouverte == true)
-//            {
-//                A.setVisible(false);
-//            }
-//
-//
-//        }
-//
-//
-//        for (MapObject o : zone3.getObjects()) {
-//            Actor A = new Actor();
-//            Rectangle r = ((RectangleMapObject) o).getRectangle();
-//            A.setBounds(r.x, r.y, r.width, r.height);
-//
-//
-//            A.addListener(new ClickListener() {
-//
-//                @Override
-//                public void clicked(InputEvent event, float x, float y) {
-//                    if (conditionzone_3dejadecouverte == false && fenetredecouverte.isVisible() == false) {
-//
-//
-//                        fenetredecouverte.setVisible(true);
-//                        Zone.indiceZoneEnDecouverte = 3;
-//                    }
-//
-//                    else {
-//
-//                    }
-//                }
-//
-//            });
-//
-//            s.addActor(A);
-//            if (conditionzone_3dejadecouverte == true)
-//            {
-//                A.setVisible(false);
-//            }
-//
-//
-//        }
-//
-//
-//        for (MapObject o : zone4.getObjects()) {
-//            Actor A = new Actor();
-//            Rectangle r = ((RectangleMapObject) o).getRectangle();
-//            A.setBounds(r.x, r.y, r.width, r.height);
-//
-//
-//            A.addListener(new ClickListener() {
-//
-//                @Override
-//                public void clicked(InputEvent event, float x, float y) {
-//                    if (conditionzone_4dejadecouverte == false && fenetredecouverte.isVisible() == false) {
-//
-//                        fenetredecouverte.setVisible(true);
-//                        Zone.indiceZoneEnDecouverte = 4;
-//
-//                    }
-//
-//                    else {
-//
-//                    }
-//
-//
-//                }
-//            });
-//
-//            s.addActor(A);
-//            if (conditionzone_4dejadecouverte == true)
-//            {
-//                A.setVisible(false);
-//            }
-//
-//
-//        }
-//
-//
-//        for (MapObject o : zone5.getObjects()) {
-//            Actor A = new Actor();
-//            Rectangle r = ((RectangleMapObject) o).getRectangle();
-//            A.setBounds(r.x, r.y, r.width, r.height);
-//
-//
-//            A.addListener(new ClickListener() {
-//
-//                @Override
-//                public void clicked(InputEvent event, float x, float y) {
-//                    if (conditionzone_5dejadecouverte == false && fenetredecouverte.isVisible() == false) {
-//                        fenetredecouverte.setVisible(true);
-//                        Zone.indiceZoneEnDecouverte = 5;
-//                    }
-//
-//                    else {
-//
-//                    }
-//                }
-//            });
-//
-//            s.addActor(A);
-//            if (conditionzone_5dejadecouverte == true)
-//            {
-//                A.setVisible(false);
-//            }
-//
-//
-//        }
-//
-//
-//        for (MapObject o : zone6.getObjects()) {
-//            Actor A = new Actor();
-//            Rectangle r = ((RectangleMapObject) o).getRectangle();
-//            A.setBounds(r.x, r.y, r.width, r.height);
-//
-//
-//            A.addListener(new ClickListener() {
-//
-//                @Override
-//                public void clicked(InputEvent event, float x, float y) {
-//                    if (conditionzone_6dejadecouverte == false && fenetredecouverte.isVisible() == false) {
-//                        fenetredecouverte.setVisible(true);
-//                        Zone.indiceZoneEnDecouverte = 6;
-//                    }
-//
-//                    else {
-//
-//                    }
-//
-//
-//                }
-//            });
-//
-//            s.addActor(A);
-//            if (conditionzone_6dejadecouverte == true)
-//            {
-//                A.setVisible(false);
-//            }
-//
-//
-//        }
+
         decouverte(s);
-
-//        for (MapObject o : boutondecouverteoui.getObjects()) {
-//            Actor A = new Actor();
-//            Rectangle r = ((RectangleMapObject) o).getRectangle();
-//            A.setBounds(r.x, r.y, r.width, r.height);
-//
-//            A.addListener(new ClickListener() {
-//
-//                @Override
-//                public void clicked(InputEvent event, float x, float y) {
-//
-//                    fenetreDecouverte.setVisible(false);
-//
-//                    if (Zone.indiceZoneEnDecouverte == 1) {
-//                        nuage1.setVisible(false);
-//                        zone.get(0).estDecouverte = true;
-//
-//
-//
-//                    }
-//                    if (Zone.indiceZoneEnDecouverte == 2) {
-//                        nuage2.setVisible(false);
-//                        zone.get(1).estDecouverte = true;
-//
-//                    }
-//                    if (Zone.indiceZoneEnDecouverte == 3) {
-//                        nuage3.setVisible(false);
-//                        //zone3.setVisible(false);
-//                        zone.get(2).estDecouverte = true;
-//
-//                    }
-//                    if (Zone.indiceZoneEnDecouverte == 4) {
-//                        nuage4.setVisible(false);
-//                        //zone4.setVisible(false);
-//                        zone.get(3).estDecouverte = true;
-//
-//                    }
-//                    if (Zone.indiceZoneEnDecouverte == 5) {
-//                        nuage5.setVisible(false);
-//                        //zone5.setVisible(false);
-//                        zone.get(4).estDecouverte = true;
-//
-//                    }
-//                    if (Zone.indiceZoneEnDecouverte == 6) {
-//                        nuage6.setVisible(false);
-//                        //zone6.setVisible(false);
-//                        zone.get(5).estDecouverte = true;
-//
-//                    }
-//                }
-//
-//            });
-//            s.addActor(A);
-//
-//
-//
-//        }
-
-//        for (MapObject o : boutondecouvertenon.getObjects()) {
-//            Actor A = new Actor();
-//            Rectangle r = ((RectangleMapObject) o).getRectangle();
-//            A.setBounds(r.x, r.y, r.width, r.height);
-//
-//            A.addListener(new ClickListener() {
-//
-//                @Override
-//                public void clicked(InputEvent event, float x, float y) {
-//                    fenetreDecouverte.setVisible(false);
-//                }
-//            });
-//
-//            s.addActor(A);
-//        }
-
-
-
-        //Implémentation des mines
-        //Mine n° 0
 
         for( int i = 0; i < 4; i++){
             mine.add( new Mine(map,s,gamecam,gamePort,renderer,"Mine_"+i,i));
             mine.get(i).afficher();
         }
-//
-//        for (MapObject o : mine0.getObjects()) {
-//            Actor A = new Actor();
-//            Rectangle r = ((RectangleMapObject) o).getRectangle();
-//            A.setBounds(r.x, r.y, r.width, r.height);
-//
-//
-//            A.addListener(new ClickListener() {
-//
-//                @Override
-//                public void clicked(InputEvent event, float x, float y) {
-//                    if (mine_0dejaexploree == false)
-//                    {
-//                        fenetreexploration.setVisible(true);
-//                        indicemineexploration = 0;
-//                    }
-//
-//                    else
-//                    {
-//
-//                    }
-//                }
-//            });
-//
-//            s.addActor(A);
-//            if (mine_0dejaexploree == true)
-//            {
-//                A.setVisible(false);
-//            }
-//
-//
-//
-//        }
-//
-//        for (MapObject o : mine1.getObjects()) {
-//            Actor A = new Actor();
-//            Rectangle r = ((RectangleMapObject) o).getRectangle();
-//            A.setBounds(r.x, r.y, r.width, r.height);
-//
-//
-//            A.addListener(new ClickListener() {
-//
-//                @Override
-//                public void clicked(InputEvent event, float x, float y) {
-//                    if (mine_1dejaexploree == false && zone.get(1).estDecouverte == true)
-//                    {
-//                        fenetreexploration.setVisible(true);
-//                        indicemineexploration = 1;
-//                    }
-//
-//                    else
-//                    {
-//
-//                    }
-//                }
-//            });
-//
-//            s.addActor(A);
-//            if (mine_1dejaexploree == true)
-//            {
-//                A.setVisible(false);
-//            }
-//
-//        }
-//
-//        for (MapObject o : mine2.getObjects()) {
-//            Actor A = new Actor();
-//            Rectangle r = ((RectangleMapObject) o).getRectangle();
-//            A.setBounds(r.x, r.y, r.width, r.height);
-//
-//
-//            A.addListener(new ClickListener() {
-//
-//                @Override
-//                public void clicked(InputEvent event, float x, float y) {
-//                    if (mine_2dejaexploree == false && zone.get(1).estDecouverte == true)
-//                    {
-//                        fenetreexploration.setVisible(true);
-//                        indicemineexploration = 2;
-//                    }
-//
-//                    else
-//                    {
-//
-//                    }
-//                }
-//            });
-//
-//            s.addActor(A);
-//            if (mine_2dejaexploree == true)
-//            {
-//                A.setVisible(false);
-//            }
-//
-//
-//        }
+
         fouiller(s);
 
-//
-//        for (MapObject o : boutonexplorationoui.getObjects()) {
-//            Actor A = new Actor();
-//            Rectangle r = ((RectangleMapObject) o).getRectangle();
-//            A.setBounds(r.x, r.y, r.width, r.height);
-//
-//
-//            A.addListener(new ClickListener() {
-//
-//                @Override
-//                public void clicked(InputEvent event, float x, float y) {
-//                    fenetreexploration.setVisible(false);
-//
-//                    if (minesexploration.contains(indicemineexploration)) {
-//                        fenetrereussiteexploration.setVisible(true);
-//                        if (indicemineexploration == 0) {
-//                            Entree0.setVisible(true);
-//                            mine_0dejaexploree = true;
-//                        }
-//
-//                        if (indicemineexploration == 1) {
-//                            Entree1.setVisible(true);
-//                            mine_1dejaexploree = true;
-//                        }
-//
-//                        if (indicemineexploration == 6) {
-//                            Entree6.setVisible(true);
-//                            mine_6dejaexploree = true;
-//
-//                        }
-//
-//                        if (indicemineexploration == 8) {
-//                            Entree8.setVisible(true);
-//                            mine_8dejaexploree = true;
-//                        }
-//
-//                        if (indicemineexploration == 16) {
-//                            Entree16.setVisible(true);
-//                            mine_16dejaexploree = true;
-//                        }
-//
-//                        if (indicemineexploration == 19) {
-//                            Entree19.setVisible(true);
-//                            mine_19dejaexploree = true;
-//                        }
-//
-//
-//                    } else {
-//                        fenetrefail.setVisible(true);
-//                        if (indicemineexploration == 2) {
-//                            mine_2dejaexploree = true;
-//                        }
-//                        if (indicemineexploration == 3) {
-//                            mine_3dejaexploree = true;
-//                        }
-//                        if (indicemineexploration == 4) {
-//                            mine_4dejaexploree = true;
-//                        }
-//                        if (indicemineexploration == 5) {
-//                            mine_5dejaexploree = true;
-//                        }
-//                        if (indicemineexploration == 7) {
-//                            mine_7dejaexploree = true;
-//                        }
-//                        if (indicemineexploration == 9) {
-//                            mine_9dejaexploree = true;
-//                        }
-//                        if (indicemineexploration == 10) {
-//                            mine_10dejaexploree = true;
-//                        }
-//                        if (indicemineexploration == 11) {
-//                            mine_11dejaexploree = true;
-//                        }
-//                        if (indicemineexploration == 12) {
-//                            mine_12dejaexploree = true;
-//                        }
-//                        if (indicemineexploration == 13) {
-//                            mine_13dejaexploree = true;
-//                        }
-//                        if (indicemineexploration == 14) {
-//                            mine_14dejaexploree = true;
-//                        }
-//                        if (indicemineexploration == 15) {
-//                            mine_15dejaexploree = true;
-//                        }
-//                        if (indicemineexploration == 17) {
-//                            mine_17dejaexploree = true;
-//                        }
-//                        if (indicemineexploration == 18) {
-//                            mine_18dejaexploree = true;
-//                        }
-//                        if (indicemineexploration == 20) {
-//                            mine_20dejaexploree = true;
-//                        }
-//                        if (indicemineexploration == 21) {
-//                            mine_21dejaexploree = true;
-//                        }
-//                        if (indicemineexploration == 22) {
-//                            mine_22dejaexploree = true;
-//                        }
-//
-//                    }
-//                }
-//            });
-//            s.addActor(A);
-//
-//
-//
-//        }
-//
-//        for (MapObject o : boutonexplorationnon.getObjects()) {
-//            Actor A = new Actor();
-//            Rectangle r = ((RectangleMapObject) o).getRectangle();
-//            A.setBounds(r.x, r.y, r.width, r.height);
-//
-//
-//            A.addListener(new ClickListener() {
-//
-//                @Override
-//                public void clicked(InputEvent event, float x, float y) {
-//                    fenetreexploration.setVisible(false);
-//                }
-//            });
-//
-//            s.addActor(A);
-//            if (fenetreexploration.isVisible() == false)
-//            {
-//                A.setVisible(false);
-//            }
-//
-//
-//        }
 
 
-        for (MapObject o : boutonfailok.getObjects()) {
-            Actor A = new Actor();
-            Rectangle r = ((RectangleMapObject) o).getRectangle();
-            A.setBounds(r.x, r.y, r.width, r.height);
 
 
-            A.addListener(new ClickListener() {
-
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    fenetrefail.setVisible(false);
-                }
-            });
-
-            s.addActor(A);
 
 
-        }
-
-        for (MapObject o : boutonreussiteexploration.getObjects()) {
-            Actor A = new Actor();
-            Rectangle r = ((RectangleMapObject) o).getRectangle();
-            A.setBounds(r.x, r.y, r.width, r.height);
-
-
-            A.addListener(new ClickListener() {
-
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    fenetrereussiteexploration.setVisible(false);
-                }
-            });
-
-            s.addActor(A);
-
-
-        }
-
-
-        for (MapObject o : BoutonEntree0.getObjects()) {
+        for (MapObject o : boutonEntree0.getObjects()) {
             Actor A = new Actor();
             Rectangle r = ((RectangleMapObject) o).getRectangle();
             A.setBounds(r.x, r.y, r.width, r.height);
@@ -845,61 +124,61 @@ public class GameScreen implements Screen {
 
         }
 
-            for (MapObject o : boutonexploitationnon.getObjects()) {
-                Actor A = new Actor();
-                Rectangle r = ((RectangleMapObject) o).getRectangle();
-                A.setBounds(r.x, r.y, r.width, r.height);
+        for (MapObject o : boutonexploitationnon.getObjects()) {
+            Actor A = new Actor();
+            Rectangle r = ((RectangleMapObject) o).getRectangle();
+            A.setBounds(r.x, r.y, r.width, r.height);
 
 
-                A.addListener(new ClickListener() {
+            A.addListener(new ClickListener() {
 
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        fenetreexploitation.setVisible(false);
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    fenetreexploitation.setVisible(false);
+                }
+            });
+
+            s.addActor(A);
+
+
+
+        }
+
+        for (MapObject o : boutonexploitationoui.getObjects()) {
+            Actor A = new Actor();
+            Rectangle r = ((RectangleMapObject) o).getRectangle();
+            A.setBounds(r.x, r.y, r.width, r.height);
+
+
+            A.addListener(new ClickListener() {
+
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+
+                    fenetreexploitation.setVisible(false);
+
+
+                    if (indicemineexploitation == 0) {
+                        Rubis0.setVisible(true);
                     }
-                });
 
-                s.addActor(A);
-
-
-
-            }
-
-            for (MapObject o : boutonexploitationoui.getObjects()) {
-                Actor A = new Actor();
-                Rectangle r = ((RectangleMapObject) o).getRectangle();
-                A.setBounds(r.x, r.y, r.width, r.height);
-
-
-                A.addListener(new ClickListener() {
-
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-
-                            fenetreexploitation.setVisible(false);
-
-
-                                if (indicemineexploitation == 0) {
-                                    Rubis0.setVisible(true);
-                                }
-
-                                if (indicemineexploitation == 1) {
-                                    Rubis1.setVisible(true);
-                                }
-
-                                if (indicemineexploitation == 6) {
-                                    Rubis6.setVisible(true);
-                                }
-
-
-
-
-
-
+                    if (indicemineexploitation == 1) {
+                        Rubis1.setVisible(true);
                     }
-                });
-                s.addActor(A);
-            }
+
+                    if (indicemineexploitation == 6) {
+                        Rubis6.setVisible(true);
+                    }
+
+
+
+
+
+
+                }
+            });
+            s.addActor(A);
+        }
 
 
 
@@ -948,33 +227,33 @@ public class GameScreen implements Screen {
                     if (minesexploration.contains(indicemineexploration)) {
                         fenetrereussiteexploration.setVisible(true);
                         if (indicemineexploration == 0) {
-                            Entree0.setVisible(true);
+                            entree0.setVisible(true);
                             mine.get(0).estExploree = true;
                         }
 
                         if (indicemineexploration == 1) {
-                            Entree1.setVisible(true);
+                            entree1.setVisible(true);
                             mine.get(1).estExploree = true;
                         }
 
                         if (indicemineexploration == 2) {
-                            Entree6.setVisible(true);
+                            entree6.setVisible(true);
                             mine.get(2).estExploree = true;
 
                         }
 
                         if (indicemineexploration == 8) {
-                            Entree8.setVisible(true);
+                            entree8.setVisible(true);
                             mine_8dejaexploree = true;
                         }
 
                         if (indicemineexploration == 16) {
-                            Entree16.setVisible(true);
+                            entree16.setVisible(true);
                             mine_16dejaexploree = true;
                         }
 
                         if (indicemineexploration == 19) {
-                            Entree19.setVisible(true);
+                            entree19.setVisible(true);
                             mine_19dejaexploree = true;
                         }
 
@@ -1040,6 +319,7 @@ public class GameScreen implements Screen {
 
 
 
+
         }
 
         for (MapObject o : boutonexplorationnon.getObjects()) {
@@ -1064,6 +344,44 @@ public class GameScreen implements Screen {
 
 
         }
+
+        for (MapObject o : boutonfailok.getObjects()) {
+            Actor A = new Actor();
+            Rectangle r = ((RectangleMapObject) o).getRectangle();
+            A.setBounds(r.x, r.y, r.width, r.height);
+
+
+            A.addListener(new ClickListener() {
+
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    fenetrefail.setVisible(false);
+                }
+            });
+
+            s.addActor(A);
+
+
+        }
+
+        for (MapObject o : boutonreussiteexploration.getObjects()) {
+            Actor A = new Actor();
+            Rectangle r = ((RectangleMapObject) o).getRectangle();
+            A.setBounds(r.x, r.y, r.width, r.height);
+
+
+            A.addListener(new ClickListener() {
+
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    fenetrereussiteexploration.setVisible(false);
+                }
+            });
+
+            s.addActor(A);
+
+
+        }
     }
 
     public void decouverte(Stage s){
@@ -1082,8 +400,6 @@ public class GameScreen implements Screen {
                     if (Zone.indiceZoneEnDecouverte == 1) {
                         nuage1.setVisible(false);
                         zone.get(0).estDecouverte = true;
-
-
 
                     }
                     if (Zone.indiceZoneEnDecouverte == 2) {

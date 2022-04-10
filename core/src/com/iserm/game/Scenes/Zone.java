@@ -14,17 +14,17 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.iserm.game.screen.GameScreen;
+import com.iserm.game.utils.Constants;
 
-public class Zone {
+public class Zone extends Constants {
 
     public OrthographicCamera gamecam;
     public Viewport gamePort;
     public Stage s;
-    private TiledMap map ;
     private boolean mapmondevisible = true;
     private MapGroupLayer mapmonde;
     public OrthogonalTiledMapRenderer renderer;
-    private int idZone;
+    private final int idZone;
     private boolean estVisible;
     private MapLayer zone;
     public boolean estDecouverte;
@@ -34,7 +34,6 @@ public class Zone {
         this.gamecam = cam;
         this.gamePort = port;
         this.s = stage;
-        this.map = map;
         this.renderer = rend;
         zone = map.getLayers().get(name);
         this.idZone = idZone;
@@ -55,10 +54,6 @@ public class Zone {
                     if (!estDecouverte && !GameScreen.fenetreDecouverte.isVisible()){
                         GameScreen.fenetreDecouverte.setVisible(true);
                         indiceZoneEnDecouverte = idZone;
-                    }
-
-                    else {
-
                     }
                 }
             });

@@ -3,6 +3,7 @@ package com.iserm.game.desktop;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.iserm.game.IserMain;
+import com.iserm.game.screen.GameScreen;
 //import com.iserm.game.SQL;
 
 import java.io.IOException;
@@ -19,4 +20,5 @@ public class DesktopLauncher {
 		//J.config(s);
 		//System.out.println(J.toString());
 //
-}}
+}
+}
