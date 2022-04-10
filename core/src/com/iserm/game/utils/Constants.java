@@ -6,32 +6,6 @@ import com.iserm.game.Scenes.Zone;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.maps.MapLayer;
-import com.badlogic.gdx.maps.MapObject;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
-import com.iserm.game.IserMain;
-import com.iserm.game.Scenes.Hud;
-import com.iserm.game.Scenes.MapMonde;
-import com.iserm.game.Scenes.Mine;
-import com.iserm.game.Scenes.Zone;
-import com.iserm.game.utils.Constants;
-
-import java.util.ArrayList;
-
 import java.util.ArrayList;
 
 public abstract class Constants
@@ -43,8 +17,6 @@ public abstract class Constants
     public final static int WINDOW_HEIGHT = 720;
 
     public final static String GAME_TITLE = "ISERM Simulator";
-//Variables fenêtres d'affichage
-//    private final MapLayer fenetredecouverte;
 
 
     public static TmxMapLoader maploader = new TmxMapLoader();
@@ -183,18 +155,6 @@ public abstract class Constants
     public boolean mine_8enexploitation;
     public boolean mine_16enexploitation;
     public boolean mine_19enexploitation;
-
-
-
-
-
-    public void masquer(MapLayer layer) {
-        layer.setVisible(false);
-    }
-
-
-
-
 
 
 }

@@ -95,12 +95,6 @@ public class GameScreen extends Constants implements Screen {
 
         fouiller(s);
 
-
-
-
-
-
-
         for (MapObject o : boutonEntree0.getObjects()) {
             Actor A = new Actor();
             Rectangle r = ((RectangleMapObject) o).getRectangle();
@@ -179,9 +173,6 @@ public class GameScreen extends Constants implements Screen {
             });
             s.addActor(A);
         }
-
-
-
 
         Gdx.input.setInputProcessor(s);
 
