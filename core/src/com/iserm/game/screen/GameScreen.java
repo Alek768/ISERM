@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -67,7 +68,7 @@ public class GameScreen extends Constants implements Screen {
 
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    if (mine_0dejaexploree == true) {
+                    if (mine.get(0).estExploree) {
                         fenetreExploitation.setVisible(true);
                         indiceMineExploitation = 0;
                     }
@@ -178,35 +179,36 @@ public class GameScreen extends Constants implements Screen {
                 public void clicked(InputEvent event, float x, float y) {
                     fenetreExploration.setVisible(false);
 
-                    if (minesExploration.contains(indiceMineExploration)) {
+                    if (minesExploration.contains(Mine.indiceMineExploration)) {
                         fenetreReussiteExploration.setVisible(true);
-                        if (indiceMineExploration == 0) {
+                        System.out.println(Mine.indiceMineExploitation);
+                        if (Mine.indiceMineExploration == 0) {
                             entree0.setVisible(true);
                             mine.get(0).estExploree = true;
                         }
 
-                        if (indiceMineExploration == 1) {
+                        if (Mine.indiceMineExploration == 1) {
                             entree1.setVisible(true);
                             mine.get(1).estExploree = true;
                         }
 
-                        if (indiceMineExploration == 2) {
+                        if (Mine.indiceMineExploration == 2) {
                             entree6.setVisible(true);
                             mine.get(2).estExploree = true;
 
                         }
 
-                        if (indiceMineExploration == 8) {
+                        if (Mine.indiceMineExploration == 8) {
                             entree8.setVisible(true);
                             mine.get(3).estExploree = true;
                         }
 
-                        if (indiceMineExploration == 16) {
+                        if (Mine.indiceMineExploration == 16) {
                             entree16.setVisible(true);
                             mine.get(16).estExploree = true;
                         }
 
-                        if (indiceMineExploration == 19) {
+                        if (Mine.indiceMineExploration == 19) {
                             entree19.setVisible(true);
                             mine.get(19).estExploree = true;
                         }
@@ -214,57 +216,7 @@ public class GameScreen extends Constants implements Screen {
 
                     } else {
                         fenetreFail.setVisible(true);
-                        if (indiceMineExploration == 2) {
-                            mine_2dejaexploree = true;
-                        }
-                        if (indiceMineExploration == 3) {
-                            mine_3dejaexploree = true;
-                        }
-                        if (indiceMineExploration == 4) {
-                            mine_4dejaexploree = true;
-                        }
-                        if (indiceMineExploration == 5) {
-                            mine_5dejaexploree = true;
-                        }
-                        if (indiceMineExploration == 7) {
-                            mine_7dejaexploree = true;
-                        }
-                        if (indiceMineExploration == 9) {
-                            mine_9dejaexploree = true;
-                        }
-                        if (indiceMineExploration == 10) {
-                            mine_10dejaexploree = true;
-                        }
-                        if (indiceMineExploration == 11) {
-                            mine_11dejaexploree = true;
-                        }
-                        if (indiceMineExploration == 12) {
-                            mine_12dejaexploree = true;
-                        }
-                        if (indiceMineExploration == 13) {
-                            mine_13dejaexploree = true;
-                        }
-                        if (indiceMineExploration == 14) {
-                            mine_14dejaexploree = true;
-                        }
-                        if (indiceMineExploration == 15) {
-                            mine_15dejaexploree = true;
-                        }
-                        if (indiceMineExploration == 17) {
-                            mine_17dejaexploree = true;
-                        }
-                        if (indiceMineExploration == 18) {
-                            mine_18dejaexploree = true;
-                        }
-                        if (indiceMineExploration == 20) {
-                            mine_20dejaexploree = true;
-                        }
-                        if (indiceMineExploration == 21) {
-                            mine_21dejaexploree = true;
-                        }
-                        if (indiceMineExploration == 22) {
-                            mine_22dejaexploree = true;
-                        }
+                        mine.get(indiceMineExploration).estExploree = true;
 
                     }
                 }
@@ -461,7 +413,7 @@ public class GameScreen extends Constants implements Screen {
         decouverte(s);
 
         for( int i = 0; i < 4; i++){
-            mine.add( new Mine(s,gamecam,gamePort,"Mine_"+i,i));mine.get(i).afficher();
+            mine.add( new Mine(s,gamecam,gamePort,"Mine_"+i,i,0));mine.get(i).afficher();
         }
 
         fouiller(s);

@@ -37,7 +37,7 @@ public class MapMonde {
         mapmonde = (MapGroupLayer) map.getLayers().get("MapMonde");
         ales = mapmonde.getLayers().get("Ales");
     }
-
+// La méthode permet maintenant de créer les boutons relatifs aux mines/zones uniquement après avoir fermer la map monde
     public void afficher(final GameScreen gs, final Stage s){
         for (MapObject o : ales.getObjects()) {
             Actor A = new Actor();

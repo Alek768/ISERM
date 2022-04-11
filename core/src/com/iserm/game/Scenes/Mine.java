@@ -27,14 +27,16 @@ public class Mine extends Constants{
     public static int indiceMineExploration;
     public static int indiceMineExploitation;
     private String nom;
+    private int indiceZone;
 
-    public Mine( Stage stage, OrthographicCamera cam, Viewport port, String name, int idMine){
+    public Mine( Stage stage, OrthographicCamera cam, Viewport port, String name, int idMine, int indiceZone){
         this.gamecam = cam;
         this.gamePort = port;
         this.s = stage;
         this.mine = map.getLayers().get(name);
         this.idMine = idMine;
         nom = name;
+        this.indiceZone = indiceZone;
         afficher();
 
     }
@@ -56,7 +58,7 @@ public class Mine extends Constants{
 
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    if (!estExploree && GameScreen.zone.get(1).estDecouverte) {
+                    if (!estExploree && GameScreen.zone.get(indiceZone).estDecouverte) {
                         GameScreen.fenetreExploration.setVisible(true);
                         indiceMineExploration = idMine;
                     }
