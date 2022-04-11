@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.iserm.game.screen.GameScreen;
 
 import javax.swing.*;
 
@@ -37,7 +38,7 @@ public class MapMonde {
         ales = mapmonde.getLayers().get("Ales");
     }
 
-    public void afficher(){
+    public void afficher(final GameScreen gs, final Stage s){
         for (MapObject o : ales.getObjects()) {
             Actor A = new Actor();
             Rectangle r = ((RectangleMapObject) o).getRectangle();
@@ -59,6 +60,7 @@ public class MapMonde {
                         gamecam.position.y -= 215;
                         gamecam.update();
                         renderer.setView(gamecam);
+                        gs.ajoutZoneMines(s);
 
 
                     }}});

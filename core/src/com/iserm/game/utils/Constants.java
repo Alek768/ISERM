@@ -57,6 +57,7 @@ public abstract class Constants
     public MapLayer Rubis8 = map.getLayers().get("Ruby_8");
     public MapLayer Rubis16 = map.getLayers().get("Ruby_16");
     public MapLayer Rubis19 = map.getLayers().get("Ruby_19");
+
 //
 //   // Variable des mines
 //    public MapLayer mine0 = map.getLayers().get("Mine_0");

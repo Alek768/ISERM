@@ -21,7 +21,6 @@ public class Zone extends Constants {
     public OrthographicCamera gamecam;
     public Viewport gamePort;
     public Stage s;
-    private boolean mapmondevisible = true;
     private MapGroupLayer mapmonde;
     public OrthogonalTiledMapRenderer renderer;
     private final int idZone;

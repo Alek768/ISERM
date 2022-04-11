@@ -50,40 +50,12 @@ public class GameScreen extends Constants implements Screen {
 
         final Stage s = new Stage(gamePort, game.batch);
 
-
-        Rubis0.setVisible(false);
-        Rubis1.setVisible(false);
-        Rubis6.setVisible(false);
-        Rubis8.setVisible(false);
-        Rubis16.setVisible(false);
-        Rubis19.setVisible(false);
-        //Mines ok
-        minesExploration.add(0);
-        minesExploration.add(1);
-        minesExploration.add(6);
-        minesExploration.add(8);
-        minesExploration.add(16);
-        minesExploration.add(19);
+        masquerRubis();
+        ajoutMinesExistantes();
 
         MapMonde oui = new MapMonde(map,s,gamecam,gamePort,renderer);
-        oui.afficher();
+        oui.afficher(this, s);
 
-
-        //Implémentation des zones nuageuses
-
-        for( int i = 1; i < 7; i++){
-            zone.add( new Zone(map,s,gamecam,gamePort,renderer,"Zone"+i,i));
-            zone.get(i - 1).afficher();
-        }
-
-        decouverte(s);
-
-        for( int i = 0; i < 4; i++){
-            mine.add( new Mine(s,gamecam,gamePort,renderer,"Mine_"+i,i));mine.get(i).afficher();
-        }
-
-        System.out.println(mine.toString());
-        fouiller(s);
 
         for (MapObject o : boutonEntree0.getObjects()) {
             Actor A = new Actor();
@@ -163,9 +135,6 @@ public class GameScreen extends Constants implements Screen {
             });
             s.addActor(A);
         }
-        Rubis0.setVisible(false);
-        Rubis1.setVisible(false);
-        Rubis6.setVisible(false);
 
         Gdx.input.setInputProcessor(s);
 
@@ -465,7 +434,36 @@ public class GameScreen extends Constants implements Screen {
 
     }
 
-    public void handleInput () {
+    public void masquerRubis(){
+        Rubis0.setVisible(false);
+        Rubis1.setVisible(false);
+        Rubis6.setVisible(false);
+        Rubis8.setVisible(false);
+        Rubis16.setVisible(false);
+        Rubis19.setVisible(false);
+    }
 
+    public void ajoutMinesExistantes(){
+        minesExploration.add(0);
+        minesExploration.add(1);
+        minesExploration.add(6);
+        minesExploration.add(8);
+        minesExploration.add(16);
+        minesExploration.add(19);
+
+    }
+
+    public void ajoutZoneMines(Stage s){
+        for( int i = 1; i < 7; i++){
+            zone.add( new Zone(map,s,gamecam,gamePort,renderer,"Zone"+i,i));
+            zone.get(i - 1).afficher();
+        }
+        decouverte(s);
+
+        for( int i = 0; i < 4; i++){
+            mine.add( new Mine(s,gamecam,gamePort,"Mine_"+i,i));mine.get(i).afficher();
+        }
+
+        fouiller(s);
     }
 }

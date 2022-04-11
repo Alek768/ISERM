@@ -21,22 +21,17 @@ public class Mine extends Constants{
     public OrthographicCamera gamecam;
     public Viewport gamePort;
     public Stage s;
-    private boolean mapmondevisible = true;
     private MapLayer mine;
-    private MapGroupLayer mapmonde;
-    public OrthogonalTiledMapRenderer renderer;
     private int idMine;
-    private boolean estVisible;
     public boolean estExploree;
     public static int indiceMineExploration;
     public static int indiceMineExploitation;
     private String nom;
 
-    public Mine( Stage stage, OrthographicCamera cam, Viewport port, OrthogonalTiledMapRenderer rend, String name, int idMine){
+    public Mine( Stage stage, OrthographicCamera cam, Viewport port, String name, int idMine){
         this.gamecam = cam;
         this.gamePort = port;
         this.s = stage;
-        this.renderer = rend;
         this.mine = map.getLayers().get(name);
         this.idMine = idMine;
         nom = name;
