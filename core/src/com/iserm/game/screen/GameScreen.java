@@ -21,29 +21,21 @@ import com.iserm.game.Scenes.MapMonde;
 import com.iserm.game.Scenes.Mine;
 import com.iserm.game.Scenes.Zone;
 import com.iserm.game.utils.Constants;
-
 import java.util.ArrayList;
-
-import static com.badlogic.gdx.Input.Keys.O;
 
 public class GameScreen extends Constants implements Screen {
 
     //Mines valables
-    ArrayList minesexploration = new ArrayList<Integer>();
+    ArrayList minesExploration = new ArrayList<Integer>();
 
 //    //Variables pour mines
-    public int indicemineexploration;
-    public int indicemineexploitation;
-
-
-
+    public int indiceMineExploration;
+    public int indiceMineExploitation;
 
     private IserMain game;
-    //Texture texture;
     private OrthographicCamera gamecam;
     private Viewport gamePort;
     private Hud hud;
-
     private OrthogonalTiledMapRenderer renderer;
 
     public GameScreen(IserMain game) {
@@ -58,22 +50,20 @@ public class GameScreen extends Constants implements Screen {
 
         final Stage s = new Stage(gamePort, game.batch);
 
-        //Fenêtres d'affichage
-        fenetreDecouverte = map.getLayers().get("Decouverte");
-        fenetreexploration = map.getLayers().get("explorer mines");
-        fenetrefail = map.getLayers().get("Fail");
-        fenetrereussiteexploration = map.getLayers().get("Mines trouvee");
-        fenetreexploitation = map.getLayers().get("Decision exploitation");
 
-
-
+        Rubis0.setVisible(false);
+        Rubis1.setVisible(false);
+        Rubis6.setVisible(false);
+        Rubis8.setVisible(false);
+        Rubis16.setVisible(false);
+        Rubis19.setVisible(false);
         //Mines ok
-        minesexploration.add(0);
-        minesexploration.add(1);
-        minesexploration.add(6);
-        minesexploration.add(8);
-        minesexploration.add(16);
-        minesexploration.add(19);
+        minesExploration.add(0);
+        minesExploration.add(1);
+        minesExploration.add(6);
+        minesExploration.add(8);
+        minesExploration.add(16);
+        minesExploration.add(19);
 
         MapMonde oui = new MapMonde(map,s,gamecam,gamePort,renderer);
         oui.afficher();
@@ -89,10 +79,10 @@ public class GameScreen extends Constants implements Screen {
         decouverte(s);
 
         for( int i = 0; i < 4; i++){
-            mine.add( new Mine(map,s,gamecam,gamePort,renderer,"Mine_"+i,i));
-            mine.get(i).afficher();
+            mine.add( new Mine(s,gamecam,gamePort,renderer,"Mine_"+i,i));mine.get(i).afficher();
         }
 
+        System.out.println(mine.toString());
         fouiller(s);
 
         for (MapObject o : boutonEntree0.getObjects()) {
@@ -106,8 +96,8 @@ public class GameScreen extends Constants implements Screen {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     if (mine_0dejaexploree == true) {
-                        fenetreexploitation.setVisible(true);
-                        indicemineexploitation = 0;
+                        fenetreExploitation.setVisible(true);
+                        indiceMineExploitation = 0;
                     }
 
                 }
@@ -128,7 +118,7 @@ public class GameScreen extends Constants implements Screen {
 
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    fenetreexploitation.setVisible(false);
+                    fenetreExploitation.setVisible(false);
                 }
             });
 
@@ -149,18 +139,18 @@ public class GameScreen extends Constants implements Screen {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
 
-                    fenetreexploitation.setVisible(false);
+                    fenetreExploitation.setVisible(false);
 
 
-                    if (indicemineexploitation == 0) {
+                    if (mine.get(0).estExploree && Mine.indiceMineExploitation == 0) {
                         Rubis0.setVisible(true);
                     }
 
-                    if (indicemineexploitation == 1) {
+                    if (mine.get(1).estExploree && Mine.indiceMineExploitation == 1) {
                         Rubis1.setVisible(true);
                     }
 
-                    if (indicemineexploitation == 6) {
+                    if (mine.get(6).estExploree && Mine.indiceMineExploitation == 6) {
                         Rubis6.setVisible(true);
                     }
 
@@ -173,6 +163,9 @@ public class GameScreen extends Constants implements Screen {
             });
             s.addActor(A);
         }
+        Rubis0.setVisible(false);
+        Rubis1.setVisible(false);
+        Rubis6.setVisible(false);
 
         Gdx.input.setInputProcessor(s);
 
@@ -200,7 +193,8 @@ public class GameScreen extends Constants implements Screen {
 
 
     }
-
+// fouiller est la méthode permettant de créer les boutons correspondant à la réponse de la question
+// "voulez vous explorer ces pierres ?". Si le joueur trouve une mine son entrée apprait à l'écran.
     public void fouiller(Stage s){
 
         for (MapObject o : boutonexplorationoui.getObjects()) {
@@ -213,93 +207,93 @@ public class GameScreen extends Constants implements Screen {
 
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    fenetreexploration.setVisible(false);
+                    fenetreExploration.setVisible(false);
 
-                    if (minesexploration.contains(indicemineexploration)) {
-                        fenetrereussiteexploration.setVisible(true);
-                        if (indicemineexploration == 0) {
+                    if (minesExploration.contains(indiceMineExploration)) {
+                        fenetreReussiteExploration.setVisible(true);
+                        if (indiceMineExploration == 0) {
                             entree0.setVisible(true);
                             mine.get(0).estExploree = true;
                         }
 
-                        if (indicemineexploration == 1) {
+                        if (indiceMineExploration == 1) {
                             entree1.setVisible(true);
                             mine.get(1).estExploree = true;
                         }
 
-                        if (indicemineexploration == 2) {
+                        if (indiceMineExploration == 2) {
                             entree6.setVisible(true);
                             mine.get(2).estExploree = true;
 
                         }
 
-                        if (indicemineexploration == 8) {
+                        if (indiceMineExploration == 8) {
                             entree8.setVisible(true);
-                            mine_8dejaexploree = true;
+                            mine.get(3).estExploree = true;
                         }
 
-                        if (indicemineexploration == 16) {
+                        if (indiceMineExploration == 16) {
                             entree16.setVisible(true);
-                            mine_16dejaexploree = true;
+                            mine.get(16).estExploree = true;
                         }
 
-                        if (indicemineexploration == 19) {
+                        if (indiceMineExploration == 19) {
                             entree19.setVisible(true);
-                            mine_19dejaexploree = true;
+                            mine.get(19).estExploree = true;
                         }
 
 
                     } else {
-                        fenetrefail.setVisible(true);
-                        if (indicemineexploration == 2) {
+                        fenetreFail.setVisible(true);
+                        if (indiceMineExploration == 2) {
                             mine_2dejaexploree = true;
                         }
-                        if (indicemineexploration == 3) {
+                        if (indiceMineExploration == 3) {
                             mine_3dejaexploree = true;
                         }
-                        if (indicemineexploration == 4) {
+                        if (indiceMineExploration == 4) {
                             mine_4dejaexploree = true;
                         }
-                        if (indicemineexploration == 5) {
+                        if (indiceMineExploration == 5) {
                             mine_5dejaexploree = true;
                         }
-                        if (indicemineexploration == 7) {
+                        if (indiceMineExploration == 7) {
                             mine_7dejaexploree = true;
                         }
-                        if (indicemineexploration == 9) {
+                        if (indiceMineExploration == 9) {
                             mine_9dejaexploree = true;
                         }
-                        if (indicemineexploration == 10) {
+                        if (indiceMineExploration == 10) {
                             mine_10dejaexploree = true;
                         }
-                        if (indicemineexploration == 11) {
+                        if (indiceMineExploration == 11) {
                             mine_11dejaexploree = true;
                         }
-                        if (indicemineexploration == 12) {
+                        if (indiceMineExploration == 12) {
                             mine_12dejaexploree = true;
                         }
-                        if (indicemineexploration == 13) {
+                        if (indiceMineExploration == 13) {
                             mine_13dejaexploree = true;
                         }
-                        if (indicemineexploration == 14) {
+                        if (indiceMineExploration == 14) {
                             mine_14dejaexploree = true;
                         }
-                        if (indicemineexploration == 15) {
+                        if (indiceMineExploration == 15) {
                             mine_15dejaexploree = true;
                         }
-                        if (indicemineexploration == 17) {
+                        if (indiceMineExploration == 17) {
                             mine_17dejaexploree = true;
                         }
-                        if (indicemineexploration == 18) {
+                        if (indiceMineExploration == 18) {
                             mine_18dejaexploree = true;
                         }
-                        if (indicemineexploration == 20) {
+                        if (indiceMineExploration == 20) {
                             mine_20dejaexploree = true;
                         }
-                        if (indicemineexploration == 21) {
+                        if (indiceMineExploration == 21) {
                             mine_21dejaexploree = true;
                         }
-                        if (indicemineexploration == 22) {
+                        if (indiceMineExploration == 22) {
                             mine_22dejaexploree = true;
                         }
 
@@ -307,10 +301,6 @@ public class GameScreen extends Constants implements Screen {
                 }
             });
             s.addActor(A);
-
-
-
-
         }
 
         for (MapObject o : boutonexplorationnon.getObjects()) {
@@ -323,12 +313,12 @@ public class GameScreen extends Constants implements Screen {
 
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    fenetreexploration.setVisible(false);
+                    fenetreExploration.setVisible(false);
                 }
             });
 
             s.addActor(A);
-            if (fenetreexploration.isVisible() == false)
+            if (fenetreExploration.isVisible() == false)
             {
                 A.setVisible(false);
             }
@@ -346,7 +336,7 @@ public class GameScreen extends Constants implements Screen {
 
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    fenetrefail.setVisible(false);
+                    fenetreFail.setVisible(false);
                 }
             });
 
@@ -365,7 +355,7 @@ public class GameScreen extends Constants implements Screen {
 
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    fenetrereussiteexploration.setVisible(false);
+                    fenetreReussiteExploration.setVisible(false);
                 }
             });
 
@@ -374,6 +364,8 @@ public class GameScreen extends Constants implements Screen {
 
         }
     }
+//l amethode de couverte gère la suppression des nuages et la modification de la variable estDecouverte d'une zone lorsque
+//    le joueur décide de la découvrir
 
     public void decouverte(Stage s){
         for (MapObject o : boutondecouverteoui.getObjects()) {
@@ -387,6 +379,7 @@ public class GameScreen extends Constants implements Screen {
                 public void clicked(InputEvent event, float x, float y) {
 
                     fenetreDecouverte.setVisible(false);
+                    Zone.derniereZoneDecouverte = Zone.indiceZoneEnDecouverte;
 
                     if (Zone.indiceZoneEnDecouverte == 1) {
                         nuage1.setVisible(false);

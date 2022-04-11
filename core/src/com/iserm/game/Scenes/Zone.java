@@ -29,6 +29,7 @@ public class Zone extends Constants {
     private MapLayer zone;
     public boolean estDecouverte;
     public static int indiceZoneEnDecouverte;
+    public static int derniereZoneDecouverte = 0;
 
     public Zone(TiledMap map, Stage stage, OrthographicCamera cam, Viewport port, OrthogonalTiledMapRenderer rend, String name, int idZone){
         this.gamecam = cam;
@@ -51,7 +52,7 @@ public class Zone extends Constants {
 
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    if (!estDecouverte && !GameScreen.fenetreDecouverte.isVisible()){
+                    if (derniereZoneDecouverte == idZone -1 && !estDecouverte && !GameScreen.fenetreDecouverte.isVisible()){
                         GameScreen.fenetreDecouverte.setVisible(true);
                         indiceZoneEnDecouverte = idZone;
                     }

@@ -24,10 +24,10 @@ public abstract class Constants
 
 
     public static MapLayer fenetreDecouverte = map.getLayers().get("Decouverte");
-    public static MapLayer fenetreexploration = map.getLayers().get("explorer mines");
-    public static MapLayer fenetrefail = map.getLayers().get("Fail");
-    public static MapLayer fenetrereussiteexploration = map.getLayers().get("Mines trouvee");
-    public static MapLayer fenetreexploitation = map.getLayers().get("Decision exploitation");
+    public static MapLayer fenetreExploration = map.getLayers().get("explorer mines");
+    public static MapLayer fenetreFail = map.getLayers().get("Fail");
+    public static MapLayer fenetreReussiteExploration = map.getLayers().get("Mines trouvee");
+    public static MapLayer fenetreExploitation = map.getLayers().get("Decision exploitation");
 
 
 
@@ -41,7 +41,7 @@ public abstract class Constants
     public MapLayer entree6 = map.getLayers().get("Entree6");
     public MapLayer entree8 = map.getLayers().get("Entree8");
     public MapLayer entree16 = map.getLayers().get("Entree16");
-    public MapLayer entree19 = map.getLayers().get("Entree019");
+    public MapLayer entree19 = map.getLayers().get("Entree19");
 
     public MapLayer boutonEntree0 = map.getLayers().get("Entree_0");
     public MapLayer boutonEntree1= map.getLayers().get("Entree_1");
@@ -51,36 +51,37 @@ public abstract class Constants
     public MapLayer boutonEntree19 = map.getLayers().get("Entree_19");
 
     //Variables Rubis
-    public final MapLayer Rubis0 = map.getLayers().get("Ruby_0");
-    public final MapLayer Rubis1 = map.getLayers().get("Ruby_1");
-    public final MapLayer Rubis6 = map.getLayers().get("Ruby_6");
-
-
-
-   // Variable des mines
-    public MapLayer mine0 = map.getLayers().get("Mine_0");
-    public MapLayer mine1 = map.getLayers().get("Mine_1");
-    public MapLayer mine2 = map.getLayers().get("Mine_2");
-    public MapLayer mine3 = map.getLayers().get("Mine_3");
-    public MapLayer mine4 = map.getLayers().get("Mine_4");
-    public MapLayer mine5 = map.getLayers().get("Mine_5");
-    public MapLayer mine6 = map.getLayers().get("Mine_6");
-    public MapLayer mine7 = map.getLayers().get("Mine_7");
-    public MapLayer mine8 = map.getLayers().get("Mine_8");
-    public MapLayer mine9 = map.getLayers().get("Mine_9");
-    public MapLayer mine10 = map.getLayers().get("Mine_10");
-    public MapLayer mine11 = map.getLayers().get("Mine_11");
-    public MapLayer mine12 = map.getLayers().get("Mine_12");
-    public MapLayer mine13 = map.getLayers().get("Mine_13");
-    public MapLayer mine14 = map.getLayers().get("Mine_14");
-    public MapLayer mine15 = map.getLayers().get("Mine_15");
-    public MapLayer mine16 = map.getLayers().get("Mine_16");
-    public MapLayer mine17 = map.getLayers().get("Mine_17");
-    public MapLayer mine18 = map.getLayers().get("Mine_18");
-    public MapLayer mine19 = map.getLayers().get("Mine_19");
-    public MapLayer mine20 = map.getLayers().get("Mine_20");
-    public MapLayer mine21 = map.getLayers().get("Mine_21");
-    public MapLayer mine22 = map.getLayers().get("Mine_22");
+    public MapLayer Rubis0 = map.getLayers().get("Ruby_0");
+    public MapLayer Rubis1 = map.getLayers().get("Ruby_1");
+    public MapLayer Rubis6 = map.getLayers().get("Ruby_6");
+    public MapLayer Rubis8 = map.getLayers().get("Ruby_8");
+    public MapLayer Rubis16 = map.getLayers().get("Ruby_16");
+    public MapLayer Rubis19 = map.getLayers().get("Ruby_19");
+//
+//   // Variable des mines
+//    public MapLayer mine0 = map.getLayers().get("Mine_0");
+//    public MapLayer mine1 = map.getLayers().get("Mine_1");
+//    public MapLayer mine2 = map.getLayers().get("Mine_2");
+//    public MapLayer mine3 = map.getLayers().get("Mine_3");
+//    public MapLayer mine4 = map.getLayers().get("Mine_4");
+//    public MapLayer mine5 = map.getLayers().get("Mine_5");
+//    public MapLayer mine6 = map.getLayers().get("Mine_6");
+//    public MapLayer mine7 = map.getLayers().get("Mine_7");
+//    public MapLayer mine8 = map.getLayers().get("Mine_8");
+//    public MapLayer mine9 = map.getLayers().get("Mine_9");
+//    public MapLayer mine10 = map.getLayers().get("Mine_10");
+//    public MapLayer mine11 = map.getLayers().get("Mine_11");
+//    public MapLayer mine12 = map.getLayers().get("Mine_12");
+//    public MapLayer mine13 = map.getLayers().get("Mine_13");
+//    public MapLayer mine14 = map.getLayers().get("Mine_14");
+//    public MapLayer mine15 = map.getLayers().get("Mine_15");
+//    public MapLayer mine16 = map.getLayers().get("Mine_16");
+//    public MapLayer mine17 = map.getLayers().get("Mine_17");
+//    public MapLayer mine18 = map.getLayers().get("Mine_18");
+//    public MapLayer mine19 = map.getLayers().get("Mine_19");
+//    public MapLayer mine20 = map.getLayers().get("Mine_20");
+//    public MapLayer mine21 = map.getLayers().get("Mine_21");
+//    public MapLayer mine22 = map.getLayers().get("Mine_22");
 
 
     //Variables de zone
