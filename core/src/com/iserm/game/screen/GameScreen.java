@@ -200,6 +200,7 @@ public class GameScreen extends Constants implements Screen {
 
                     } else {
                         fenetreFail.setVisible(true);
+                        boutonfailok.setVisible(true);
                         mine.get(indiceMineExploration).estExploree = true;
 
                     }
@@ -244,6 +245,7 @@ public class GameScreen extends Constants implements Screen {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     fenetreFail.setVisible(false);
+                    boutonfailok.setVisible(false);
                 }
             });
 
