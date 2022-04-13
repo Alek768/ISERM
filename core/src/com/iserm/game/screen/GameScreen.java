@@ -162,9 +162,11 @@ public class GameScreen extends Constants implements Screen {
                     boutonexplorationnon.setVisible(false);
                     boutonexplorationoui.setVisible(false);
                     hud.addMoney(-50);
+                    hud.reload();
 
                     if (minesExploration.contains(Mine.indiceMineExploration)) {
                         fenetreReussiteExploration.setVisible(true);
+                        boutonReussiteExploration.setVisible(true);
                         System.out.println(Mine.indiceMineExploitation);
                         if (Mine.indiceMineExploration == 0) {
                             entree0.setVisible(true);
@@ -198,7 +200,8 @@ public class GameScreen extends Constants implements Screen {
                         }
 
 
-                    } else {
+                    }
+                    else {
                         fenetreFail.setVisible(true);
                         boutonfailok.setVisible(true);
                         mine.get(indiceMineExploration).estExploree = true;
@@ -254,7 +257,7 @@ public class GameScreen extends Constants implements Screen {
 
         }
 
-        for (MapObject o : boutonreussiteexploration.getObjects()) {
+        for (MapObject o : boutonReussiteExploration.getObjects()) {
             Actor A = new Actor();
             Rectangle r = ((RectangleMapObject) o).getRectangle();
             A.setBounds(r.x, r.y, r.width, r.height);
@@ -265,6 +268,7 @@ public class GameScreen extends Constants implements Screen {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     fenetreReussiteExploration.setVisible(false);
+                    boutonReussiteExploration.setVisible(false);
                 }
             });
 
@@ -293,6 +297,8 @@ public class GameScreen extends Constants implements Screen {
                     System.out.println(hud.getOr());
                     hud.affichage();
                     Zone.derniereZoneDecouverte = Zone.indiceZoneEnDecouverte;
+                    hud.addMoney(-100);
+                    hud.reload();
 
                     if (Zone.indiceZoneEnDecouverte == 1) {
                         nuage1.setVisible(false);
@@ -387,6 +393,9 @@ public class GameScreen extends Constants implements Screen {
         Rubis8.setVisible(false);
         Rubis16.setVisible(false);
         Rubis19.setVisible(false);
+
+        boutonexplorationoui.setVisible(false);
+        boutonexplorationnon.setVisible(false);
     }
 
     public void ajoutMinesExistantes(){

@@ -64,9 +64,12 @@ public class Hud {
         stage.addActor(table);
     }
 
+    public void reload(){
+        orLabel.setText(Or);
+    }
 
     public void addMoney(int i){
-        this.Or += i;
+        Or += i;
     }
 
     public int getOr() {

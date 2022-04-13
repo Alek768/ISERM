@@ -110,7 +110,7 @@ public abstract class Constants
     public MapLayer boutonexploitationoui = map.getLayers().get("Bouton oui_exploitation");
     public MapLayer boutonexploitationnon = map.getLayers().get("Bouton non_exploitation");
     public MapLayer boutonfailok = map.getLayers().get("Bouton ok_Fail");
-    public MapLayer boutonreussiteexploration = map.getLayers().get("Bouton reussite_exploration");
+    public MapLayer boutonReussiteExploration = map.getLayers().get("Bouton reussite_exploration");
 
 //    //Mines valables
 //    public ArrayList minesexploration = new ArrayList<Integer>();
