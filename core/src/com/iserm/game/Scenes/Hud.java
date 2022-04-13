@@ -29,36 +29,33 @@ public class Hud {
 
     public Hud(SpriteBatch sb, Joueur joueur){
         this.j = joueur;
-        nom = "unknown";
+
+        nom = j.Pseudo;
         epoque = "Antiquité";
-        Or = 0;
-        score = 0;
+        Or = j.getArgent();
+        score = j.getNiveau();
         //Commentaire
         viewport = new FitViewport(IserMain.V_WIDTH, IserMain.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, sb);
 
+        nameLabel = new Label(nom,new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        scoreLabel = new Label(String.format("%01d",score),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        timeLabel = new Label(epoque,new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        orLabel = new Label(String.format("%01d",Or), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+
+
+    }
+
+    public void affichage(){
         Table table = new Table();
         table.top();
         table.setFillParent(true);
-
-        nameLabel = new Label(nom,new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        scoreLabel = new Label(String.format("%06d",score),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        timeLabel = new Label(epoque,new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        orLabel = new Label(String.format("%06d",Or), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 
         table.add(nameLabel).expandX().padTop(10);
         table.add(scoreLabel).expandX().padTop(10);
         table.add(timeLabel).expandX().padTop(10);
         table.add(orLabel).expandX().padTop(10);
-
         stage.addActor(table);
-        if(j!=null){
-            nom = j.Pseudo;
-            epoque = "Antiquité";
-            Or = j.getArgent();
-            score = j.getNiveau();
-        }
-
     }
 
 }

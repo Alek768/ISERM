@@ -22,6 +22,8 @@ public abstract class Constants
     public static TmxMapLoader maploader = new TmxMapLoader();
     public static TiledMap map = maploader.load("ui/maps/Maps_1.tmx");
 
+    public static MapLayer acceuilPlay = map.getLayers().get("AcceuilPlay")  ;
+    public static MapLayer acceuil = map.getLayers().get("Acceuil");
 
     public static MapLayer fenetreDecouverte = map.getLayers().get("Decouverte");
     public static MapLayer fenetreExploration = map.getLayers().get("explorer mines");

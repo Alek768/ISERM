@@ -5,7 +5,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -17,10 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.iserm.game.IserMain;
-import com.iserm.game.Scenes.Hud;
-import com.iserm.game.Scenes.MapMonde;
-import com.iserm.game.Scenes.Mine;
-import com.iserm.game.Scenes.Zone;
+import com.iserm.game.Scenes.*;
 import com.iserm.game.utils.Constants;
 import java.util.ArrayList;
 
@@ -36,8 +32,10 @@ public class GameScreen extends Constants implements Screen {
     private IserMain game;
     private OrthographicCamera gamecam;
     private Viewport gamePort;
-    private Hud hud;
+    public Hud hud;
     private OrthogonalTiledMapRenderer renderer;
+    private EcranAcceuil ea;
+    public boolean debut = true;
 
     public GameScreen(IserMain game) {
         this.game = game;
@@ -49,37 +47,15 @@ public class GameScreen extends Constants implements Screen {
         renderer = new OrthogonalTiledMapRenderer(map);
         gamecam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
 
-        final Stage s = new Stage(gamePort, game.batch);
+        Stage s = new Stage(gamePort, game.batch);
 
         masquerRubis();
         ajoutMinesExistantes();
 
         MapMonde oui = new MapMonde(map,s,gamecam,gamePort,renderer);
-        oui.afficher(this, s);
+        ea = new EcranAcceuil(game.batch);
+        ea.lancement(oui, s, this);
 
-
-        for (MapObject o : boutonEntree0.getObjects()) {
-            Actor A = new Actor();
-            Rectangle r = ((RectangleMapObject) o).getRectangle();
-            A.setBounds(r.x, r.y, r.width, r.height);
-
-
-            A.addListener(new ClickListener() {
-
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    if (mine.get(0).estExploree) {
-                        fenetreExploitation.setVisible(true);
-                        indiceMineExploitation = 0;
-                    }
-
-                }
-            });
-
-            s.addActor(A);
-
-
-        }
 
         for (MapObject o : boutonexploitationnon.getObjects()) {
             Actor A = new Actor();
@@ -158,7 +134,12 @@ public class GameScreen extends Constants implements Screen {
 
         renderer.render();
 
-        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        if(debut){
+            game.batch.setProjectionMatrix(ea.stage.getCamera().combined);
+        }
+        else{
+            game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        }
         hud.stage.draw();
 
 
