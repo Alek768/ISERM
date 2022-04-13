@@ -53,6 +53,7 @@ public class MapMonde {
                         gs.hud.affichage();
                         mapmonde.setVisible(false);
                         mapmondevisible = false;
+                        ales.setVisible(false);
                         gamePort.setWorldSize(1280, 720);
                         gamePort.apply();
                         gamecam.position.x -= 400;

@@ -53,6 +53,8 @@ public class Zone extends Constants {
                 public void clicked(InputEvent event, float x, float y) {
                     if (derniereZoneDecouverte == idZone -1 && !estDecouverte && !GameScreen.fenetreDecouverte.isVisible()){
                         GameScreen.fenetreDecouverte.setVisible(true);
+                        boutondecouvertenon.setVisible(true);
+                        boutondecouverteoui.setVisible(true);
                         indiceZoneEnDecouverte = idZone;
                     }
                 }
