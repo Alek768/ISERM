@@ -46,6 +46,10 @@ public class Hud {
         timeLabel = new Label(epoque,new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         orLabel = new Label(String.format("%06d",Or), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
 
+        nameLabel.setFontScale(0.4F);
+        scoreLabel.setFontScale(0.4F);
+        timeLabel.setFontScale(0.4F);
+        orLabel.setFontScale(0.4F);
         table.add(nameLabel).expandX().padTop(10);
         table.add(scoreLabel).expandX().padTop(10);
         table.add(timeLabel).expandX().padTop(10);
