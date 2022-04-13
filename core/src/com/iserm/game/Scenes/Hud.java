@@ -41,10 +41,10 @@ public class Hud {
         table.top();
         table.setFillParent(true);
 
-        nameLabel = new Label(nom,new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        scoreLabel = new Label(String.format("%06d",score),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        timeLabel = new Label(epoque,new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        orLabel = new Label(String.format("%06d",Or), new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        nameLabel = new Label(nom,new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        scoreLabel = new Label(String.format("%06d",score),new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        timeLabel = new Label(epoque,new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        orLabel = new Label(String.format("%06d",Or), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
 
         table.add(nameLabel).expandX().padTop(10);
         table.add(scoreLabel).expandX().padTop(10);
