@@ -32,7 +32,7 @@ public class GameScreen extends Constants implements Screen {
     private IserMain game;
     private OrthographicCamera gamecam;
     private Viewport gamePort;
-    public Hud hud;
+    public static Hud hud;
     private OrthogonalTiledMapRenderer renderer;
     private EcranAcceuil ea;
     public boolean debut = true;
@@ -159,6 +159,9 @@ public class GameScreen extends Constants implements Screen {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     fenetreExploration.setVisible(false);
+                    boutonexplorationnon.setVisible(false);
+                    boutonexplorationoui.setVisible(false);
+                    hud.addMoney(-50);
 
                     if (minesExploration.contains(Mine.indiceMineExploration)) {
                         fenetreReussiteExploration.setVisible(true);
@@ -216,6 +219,8 @@ public class GameScreen extends Constants implements Screen {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     fenetreExploration.setVisible(false);
+                    boutonexplorationnon.setVisible(false);
+                    boutonexplorationoui.setVisible(false);
                 }
             });
 
@@ -281,6 +286,10 @@ public class GameScreen extends Constants implements Screen {
                 public void clicked(InputEvent event, float x, float y) {
 
                     fenetreDecouverte.setVisible(false);
+                    boutondecouverteoui.setVisible(false);
+                    boutondecouvertenon.setVisible(false);
+                    System.out.println(hud.getOr());
+                    hud.affichage();
                     Zone.derniereZoneDecouverte = Zone.indiceZoneEnDecouverte;
 
                     if (Zone.indiceZoneEnDecouverte == 1) {
@@ -334,6 +343,8 @@ public class GameScreen extends Constants implements Screen {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     fenetreDecouverte.setVisible(false);
+                    boutondecouverteoui.setVisible(false);
+                    boutondecouvertenon.setVisible(false);
                 }
             });
 

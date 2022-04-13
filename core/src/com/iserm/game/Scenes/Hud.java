@@ -31,7 +31,7 @@ public class Hud {
         this.j = joueur;
 
         nom = j.Pseudo;
-        epoque = "Antiquité";
+        epoque = "Ere moderne";
         Or = j.getArgent();
         score = j.getNiveau();
         //Commentaire
@@ -64,4 +64,12 @@ public class Hud {
         stage.addActor(table);
     }
 
+
+    public void addMoney(int i){
+        this.Or += i;
+    }
+
+    public int getOr() {
+        return Or;
+    }
 }

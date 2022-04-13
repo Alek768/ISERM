@@ -56,6 +56,8 @@ public class Mine extends Constants{
                 public void clicked(InputEvent event, float x, float y) {
                     if (!estExploree){
                         GameScreen.fenetreExploration.setVisible(true);
+                        boutonexplorationnon.setVisible(true);
+                        boutonexplorationoui.setVisible(true);
                         indiceMineExploration = idMine;
                     }
                     else{

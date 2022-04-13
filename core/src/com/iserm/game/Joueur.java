@@ -19,7 +19,7 @@ public class Joueur {
         this.Password = password;
         this.Niveau = 1;
         this.EXP = 0;
-        this.Argent = 0;
+        this.Argent = 300;
     }
 
     /**
