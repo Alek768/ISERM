@@ -50,8 +50,7 @@ public class MapMonde {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     if (mapmondevisible){
-
-
+                        gs.hud.affichage();
                         mapmonde.setVisible(false);
                         mapmondevisible = false;
                         gamePort.setWorldSize(1280, 720);

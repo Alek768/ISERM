@@ -10,7 +10,7 @@ import com.iserm.game.screen.GameScreen;
 public class IserMain extends Game {
 	public static final int V_WIDTH = 400;
 	public static final int V_HEIGHT = 208;
-	public static Joueur j;
+	public static Joueur j= new Joueur("smilaid","lpf@protonmail.com", "oui");
 	public SpriteBatch batch;
 	Music music;
 

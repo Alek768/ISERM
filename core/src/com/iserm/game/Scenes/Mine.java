@@ -1,13 +1,9 @@
 package com.iserm.game.Scenes;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.maps.MapGroupLayer;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -58,12 +54,12 @@ public class Mine extends Constants{
 
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    if (!estExploree && GameScreen.zone.get(indiceZone).estDecouverte) {
+                    if (!estExploree){
                         GameScreen.fenetreExploration.setVisible(true);
                         indiceMineExploration = idMine;
                     }
                     else{
-                        if(estExploree && GameScreen.zone.get(1).estDecouverte){
+                        if(estExploree){
                             fenetreExploitation.setVisible(true);
                             indiceMineExploitation = idMine;
 
@@ -78,7 +74,5 @@ public class Mine extends Constants{
             }
         }
     }
-
-
 }
 
