@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class Joueur {
 
-    public String Pseudo;
+    public String Pseudo, epoque;
     private String Mail, Password;
     int Niveau, EXP, Argent;
     static int idPlayer = 0;
@@ -21,6 +21,14 @@ public class Joueur {
         this.EXP = 0;
         this.Argent = 300;
     }
+    public Joueur(String username, String mail, String password,int lvl, int exp, int argent){
+        this.Pseudo = username;
+        this.Mail = mail;
+        this.Password = password;
+        this.Niveau = lvl;
+        this.EXP = exp;
+        this.Argent = argent;
+    }
 
     /**
      * Première connection (0 Compte) -> Création de Joueur Jeu et BDD
@@ -30,7 +38,7 @@ public class Joueur {
      */
     public void configSQL(String mail, String username, String password, SQL s) throws SQLException{
         //Création SQL:
-        s.UpdateString("INSERT INTO PLAYERS (mail, password, username, playerEXP, playerLVL, Argent, lastLogin, isAdmin) VALUES(?, ?, ?, 0, 1, 0, STR_TO_DATE(SYSDATE(),'YYYY-DD-MM HH24:MI'), FALSE);",mail,password,username);
+        s.UpdateString("INSERT INTO PLAYERS (mail, password, username, playerEXP, playerLVL, playerMoney, lastLogin, isAdmin) VALUES(?, ?, ?, 0, 1, 0, STR_TO_DATE(SYSDATE(),'YYYY-DD-MM HH24:MI'), FALSE);",mail,password,username);
         ResultSet r = s.RequestString("SELECT playerID FROM PLAYERS WHERE mail = ? AND password = ?;", this.Mail, this.getPassword());
         if (r.next()){
             this.idPlayer = r.getInt(1);
@@ -47,7 +55,7 @@ public class Joueur {
      */
     public void config(String s1, String password, SQL s) throws SQLException{
         if(isMail(s1,password,s)){
-            ResultSet r = s.RequestString("SELECT username, playerLVL, playerEXP, Argent FROM PLAYERS WHERE mail = ? and password = ?",s1,password);
+            ResultSet r = s.RequestString("SELECT username, playerLVL, playerEXP, playerMoney FROM PLAYERS WHERE mail = ? and password = ?",s1,password);
             if (r.next()){
                 this.Pseudo = r.getString(1);
                 this.Mail = s1;
@@ -59,7 +67,7 @@ public class Joueur {
             }
         }
         else if (isUsername(s1,password,s)){
-            ResultSet r = s.RequestString("SELECT mail, playerLVL, playerEXP, Argent FROM PLAYERS WHERE username = ? and password = ?",s1,password);
+            ResultSet r = s.RequestString("SELECT mail, playerLVL, playerEXP, playerMoney FROM PLAYERS WHERE username = ? and password = ?",s1,password);
             if (r.next()){
                 this.Pseudo = s1;
                 this.Mail = r.getString(1);
@@ -96,8 +104,8 @@ public class Joueur {
      * @throws SQLException
      */
     public void config(SQL s) throws SQLException {
-        ResultSet r = s.Request1("SELECT username, mail, password, playerLVL, playerEXP, Argent FROM PLAYERS WHERE playerID = ?", this.idPlayer);
-        s.Update("UPDATE PLAYERS SET lastLogin = STR_TO_DATE(SYSDATE(),'YYYY-DD-MM HH24:MI') WHERE playerID = ?;",this.idPlayer);
+        ResultSet r = s.Request1("SELECT username, mail, password, playerLVL, playerEXP, playerMoney, epoque FROM PLAYERS WHERE playerID = ?", this.idPlayer);
+        //s.Update("UPDATE PLAYERS SET lastLogin = STR_TO_DATE(SYSDATE(),'YYYY-DD-MM HH24:MI') WHERE playerID = ?;",this.idPlayer);
         if(r.next()) {
             this.Pseudo = r.getString(1);
             this.Mail = r.getString(2);
@@ -105,6 +113,7 @@ public class Joueur {
             this.Niveau = r.getInt(4);
             this.EXP = r.getInt(5);
             this.Argent = r.getInt(6);
+            this.epoque = r.getString(7);
             r.close();
         }
     }
@@ -159,7 +168,7 @@ public class Joueur {
     void ajoutRessource(Ressource r, int quantite, SQL s) throws SQLException{
         if (quantite >= 0) {
             s.Update("UPDATE INVENTAIRE SET quantite = quantite + ? WHERE playerID = 1 AND objetID = ?",quantite, r.idObjet);
-            s.Update("INSERT INTO TRANSACTIONS (playerID1, playerID2, type, amount) VALUES (?, 0, 'Ressource', ?);",this.idPlayer, quantite);
+            s.Update("INSERT INTO TRANSACTIONS (player1, player2, type, amount) VALUES (?, 0, 'Ressource', ?);",this.idPlayer, quantite);
         }
         else {
             retraitRessource(r,-quantite,s);
@@ -203,7 +212,7 @@ public class Joueur {
             LvlUP = Math.pow(1.040306503,this.Niveau)*100;
         }
         s.Update("UPDATE PLAYERS SET playerEXP = ? WHERE playerID = ?;",this.EXP,this.idPlayer);
-        s.Update("INSERT INTO TRANSACTIONS (playerID1, playerID2, type, amount) VALUES (?, 0, 'EXP', ?);",this.idPlayer, value);
+        s.Update("INSERT INTO TRANSACTIONS (player1, player2, type, amount) VALUES (?, 0, 'EXP', ?);",this.idPlayer, value);
     }
 
     /**
@@ -214,7 +223,7 @@ public class Joueur {
         //Ajout du niveau
         this.Niveau += value;
         s.Update("UPDATE PLAYERS SET playerLVL = ? WHERE playerID = ?;",this.Niveau,this.idPlayer);
-        s.Update("INSERT INTO TRANSACTIONS (playerID1, playerID2, type, amount) VALUES (?, 0, 'LVL', ?);",this.idPlayer, value);
+        s.Update("INSERT INTO TRANSACTIONS (player1, player2, type, amount) VALUES (?, 0, 'LVL', ?);",this.idPlayer, value);
     }
 
     /**
@@ -225,8 +234,8 @@ public class Joueur {
     public void ajoutArgent(int value, SQL s){
         if (enoughMoney(value)){
             this.Argent += value;
-            s.Update("UPDATE PLAYERS SET Argent = ? WHERE playerID = ?", this.Argent, this.idPlayer);
-            s.Update("INSERT INTO TRANSACTIONS (playerID1, playerID2, type, amount) VALUES (?, 0, 'Argent', ?)", this.idPlayer, value);
+            s.Update("UPDATE PLAYERS SET playerMoney = ? WHERE playerID = ?", this.Argent, this.idPlayer);
+            s.Update("INSERT INTO TRANSACTIONS (player1, player2, type, amount) VALUES (?, 0, 'Argent', ?)", this.idPlayer, value);
         }
     }
 

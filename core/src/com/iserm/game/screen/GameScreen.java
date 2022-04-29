@@ -16,8 +16,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.iserm.game.IserMain;
+import com.iserm.game.SQL;
 import com.iserm.game.Scenes.*;
 import com.iserm.game.utils.Constants;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class GameScreen extends Constants implements Screen {
@@ -43,7 +46,6 @@ public class GameScreen extends Constants implements Screen {
         gamecam = new OrthographicCamera();
         gamePort = new FitViewport(2080, 1120, gamecam);
         hud = new Hud(game.batch, game.j);
-
         renderer = new OrthogonalTiledMapRenderer(map);
         gamecam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
 
@@ -161,7 +163,13 @@ public class GameScreen extends Constants implements Screen {
                     fenetreExploration.setVisible(false);
                     boutonexplorationnon.setVisible(false);
                     boutonexplorationoui.setVisible(false);
-                    hud.addMoney(-50);
+                    //hud.addMoney(-50);
+                    try {
+                        game.j.ajoutArgent(-50,new SQL());
+                        game.j.ajoutEXP(+10,new SQL());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     hud.reload();
 
                     if (minesExploration.contains(Mine.indiceMineExploration)) {
@@ -297,7 +305,12 @@ public class GameScreen extends Constants implements Screen {
                     System.out.println(hud.getOr());
                     hud.affichage();
                     Zone.derniereZoneDecouverte = Zone.indiceZoneEnDecouverte;
-                    hud.addMoney(-100);
+                    try {
+                        game.j.ajoutArgent(-1000,new SQL());
+                        game.j.ajoutEXP(+500,new SQL());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     hud.reload();
 
                     if (Zone.indiceZoneEnDecouverte == 1) {

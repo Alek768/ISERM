@@ -11,7 +11,7 @@ public class SQL {
     private Connection c;
     private static SQL instance;
 
-    private SQL() throws IOException{
+    public SQL() throws IOException{
         setConnection();
     }
 
