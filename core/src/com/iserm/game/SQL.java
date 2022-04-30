@@ -1,6 +1,7 @@
 package com.iserm.game;
 
 import javax.xml.transform.Result;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.*;
@@ -28,11 +29,13 @@ public class SQL {
      * Test si on peut connecter la BDD
      * @return
      */
-    private boolean testConnection() {
+    private boolean testConnection() throws IOException {
         boolean b;
+        Properties props = new Properties();
+        props.load(new FileReader("db.properties"));
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/iserm","root","");
+            Connection c = DriverManager.getConnection(props.getProperty("url"),props.getProperty("user"),props.getProperty("password"));
             b = true;
         } catch (Exception e){
             e.printStackTrace();
