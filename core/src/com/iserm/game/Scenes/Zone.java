@@ -42,7 +42,7 @@ public class Zone extends Constants {
 
     public void afficher(){
         for (MapObject o : zone.getObjects()) {
-            Actor A = new Actor();
+            final Actor A = new Actor();
             Rectangle r = ((RectangleMapObject) o).getRectangle();
             A.setBounds(r.x, r.y, r.width, r.height);
 
@@ -51,11 +51,11 @@ public class Zone extends Constants {
 
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    if (derniereZoneDecouverte == idZone -1 && !estDecouverte && !GameScreen.fenetreDecouverte.isVisible()){
+                    if ( !estDecouverte && !GameScreen.fenetreDecouverte.isVisible()){
                         GameScreen.fenetreDecouverte.setVisible(true);
-                        boutondecouvertenon.setVisible(true);
-                        boutondecouverteoui.setVisible(true);
+                        GameScreen.decouverte(s);
                         indiceZoneEnDecouverte = idZone;
+                        A.setVisible(false);
                     }
                 }
             });

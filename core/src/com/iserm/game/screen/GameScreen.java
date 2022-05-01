@@ -26,10 +26,10 @@ import java.util.ArrayList;
 public class GameScreen extends Constants implements Screen {
 
     //Mines valables
-    ArrayList minesExploration = new ArrayList<Integer>();
+    static ArrayList minesExploration = new ArrayList<Integer>();
 
 //    //Variables pour mines
-    public int indiceMineExploration;
+    public static int indiceMineExploration;
     public int indiceMineExploitation;
 
     private IserMain game;
@@ -57,63 +57,6 @@ public class GameScreen extends Constants implements Screen {
         MapMonde oui = new MapMonde(map,s,gamecam,gamePort,renderer);
         ea = new EcranAcceuil(game.batch);
         ea.lancement(oui, s, this);
-
-
-        for (MapObject o : boutonexploitationnon.getObjects()) {
-            Actor A = new Actor();
-            Rectangle r = ((RectangleMapObject) o).getRectangle();
-            A.setBounds(r.x, r.y, r.width, r.height);
-
-
-            A.addListener(new ClickListener() {
-
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    fenetreExploitation.setVisible(false);
-                }
-            });
-
-            s.addActor(A);
-
-
-
-        }
-
-        for (MapObject o : boutonexploitationoui.getObjects()) {
-            Actor A = new Actor();
-            Rectangle r = ((RectangleMapObject) o).getRectangle();
-            A.setBounds(r.x, r.y, r.width, r.height);
-
-
-            A.addListener(new ClickListener() {
-
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-
-                    fenetreExploitation.setVisible(false);
-
-
-                    if (mine.get(0).estExploree && Mine.indiceMineExploitation == 0) {
-                        Rubis0.setVisible(true);
-                    }
-
-                    if (mine.get(1).estExploree && Mine.indiceMineExploitation == 1) {
-                        Rubis1.setVisible(true);
-                    }
-
-                    if (mine.get(6).estExploree && Mine.indiceMineExploitation == 6) {
-                        Rubis6.setVisible(true);
-                    }
-
-
-
-
-
-
-                }
-            });
-            s.addActor(A);
-        }
 
         Gdx.input.setInputProcessor(s);
 
@@ -148,10 +91,10 @@ public class GameScreen extends Constants implements Screen {
     }
 // fouiller est la méthode permettant de créer les boutons correspondant à la réponse de la question
 // "voulez vous explorer ces pierres ?". Si le joueur trouve une mine son entrée apprait à l'écran.
-    public void fouiller(Stage s){
+    public static void fouiller(Stage s){
 
         for (MapObject o : boutonexplorationoui.getObjects()) {
-            Actor A = new Actor();
+            final Actor A = new Actor();
             Rectangle r = ((RectangleMapObject) o).getRectangle();
             A.setBounds(r.x, r.y, r.width, r.height);
 
@@ -215,13 +158,14 @@ public class GameScreen extends Constants implements Screen {
                         mine.get(indiceMineExploration).estExploree = true;
 
                     }
+                    A.setVisible(false);
                 }
             });
             s.addActor(A);
         }
 
         for (MapObject o : boutonexplorationnon.getObjects()) {
-            Actor A = new Actor();
+            final Actor A = new Actor();
             Rectangle r = ((RectangleMapObject) o).getRectangle();
             A.setBounds(r.x, r.y, r.width, r.height);
 
@@ -233,6 +177,7 @@ public class GameScreen extends Constants implements Screen {
                     fenetreExploration.setVisible(false);
                     boutonexplorationnon.setVisible(false);
                     boutonexplorationoui.setVisible(false);
+                    A.setVisible(false);
                 }
             });
 
@@ -246,7 +191,7 @@ public class GameScreen extends Constants implements Screen {
         }
 
         for (MapObject o : boutonfailok.getObjects()) {
-            Actor A = new Actor();
+            final Actor A = new Actor();
             Rectangle r = ((RectangleMapObject) o).getRectangle();
             A.setBounds(r.x, r.y, r.width, r.height);
 
@@ -257,6 +202,7 @@ public class GameScreen extends Constants implements Screen {
                 public void clicked(InputEvent event, float x, float y) {
                     fenetreFail.setVisible(false);
                     boutonfailok.setVisible(false);
+                    A.setVisible(false);
                 }
             });
 
@@ -266,7 +212,7 @@ public class GameScreen extends Constants implements Screen {
         }
 
         for (MapObject o : boutonReussiteExploration.getObjects()) {
-            Actor A = new Actor();
+            final Actor A = new Actor();
             Rectangle r = ((RectangleMapObject) o).getRectangle();
             A.setBounds(r.x, r.y, r.width, r.height);
 
@@ -277,6 +223,8 @@ public class GameScreen extends Constants implements Screen {
                 public void clicked(InputEvent event, float x, float y) {
                     fenetreReussiteExploration.setVisible(false);
                     boutonReussiteExploration.setVisible(false);
+                    A.setVisible(false);
+
                 }
             });
 
@@ -285,12 +233,12 @@ public class GameScreen extends Constants implements Screen {
 
         }
     }
-//l amethode de couverte gère la suppression des nuages et la modification de la variable estDecouverte d'une zone lorsque
+//la methode decouverte gère la suppression des nuages et la modification de la variable estDecouverte d'une zone lorsque
 //    le joueur décide de la découvrir
 
-    public void decouverte(Stage s){
+    public static void decouverte(Stage s){
         for (MapObject o : boutondecouverteoui.getObjects()) {
-            Actor A = new Actor();
+            final Actor A = new Actor();
             Rectangle r = ((RectangleMapObject) o).getRectangle();
             A.setBounds(r.x, r.y, r.width, r.height);
 
@@ -347,6 +295,7 @@ public class GameScreen extends Constants implements Screen {
                         zone.get(5).estDecouverte = true;
 
                     }
+                    A.setVisible(false);
                 }
 
             });
@@ -355,7 +304,7 @@ public class GameScreen extends Constants implements Screen {
         }
 
         for (MapObject o : boutondecouvertenon.getObjects()) {
-            Actor A = new Actor();
+            final Actor A = new Actor();
             Rectangle r = ((RectangleMapObject) o).getRectangle();
             A.setBounds(r.x, r.y, r.width, r.height);
 
@@ -364,11 +313,66 @@ public class GameScreen extends Constants implements Screen {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     fenetreDecouverte.setVisible(false);
-                    boutondecouverteoui.setVisible(false);
-                    boutondecouvertenon.setVisible(false);
+                    A.setVisible(false);
                 }
+
             });
 
+            s.addActor(A);
+        }
+    }
+
+
+    public static void exploitation(Stage s){
+        System.out.println("debutexp");
+
+        for (MapObject o : boutonexploitationnon.getObjects()) {
+            final Actor A = new Actor();
+            Rectangle r = ((RectangleMapObject) o).getRectangle();
+            A.setBounds(r.x, r.y, r.width, r.height);
+
+
+            A.addListener(new ClickListener() {
+
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    System.out.println("non");
+                    fenetreExploitation.setVisible(false);
+                    A.setVisible(false);
+                }
+            });
+            s.addActor(A);
+        }
+
+        for (MapObject o : boutonexploitationoui.getObjects()) {
+            final Actor A = new Actor();
+            Rectangle r = ((RectangleMapObject) o).getRectangle();
+            A.setBounds(r.x, r.y, r.width, r.height);
+
+            A.addListener(new ClickListener() {
+
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    System.out.println("oui");
+
+                    fenetreExploitation.setVisible(false);
+
+
+                    if (mine.get(0).estExploree && Mine.indiceMineExploitation == 0) {
+                        Rubis0.setVisible(true);
+                    }
+
+                    if (mine.get(1).estExploree && Mine.indiceMineExploitation == 1) {
+                        Rubis1.setVisible(true);
+                    }
+
+//                    if (mine.get(6).estExploree && Mine.indiceMineExploitation == 6) {
+//                        Rubis6.setVisible(true);
+//                    }
+                    A.setVisible(false);
+
+                }
+            });
             s.addActor(A);
         }
     }

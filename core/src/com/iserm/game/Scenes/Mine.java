@@ -56,25 +56,23 @@ public class Mine extends Constants{
                 public void clicked(InputEvent event, float x, float y) {
                     if (!estExploree){
                         GameScreen.fenetreExploration.setVisible(true);
-                        boutonexplorationnon.setVisible(true);
-                        boutonexplorationoui.setVisible(true);
+                        GameScreen.fouiller(s);
                         indiceMineExploration = idMine;
                     }
                     else{
-                        if(estExploree){
-                            fenetreExploitation.setVisible(true);
-                            indiceMineExploitation = idMine;
+                        GameScreen.exploitation(s);
+                        System.out.println("exploitaion");
+                        fenetreExploitation.setVisible(true);
+                        indiceMineExploitation = idMine;
 
-                        }
                     }
                 }
             });
 
             s.addActor(A);
-            if (estExploree) {
-                A.setVisible(false);
-            }
         }
     }
+
+
 }
 

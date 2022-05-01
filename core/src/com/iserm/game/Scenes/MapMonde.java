@@ -40,7 +40,7 @@ public class MapMonde {
 // La méthode permet maintenant de créer les boutons relatifs aux mines/zones uniquement après avoir fermer la map monde
     public void afficher(final GameScreen gs, final Stage s){
         for (MapObject o : ales.getObjects()) {
-            Actor A = new Actor();
+            final Actor A = new Actor();
             Rectangle r = ((RectangleMapObject) o).getRectangle();
             A.setBounds(r.x , r.y , r.width*2, r.height*2);
 
@@ -61,13 +61,11 @@ public class MapMonde {
                         gamecam.update();
                         renderer.setView(gamecam);
                         gs.ajoutZoneMines(s);
+                        A.setVisible(false);
 
 
                     }}});
             s.addActor(A);
-            if (!mapmondevisible){
-                A.setVisible(false);
-            }
         };
     }
 

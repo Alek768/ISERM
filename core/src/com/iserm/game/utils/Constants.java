@@ -38,12 +38,12 @@ public abstract class Constants
 
 
     //Variables entrees
-    public MapLayer entree0 = map.getLayers().get("Entree0");
-    public MapLayer entree1 = map.getLayers().get("Entree1");
-    public MapLayer entree6 = map.getLayers().get("Entree6");
-    public MapLayer entree8 = map.getLayers().get("Entree8");
-    public MapLayer entree16 = map.getLayers().get("Entree16");
-    public MapLayer entree19 = map.getLayers().get("Entree19");
+    public static MapLayer entree0 = map.getLayers().get("Entree0");
+    public static MapLayer entree1 = map.getLayers().get("Entree1");
+    public static MapLayer entree6 = map.getLayers().get("Entree6");
+    public static MapLayer entree8 = map.getLayers().get("Entree8");
+    public static MapLayer entree16 = map.getLayers().get("Entree16");
+    public static MapLayer entree19 = map.getLayers().get("Entree19");
 
     public MapLayer boutonEntree0 = map.getLayers().get("Entree_0");
     public MapLayer boutonEntree1= map.getLayers().get("Entree_1");
@@ -53,9 +53,9 @@ public abstract class Constants
     public MapLayer boutonEntree19 = map.getLayers().get("Entree_19");
 
     //Variables Rubis
-    public MapLayer Rubis0 = map.getLayers().get("Ruby_0");
-    public MapLayer Rubis1 = map.getLayers().get("Ruby_1");
-    public MapLayer Rubis6 = map.getLayers().get("Ruby_6");
+    public static MapLayer Rubis0 = map.getLayers().get("Ruby_0");
+    public static MapLayer Rubis1 = map.getLayers().get("Ruby_1");
+    public static MapLayer Rubis6 = map.getLayers().get("Ruby_6");
     public MapLayer Rubis8 = map.getLayers().get("Ruby_8");
     public MapLayer Rubis16 = map.getLayers().get("Ruby_16");
     public MapLayer Rubis19 = map.getLayers().get("Ruby_19");
@@ -95,22 +95,22 @@ public abstract class Constants
     public MapLayer zone6 = map.getLayers().get("Zone6");
 
     //Variables de nuage
-    public MapLayer nuage1 = map.getLayers().get("Nuage_Zone1");
-    public MapLayer nuage2 = map.getLayers().get("Nuage_Zone2");
-    public MapLayer nuage3 = map.getLayers().get("Nuage_Zone3");
-    public MapLayer nuage4 = map.getLayers().get("Nuage_Zone4");
-    public MapLayer nuage5 = map.getLayers().get("Nuage_Zone5");
-    public MapLayer nuage6 = map.getLayers().get("Nuage_Zone6");
+    public static MapLayer nuage1 = map.getLayers().get("Nuage_Zone1");
+    public static MapLayer nuage2 = map.getLayers().get("Nuage_Zone2");
+    public static MapLayer nuage3 = map.getLayers().get("Nuage_Zone3");
+    public static MapLayer nuage4 = map.getLayers().get("Nuage_Zone4");
+    public static MapLayer nuage5 = map.getLayers().get("Nuage_Zone5");
+    public static MapLayer nuage6 = map.getLayers().get("Nuage_Zone6");
 
     //Variables bouton
-    public MapLayer boutondecouverteoui = map.getLayers().get("Bouton oui_decouverte");
-    public MapLayer boutondecouvertenon= map.getLayers().get("Bouton non_decouverte");
-    public MapLayer boutonexplorationoui = map.getLayers().get("Bouton oui_exploration");
-    public MapLayer boutonexplorationnon = map.getLayers().get("Bouton non_exploration");
-    public MapLayer boutonexploitationoui = map.getLayers().get("Bouton oui_exploitation");
-    public MapLayer boutonexploitationnon = map.getLayers().get("Bouton non_exploitation");
-    public MapLayer boutonfailok = map.getLayers().get("Bouton ok_Fail");
-    public MapLayer boutonReussiteExploration = map.getLayers().get("Bouton reussite_exploration");
+    public static MapLayer boutondecouverteoui = map.getLayers().get("Bouton oui_decouverte");
+    public static MapLayer boutondecouvertenon= map.getLayers().get("Bouton non_decouverte");
+    public static MapLayer boutonexplorationoui = map.getLayers().get("Bouton oui_exploration");
+    public static MapLayer boutonexplorationnon = map.getLayers().get("Bouton non_exploration");
+    public static MapLayer boutonexploitationoui = map.getLayers().get("Bouton oui_exploitation");
+    public static MapLayer boutonexploitationnon = map.getLayers().get("Bouton non_exploitation");
+    public static MapLayer boutonfailok = map.getLayers().get("Bouton ok_Fail");
+    public static MapLayer boutonReussiteExploration = map.getLayers().get("Bouton reussite_exploration");
 
 //    //Mines valables
 //    public ArrayList minesexploration = new ArrayList<Integer>();

@@ -19,7 +19,7 @@ public class Joueur {
         this.Password = password;
         this.Niveau = 1;
         this.EXP = 0;
-        this.Argent = 300;
+        this.Argent = 30000;
     }
     public Joueur(String username, String mail, String password,int lvl, int exp, int argent){
         this.Pseudo = username;

@@ -22,11 +22,13 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.iserm.game.screen.GameScreen;
 import com.iserm.game.utils.Constants;
+import com.iserm.game.utils.Assets;
 
 public class EcranAcceuil extends Constants {
     public SpriteBatch sb;
     public Stage stage;
     private Viewport viewport;
+    private  Skin skin;
 
 
     public EcranAcceuil(SpriteBatch sB){
@@ -35,6 +37,8 @@ public class EcranAcceuil extends Constants {
         this.viewport = new FitViewport(2080, 1120, new OrthographicCamera());
 
 
+
+//        skin = Assets.getAssetManager().get(Assets.SKIN_VIS);
 //        Label nameLabel = new Label("name", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 //        TextField nameText = new TextField("", skin);
 //        Label addressLabel = new Label("Address:", new Label.LabelStyle(new BitmapFont(), Color.WHITE));
