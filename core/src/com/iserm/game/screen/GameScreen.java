@@ -32,7 +32,7 @@ public class GameScreen extends Constants implements Screen {
     public static int indiceMineExploration;
     public int indiceMineExploitation;
 
-    private IserMain game;
+    static private IserMain game;
     private OrthographicCamera gamecam;
     private Viewport gamePort;
     public static Hud hud;
@@ -108,8 +108,8 @@ public class GameScreen extends Constants implements Screen {
                     boutonexplorationoui.setVisible(false);
                     //hud.addMoney(-50);
                     try {
-                        game.j.ajoutArgent(-50,new SQL());
-                        game.j.ajoutEXP(+10,new SQL());
+                        game.j.ajoutArgent(-2000,new SQL());
+                        game.j.ajoutEXP(+500,new SQL());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
