@@ -94,7 +94,13 @@ public class SQL {
             System.out.println("Update Failed");
         }
     }
-    //2 Value Int
+
+    /**
+     * Raffraichit la base de données avec de nouvelles valeurs
+     * @param requete requette SQL
+     * @param value1 Ce par quoi on remplace dans un premier temps
+     * @param value2 Ce par quoi on remplace dans un second temps
+     */
     public void Update(String requete, Object value1, Object value2) {
         try{
             PreparedStatement pstmt = c.prepareStatement(requete);
@@ -124,7 +130,7 @@ public class SQL {
 
     /**
      * Méthode qui vient chercher les informations dans la BDD
-     * @param requete
+     * @param requete Requete SQL
      * @return
      */
     public ResultSet Request(String requete){
@@ -151,6 +157,12 @@ public class SQL {
         return Result;
     }
 
+    /**
+     * Permet de chercher l'information dans la base de donnée
+     * @param requete Requete SQL
+     * @param value1 value1
+     * @return
+     */
     public ResultSet Request1(String requete,Object value1){
         ResultSet Result = null;
         try{

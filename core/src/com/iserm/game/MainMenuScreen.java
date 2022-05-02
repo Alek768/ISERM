@@ -67,6 +67,7 @@ public class MainMenuScreen implements Screen {
                 });
             }
 
+
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(1,1,1, 1);

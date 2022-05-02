@@ -13,10 +13,18 @@ public class Mines {
         return nom;
     }
 
+    /**
+     * Méthode permettant d'obtenir le nombre de minerais dans la mine
+     * @return
+     */
     public Minerais getMinerais() {
         return minerais;
     }
 
+    /**
+     * Permettant d'obtenir la taille de la mines
+     * @return
+     */
     public int getTaille() {
         return taille;
     }

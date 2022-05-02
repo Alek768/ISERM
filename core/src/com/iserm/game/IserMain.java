@@ -22,7 +22,11 @@ public class IserMain extends Game {
 	//Texture img2;
 	//TextButton textButton;
 	//Skin skin = new Skin();
-	
+
+
+	/**
+	 *Méthode
+	 */
 	@Override
 	public void create () {
 		//camera = new OrthographicCamera();
@@ -49,6 +53,9 @@ public class IserMain extends Game {
 	}
 */
 
+	/**
+	 * Appelle la classe mère, classe par défaut.
+	 */
 	@Override
 	public void render () {
 		super.render();
@@ -59,7 +66,10 @@ public class IserMain extends Game {
 		batch.draw(img2, 530, 420);
 		batch.end();*/
 	}
-	
+
+	/**
+	 * Méthode par defaut.
+	 */
 	@Override
 	public void dispose () {
 		//batch.dispose();

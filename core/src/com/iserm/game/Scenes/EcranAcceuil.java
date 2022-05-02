@@ -30,7 +30,10 @@ public class EcranAcceuil extends Constants {
     private Viewport viewport;
     private  Skin skin;
 
-
+    /**
+     * Méthode permettant de créer un objet EcranAccueil
+     * @param sB SprinteBatch, classe d'aide pour écrire du texte
+     */
     public EcranAcceuil(SpriteBatch sB){
         this.sb = sB;
         this.stage = new Stage();
@@ -54,6 +57,13 @@ public class EcranAcceuil extends Constants {
 
     }
 
+
+    /**
+     * Méthode permettant de lancer la mapMonde
+     * @param mm MapMonde que l'on souhaite lancer
+     * @param s Stage rattachée
+     * @param gs GameScreen rattaché
+     */
     public void lancement(final MapMonde mm, final Stage s, final GameScreen gs){
 
         for (final MapObject o : acceuilPlay.getObjects()) {

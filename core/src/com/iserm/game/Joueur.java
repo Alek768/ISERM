@@ -10,6 +10,11 @@ public class Joueur {
     static int idPlayer = 0;
     //Joueur Friends [] = new Joueur[50];
 
+
+    /**
+     * Méthode permettant de construire un objet de type joueur
+     * @param idPlayer
+     */
     public Joueur(int idPlayer){
         this.idPlayer = idPlayer;
     }
@@ -80,6 +85,14 @@ public class Joueur {
         }
     }
 
+    /**
+     * Vérifie si la chaîne de caractère est la mail du joueur
+     * @param mail mail concerné
+     * @param password mot de passe
+     * @param s Permet de communiquer à la base de donnée
+     * @return
+     * @throws SQLException
+     */
     private boolean isMail(String mail, String password, SQL s) throws SQLException{
         boolean b = false;
         ResultSet r = s.RequestString("SELECT COUNT(*) FROM PLAYERS WHERE mail = ? and password = ?", mail, password);
@@ -89,6 +102,15 @@ public class Joueur {
         }
         return b;
     }
+
+    /**
+     * Même méthode que isMail mais pour le Username
+     * @param username usermane concerné
+     * @param password mot de passe
+     * @param s Permet de communiquer avec la base de donnée
+     * @return
+     * @throws SQLException
+     */
     private boolean isUsername(String username, String password, SQL s) throws SQLException {
         boolean b = false;
         ResultSet r = s.RequestString("SELECT COUNT(*) FROM PLAYERS WHERE username = ? and password = ?;",username,password);
@@ -119,6 +141,9 @@ public class Joueur {
     }
 
     @Override
+    /**
+     * Méthode toString
+     */
     public String toString(){
         return "Username: "+this.Pseudo+" Mail: "+this.Mail+" LVL: "+this.Niveau+" EXP: "+this.EXP+" Arg: "+this.Argent;
     }
@@ -174,6 +199,14 @@ public class Joueur {
             retraitRessource(r,-quantite,s);
         }
     }
+
+    /**
+     * Méthode permettant de retirer des ressources
+     * @param r Ressource à retirer
+     * @param quantite Quantité à retirer
+     * @param s Permet de communiquer avec la base de donnée
+     * @throws SQLException
+     */
     void retraitRessource(Ressource r, int quantite, SQL s) throws SQLException{
         ResultSet re = s.Request2("SELECT quantite FROM INVENTAIRE WHERE playerID = ? and objetID = ?", this.idPlayer, r.idObjet);
         if (quantite >= 0){

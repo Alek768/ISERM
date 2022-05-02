@@ -25,6 +25,16 @@ public class Mine extends Constants{
     private String nom;
     private int indiceZone;
 
+
+    /**
+     * Méthode permettant de construire un objet de type Mines
+     * @param stage Stage auquelle appartient la mine
+     * @param cam rattache une camera à la stage auquelle appartient la mine
+     * @param port rattapche le viewport à la stage auquelle appartient la mine
+     * @param name Nom de la mine
+     * @param idMine identifiant de la mine
+     * @param indiceZone
+     */
     public Mine( Stage stage, OrthographicCamera cam, Viewport port, String name, int idMine, int indiceZone){
         this.gamecam = cam;
         this.gamePort = port;
@@ -37,11 +47,18 @@ public class Mine extends Constants{
 
     }
 
+    /**
+     * Méthode permettant d'obtenir le nom de l'objet de type mines
+     * @return retourne le nom de la mine
+     */
     public String toString(){
         return nom;
     }
 
-
+    /**
+     * Permet d'afficher ou de faire disparaître l'objet concerné sur la map Tiled. Vérifie certaine conditions afin
+     * d'éviter la triche
+     */
     public void afficher(){
 
         for (MapObject o : mine.getObjects()) {

@@ -27,6 +27,11 @@ public class Hud {
     Label timeLabel;
     Label orLabel;
 
+    /**
+     * Méthode permettant de créer un objet de type Hud, permettant d'afficher du texte
+     * @param sb Objet de type SpriteBatch, SpriteBatch est une classe d'aide permettant l'affichage de texte
+     * @param joueur Joueur rattaché au texte, le pseudo du texte est ainsi marqué en haut de l'écran
+     */
     public Hud(SpriteBatch sb, Joueur joueur){
         this.j = joueur;
         nom = joueur.Pseudo;
@@ -45,6 +50,9 @@ public class Hud {
 
     }
 
+    /**
+     * Permet l'affichage ou non du texte
+     */
     public void affichage(){
         Table table = new Table();
         table.top();
@@ -63,10 +71,18 @@ public class Hud {
         stage.addActor(table);
     }
 
+
+    /**
+     * Permet de raffraichir le texte. Permet ainsi mettre à jour la quantité d'or quand le joueur effectue un achat.
+     */
     public void reload(){
         orLabel.setText(j.getArgent());
     }
 
+    /**
+     * Permet d'obtenir la quantité d'or que le joueur possède. Fait appel à la base de donnée.
+     * @return
+     */
     public int getOr() {
         return j.getArgent();
     }

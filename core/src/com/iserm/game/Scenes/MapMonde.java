@@ -27,7 +27,14 @@ public class MapMonde {
     private MapGroupLayer mapmonde;
     public OrthogonalTiledMapRenderer renderer;
 
-
+    /**
+     * Méthode permettant de construire un objet de type MapMonde
+     * @param map Map tiled auquelle appartient la MapMonde
+     * @param stage Stage auquelle appartient la mapMonde
+     * @param cam Caméra
+     * @param port ViewPort
+     * @param rend Renderer
+     */
     public MapMonde(TiledMap map, Stage stage, OrthographicCamera cam, Viewport port, OrthogonalTiledMapRenderer rend){
         this.gamecam = cam;
         this.gamePort = port;
@@ -38,6 +45,12 @@ public class MapMonde {
         ales = mapmonde.getLayers().get("Ales");
     }
 // La méthode permet maintenant de créer les boutons relatifs aux mines/zones uniquement après avoir fermer la map monde
+
+    /**
+     * Méthode permettant de créer les boutons relatifs aux mines/zones uniquement après avoir fermé la map monde.
+     * @param gs Ecran où afficher l'objet
+     * @param s Stage où afficher l'objet
+     */
     public void afficher(final GameScreen gs, final Stage s){
         for (MapObject o : ales.getObjects()) {
             final Actor A = new Actor();

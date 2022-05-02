@@ -30,6 +30,17 @@ public class Zone extends Constants {
     public static int indiceZoneEnDecouverte;
     public static int derniereZoneDecouverte = 0;
 
+
+    /**
+     * Méthode permettant de construire un objet de type Zone
+     * @param map Map Tiled auquel est rattraché la zoen
+     * @param stage Stage auquelle appartient la zone
+     * @param cam Caméra
+     * @param port Viewport
+     * @param rend Render
+     * @param name Nom de la zone
+     * @param idZone Identifiant de la zone
+     */
     public Zone(TiledMap map, Stage stage, OrthographicCamera cam, Viewport port, OrthogonalTiledMapRenderer rend, String name, int idZone){
         this.gamecam = cam;
         this.gamePort = port;
@@ -40,6 +51,10 @@ public class Zone extends Constants {
 
     }
 
+    /**
+     * Permet d'afficher ou de faire disparaître l'objet concerné sur la map Tiled. Vérifie certaine conditions afin
+     * d'éviter la triche
+     */
     public void afficher(){
         for (MapObject o : zone.getObjects()) {
             final Actor A = new Actor();
