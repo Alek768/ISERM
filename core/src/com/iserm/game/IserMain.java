@@ -31,7 +31,7 @@ public class IserMain extends Game {
 	public void create () {
 		//camera = new OrthographicCamera();
 		batch = new SpriteBatch();
-		this.j = new Joueur(2);
+		this.j = new Joueur(3);
 		try {
 			SQL sql = new SQL();
 			j.config(sql);

@@ -24,7 +24,7 @@ public class Joueur {
         this.Password = password;
         this.Niveau = 1;
         this.EXP = 0;
-        this.Argent = 30000;
+        this.Argent = 2500;
     }
     public Joueur(String username, String mail, String password,int lvl, int exp, int argent){
         this.Pseudo = username;
@@ -50,6 +50,20 @@ public class Joueur {
             r.close();
         }
     }
+
+    public void config1(String mail, String password, SQL s) throws SQLException{
+        ResultSet r = s.RequestString("SELECT username, playerLVL, playerEXP, Argent FROM PLAYERS WHERE mail = ? and password = ?",mail,password);
+        if (r.next()){
+            this.Pseudo = r.getString(1);
+            this.Mail = mail;
+            this.Password = password;
+            this.Niveau = r.getInt(2);
+            this.EXP = r.getInt(3);
+            this.Argent = r.getInt(4);
+            r.close();
+        }
+    }
+
 
     /**
      * Login : Pseudo + Password || Mail + Password
