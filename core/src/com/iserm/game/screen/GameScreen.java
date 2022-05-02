@@ -129,16 +129,17 @@ public class GameScreen extends Constants implements Screen {
                             mine.get(1).estExploree = true;
                         }
 
-                        if (Mine.indiceMineExploration == 2) {
+                        if (Mine.indiceMineExploration == 6) {
                             entree6.setVisible(true);
-                            mine.get(2).estExploree = true;
+                            mine.get(6).estExploree = true;
 
                         }
 
                         if (Mine.indiceMineExploration == 8) {
                             entree8.setVisible(true);
-                            mine.get(3).estExploree = true;
+                            mine.get(8).estExploree = true;
                         }
+
 
                         if (Mine.indiceMineExploration == 16) {
                             entree16.setVisible(true);
@@ -366,9 +367,21 @@ public class GameScreen extends Constants implements Screen {
                         Rubis1.setVisible(true);
                     }
 
-//                    if (mine.get(6).estExploree && Mine.indiceMineExploitation == 6) {
-//                        Rubis6.setVisible(true);
-//                    }
+                    if (mine.get(6).estExploree && Mine.indiceMineExploitation == 6) {
+                        Rubis6.setVisible(true);
+                    }
+
+                    if (mine.get(8).estExploree && Mine.indiceMineExploitation == 8) {
+                        Rubis8.setVisible(true);
+                    }
+
+                    if (mine.get(16).estExploree && Mine.indiceMineExploitation == 16) {
+                        Rubis16.setVisible(true);
+                    }
+
+                    if (mine.get(19).estExploree && Mine.indiceMineExploitation == 19) {
+                        Rubis19.setVisible(true);
+                    }
                     A.setVisible(false);
 
                 }
@@ -432,7 +445,7 @@ public class GameScreen extends Constants implements Screen {
         }
         decouverte(s);
 
-        for( int i = 0; i < 4; i++){
+        for( int i = 0; i < 23; i++){
             mine.add( new Mine(s,gamecam,gamePort,"Mine_"+i,i,0));mine.get(i).afficher();
         }
 

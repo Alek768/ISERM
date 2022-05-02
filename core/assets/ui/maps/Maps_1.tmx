@@ -580,71 +580,11 @@
   <group id="31" name="Objet">
    <group id="90" name="Entrée de mines"/>
    <group id="89" name="Cailloux">
-    <group id="63" name="Zone6" visible="0">
-     <objectgroup id="86" name="Mine_20">
-      <object id="63" x="304" y="592" width="48" height="32"/>
-     </objectgroup>
-     <objectgroup id="87" name="Mine_21">
-      <object id="64" x="320" y="432" width="64" height="48"/>
-     </objectgroup>
-     <objectgroup id="88" name="Mine_22">
-      <object id="65" x="176" y="432" width="48" height="48"/>
-     </objectgroup>
-    </group>
-    <group id="62" name="Zone5" visible="0">
-     <objectgroup id="80" name="Mine_14" visible="0">
-      <object id="55" x="871.481" y="440.8"/>
-     </objectgroup>
-     <objectgroup id="81" name="Mine_15" visible="0">
-      <object id="56" x="896" y="688" width="32" height="32"/>
-     </objectgroup>
-     <objectgroup id="82" name="Mine_16" visible="0">
-      <object id="57" x="720" y="640" width="48" height="80"/>
-     </objectgroup>
-     <objectgroup id="83" name="Mine_17">
-      <object id="58" x="672" y="544" width="32" height="48"/>
-     </objectgroup>
-     <objectgroup id="84" name="Mine_18">
-      <object id="59" x="560" y="528" width="32" height="16"/>
-     </objectgroup>
-     <objectgroup id="85" name="Mine_19">
-      <object id="62" x="496" y="608" width="80" height="48"/>
-     </objectgroup>
-    </group>
-    <group id="61" name="Zone4" visible="0">
-     <objectgroup id="73" name="Mine_8" visible="0">
-      <object id="45" x="576" y="928" width="48" height="64"/>
-     </objectgroup>
-     <objectgroup id="74" name="Mine_9" visible="0">
-      <object id="46" x="576" y="1056" width="32" height="32"/>
-     </objectgroup>
-     <objectgroup id="75" name="Mine_10" visible="0">
-      <object id="47" x="448" y="1008" width="32" height="48"/>
-     </objectgroup>
-     <objectgroup id="76" name="Mine_11">
-      <object id="48" x="480" y="864" width="32" height="32"/>
-     </objectgroup>
-     <objectgroup id="77" name="Mine_12">
-      <object id="49" x="336" y="880" width="45.8287" height="48.1843"/>
-     </objectgroup>
-     <objectgroup id="78" name="Mine_13">
-      <object id="50" x="576" y="752" width="48" height="48"/>
-     </objectgroup>
-    </group>
-    <group id="60" name="Zone3" visible="0">
-     <objectgroup id="70" name="Mine_5" visible="0">
-      <object id="42" x="256" y="784" width="64" height="48"/>
-     </objectgroup>
-     <objectgroup id="71" name="Mine_6" visible="0">
-      <object id="43" x="208" y="944" width="48" height="32"/>
-     </objectgroup>
-     <objectgroup id="72" name="Mine_7" visible="0">
-      <object id="44" x="0" y="880" width="64" height="32"/>
-     </objectgroup>
-    </group>
-    <group id="59" name="Zone2">
-     <objectgroup id="68" name="Mine_4"/>
-    </group>
+    <group id="63" name="Zone6" visible="0"/>
+    <group id="62" name="Zone5" visible="0"/>
+    <group id="61" name="Zone4" visible="0"/>
+    <group id="60" name="Zone3" visible="0"/>
+    <group id="59" name="Zone2"/>
     <group id="58" name="Zone1"/>
     <group id="57" name="Zone0"/>
    </group>
@@ -755,6 +695,61 @@
  <objectgroup id="94" name="Entree_8" visible="0">
   <object id="70" x="576" y="960" width="32" height="32"/>
  </objectgroup>
+ <objectgroup id="80" name="Mine_14" visible="0">
+  <object id="55" x="871.481" y="440.8"/>
+ </objectgroup>
+ <objectgroup id="86" name="Mine_20">
+  <object id="63" x="304" y="592" width="48" height="32"/>
+ </objectgroup>
+ <objectgroup id="87" name="Mine_21">
+  <object id="64" x="320" y="432" width="64" height="48"/>
+ </objectgroup>
+ <objectgroup id="88" name="Mine_22">
+  <object id="65" x="176" y="432" width="48" height="48"/>
+ </objectgroup>
+ <objectgroup id="81" name="Mine_15" visible="0">
+  <object id="56" x="896" y="688" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup id="82" name="Mine_16" visible="0">
+  <object id="57" x="720" y="640" width="48" height="80"/>
+ </objectgroup>
+ <objectgroup id="83" name="Mine_17">
+  <object id="58" x="672" y="544" width="32" height="48"/>
+ </objectgroup>
+ <objectgroup id="84" name="Mine_18">
+  <object id="59" x="560" y="528" width="32" height="16"/>
+ </objectgroup>
+ <objectgroup id="85" name="Mine_19">
+  <object id="62" x="496" y="608" width="80" height="48"/>
+ </objectgroup>
+ <objectgroup id="71" name="Mine_6" visible="0">
+  <object id="43" x="208" y="944" width="48" height="32"/>
+ </objectgroup>
+ <objectgroup id="73" name="Mine_8" visible="0">
+  <object id="45" x="576" y="928" width="48" height="64"/>
+ </objectgroup>
+ <objectgroup id="74" name="Mine_9" visible="0">
+  <object id="46" x="576" y="1056" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup id="75" name="Mine_10" visible="0">
+  <object id="47" x="448" y="1008" width="32" height="48"/>
+ </objectgroup>
+ <objectgroup id="76" name="Mine_11">
+  <object id="48" x="480" y="864" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup id="77" name="Mine_12">
+  <object id="49" x="336" y="880" width="45.8287" height="48.1843"/>
+ </objectgroup>
+ <objectgroup id="78" name="Mine_13">
+  <object id="50" x="576" y="752" width="48" height="48"/>
+ </objectgroup>
+ <objectgroup id="70" name="Mine_5" visible="0">
+  <object id="42" x="256" y="784" width="64" height="48"/>
+ </objectgroup>
+ <objectgroup id="72" name="Mine_7" visible="0">
+  <object id="44" x="0" y="880" width="64" height="32"/>
+ </objectgroup>
+ <objectgroup id="68" name="Mine_4"/>
  <objectgroup id="93" name="Entree_6" visible="0">
   <object id="68" x="720" y="672" width="32" height="32"/>
  </objectgroup>
